@@ -1,0 +1,130 @@
+---
+import { getRelativeLocaleUrl } from '@i18n/utils';
+
+export interface Props {
+  lang?: "en" | "vi";
+}
+
+const { lang = "en" } = Astro.props;
+---
+
+<section class="relative pt-12 pb-24 md:pt-20 md:pb-36 overflow-hidden">
+  <!-- Subtle Background Section Watermark (00) -->
+  <div class="absolute right-0 top-12 font-mono text-[14vw] font-black text-white/[0.025] select-none pointer-events-none leading-none -z-10 tracking-tighter">
+    00
+  </div>
+
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-12">
+    <!-- Top Editorial Metadata Line -->
+    <div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-white/[0.08] text-[11px] font-mono text-zinc-500 uppercase tracking-widest">
+      <div class="flex items-center gap-3">
+        <span class="text-white font-bold">GIBOR06 / 2026</span>
+        <span class="text-zinc-700">/</span>
+        <span>HUIT // CS FACULTY</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <span>10.8231° N, 106.6297° E</span>
+        <span class="text-zinc-700">/</span>
+        <span class="text-emerald-400 flex items-center gap-1.5 font-medium">
+          <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          {lang === "vi" ? "SẴN SÀNG NHẬN VIỆC" : "AVAILABLE FOR ROLES"}
+        </span>
+      </div>
+    </div>
+
+    <!-- 12-Column Cinematic Editorial Hero Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-end">
+      <!-- Left 7 Columns: Massive Name & Positioning -->
+      <div class="lg:col-span-7 space-y-8">
+        <div class="space-y-4">
+          <p class="font-mono text-xs uppercase tracking-widest text-blue-400">
+            {lang === "vi" ? "KỸ SƯ PHẦN MỀM // NGHIÊN CỨU AI" : "SOFTWARE ENGINEER // AI RESEARCHER"}
+          </p>
+          <h1 class="display-hero-title">
+            TRẦN GIA<br />
+            BẢO
+          </h1>
+        </div>
+
+        <p class="text-base sm:text-xl text-zinc-300 max-w-xl font-light leading-relaxed">
+          {lang === "vi"
+            ? "Nghiên cứu các thuật toán khai phá dữ liệu hiệu năng cao (EMHUN), mô hình ngôn ngữ tiếng Việt (PhoBERT) và kiến trúc hệ thống phần mềm đáng tin cậy."
+            : "Researching high-utility data mining algorithms (EMHUN), contextual NLP transformers (PhoBERT), and scalable algorithmic software systems."}
+        </p>
+
+        <!-- Technical Domain Tags (Typography & hairline rules, no card wrapper) -->
+        <div class="pt-2 border-t border-white/[0.08] flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-mono text-zinc-400">
+          <span class="text-zinc-200">High-Utility Itemsets</span>
+          <span class="text-zinc-600">•</span>
+          <span class="text-zinc-200">Transformer NLP</span>
+          <span class="text-zinc-600">•</span>
+          <span class="text-zinc-200">C/C++ Systems</span>
+          <span class="text-zinc-600">•</span>
+          <span class="text-zinc-200">Computer Vision</span>
+        </div>
+
+        <!-- Editorial Action Links -->
+        <div class="flex flex-wrap items-center gap-6 pt-4 text-xs font-mono">
+          <a
+            href="#selected-work"
+            class="inline-flex items-center gap-2 pb-1 border-b border-white text-white font-bold hover:text-blue-400 hover:border-blue-400 transition-colors"
+          >
+            <span>{lang === "vi" ? "Khám phá dự án tiêu biểu" : "Explore Selected Work"}</span>
+            <span class="text-zinc-400">↘</span>
+          </a>
+
+          <a
+            href={getRelativeLocaleUrl(lang, "/resume")}
+            class="inline-flex items-center gap-1.5 text-zinc-400 hover:text-white transition-colors"
+          >
+            <span>{lang === "vi" ? "Hồ sơ năng lực (CV)" : "Resume Dossier"}</span>
+            <span class="text-zinc-600">↗</span>
+          </a>
+
+          <a
+            href="#contact"
+            class="inline-flex items-center gap-1.5 text-zinc-500 hover:text-zinc-300 transition-colors"
+          >
+            <span>{lang === "vi" ? "Liên hệ" : "Contact"}</span>
+            <span class="text-zinc-600">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right 5 Columns: Editorial Portrait & Metrics Rail -->
+      <div class="lg:col-span-5 space-y-6">
+        <!-- 3:4 Rectangular Editorial Portrait (Full Color) -->
+        <div class="relative img-editorial-reveal border border-white/10 bg-[#0d0f11]">
+          <img
+            src="/portfolio/assets/img/avatar-gibor06.jpg"
+            alt="Portrait of Tran Gia Bao"
+            class="w-full h-auto object-cover"
+            width="480"
+            height="560"
+            loading="eager"
+          />
+          <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between font-mono text-[10px] text-zinc-400 bg-black/60 backdrop-blur-sm px-3 py-1.5 border border-white/10">
+            <span>FIG. 01 // PORTRAIT</span>
+            <span class="text-white font-semibold">GIBOR06</span>
+          </div>
+        </div>
+
+        <!-- Editorial Metrics Rail (Direct on page, clean hairline dividers) -->
+        <div class="grid grid-cols-3 gap-4 pt-2 border-t border-white/[0.08] font-mono">
+          <div>
+            <span class="meta-rail-label block">GPA (10.0)</span>
+            <strong class="text-lg text-emerald-400 font-bold block pt-0.5">8.78 / 10</strong>
+          </div>
+          <div>
+            <span class="meta-rail-label block">NCKH 2026</span>
+            <span class="text-xs text-white font-bold block pt-1.5">Uni Finalist</span>
+          </div>
+          <div>
+            <span class="meta-rail-label block">HONORS</span>
+            <span class="text-xs text-zinc-300 font-bold block pt-1.5">08+ Awards</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

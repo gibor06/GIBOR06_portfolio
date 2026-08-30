@@ -1,0 +1,86 @@
+---
+title: "Multi Aura & EMHUN: Vietnamese Toxic Speech Detection & High-Utility Data Mining"
+titleVi: "Nghiên Cứu Multi Aura & EMHUN: Phát Hiện Bình Luận Độc Hại Tiếng Việt & Khai Phá Dữ Liệu"
+summary: "An applied AI & data engineering research project fine-tuning PhoBERT Transformers for Vietnamese toxic-speech classification and executing high-utility pattern mining via EMHUN algorithm."
+summaryVi: "Dự án nghiên cứu trí tuệ nhân tạo và kỹ thuật dữ liệu: tinh chỉnh mô hình Transformer PhoBERT nhận diện bình luận độc hại tiếng Việt và khai phá tập mẫu hữu ích cao với thuật toán EMHUN."
+year: "2024 - 2026"
+role: "AI/NLP Researcher & Algorithm Developer"
+roleVi: "Nghiên cứu viên AI/NLP & Phát triển Thuật toán"
+domain: "Applied NLP & Data Mining"
+domainVi: "Xử lý Ngôn ngữ Tự nhiên & Khai phá Dữ liệu"
+stack: ["Python", "PhoBERT", "PyTorch", "Hugging Face", "EMHUN Algorithm", "Pandas", "Scikit-Learn"]
+metrics:
+  - label: "Validation F1-Score"
+    labelVi: "F1-Score Kiểm Thử"
+    value: "0.89"
+  - label: "Mining Execution Time"
+    labelVi: "Thời Gian Khai Thác"
+    value: "-31% vs Baseline"
+  - label: "Academic Recognition"
+    labelVi: "Giải Thưởng Khoa Học"
+    value: "HUIT NCKH Finalist 2026"
+coverImage: "/portfolio/assets/img/thanhTich_2026/nckh_CapKhoa_2026_1.png"
+featured: true
+order: 1
+githubUrl: "https://github.com/gibor06"
+evidenceUrl: "https://fit.huit.edu.vn/nghien-cuu/thong-bao-so-3-to-chuc-vong-chung-ket-cuoc-thi-nckh-sv-2025-2026"
+paperAward: "Finalist HUIT University Scientific Research 2026 & 2nd Prize Faculty Research 2025"
+---
+
+## Executive Overview
+Online social communities and modern e-commerce platforms suffer from toxic user-generated content and unoptimized transaction patterns. This research combines **transformer-based Vietnamese NLP (PhoBERT)** for granular toxicity detection with **High-Utility Itemset Mining (EMHUN)** to discover high-value transactional patterns under constrained computational budgets.
+
+The research achieved:
+- **0.89 F1-Score** on internal Vietnamese toxic comment validation datasets.
+- **~31% reduction** in mining runtime compared to traditional baseline utility mining algorithms.
+- **Official Selection as Finalist** in the HUIT University-Level Student Scientific Research Competition (2025–2026) and **2nd Prize** at Faculty Level (2024–2025).
+
+---
+
+## 1. Problem Statement & Context
+- **Linguistic Nuances in Vietnamese**: Vietnamese text contains rich diacritics, compound words, teen codes, and contextual sarcasm that standard multilingual models (mBERT, XLM-R) often misclassify.
+- **High-Utility Bottlenecks**: Mining profitable transactional itemsets often leads to combinatorial explosions in search spaces when candidate utilities are calculated naively.
+
+---
+
+## 2. My Specific Contributions
+- Preprocessed and normalized raw Vietnamese text using custom regex tokenizers, accent restoration pipelines, and stopword filters tailored for social comment datasets.
+- Fine-tuned **PhoBERT (base & large)** with PyTorch and Hugging Face Transformers using weighted cross-entropy loss to address class imbalance.
+- Benchmarked the **EMHUN (Efficient Mining of High-Utility Itemsets with Negative Unit Profits)** algorithm against standard baseline implementations on transaction data.
+- Prepared comprehensive research documentation, ablation tables, and defended the findings before the Faculty & University Scientific Committees.
+
+---
+
+## 3. System Architecture & Model Pipeline
+
+```text
+[Raw Vietnamese Text] ──> [Text Normalization & Diacritic Fix]
+                                     │
+                                     ▼
+                      [PhoBERT Tokenizer (BPE)]
+                                     │
+                                     ▼
+                      [PhoBERT Transformer Backbone]
+                                     │
+                                     ▼
+                      [Classification Head + Dropout (0.2)]
+                                     │
+                                     ▼
+                      [Toxic / Non-Toxic / Toxic Sub-Classes]
+```
+
+---
+
+## 4. Quantitative Results & Evaluation
+
+| Model / Algorithm | Task | Metric / Result | Comparison vs Baseline |
+| :--- | :--- | :--- | :--- |
+| **PhoBERT-base (Fine-tuned)** | Toxic Comment Detection | **F1-Score: 0.89** | +7.4% over standard BiLSTM |
+| **PhoBERT-base** | Precision / Recall | **P: 0.91 / R: 0.87** | Balanced false-positive tradeoff |
+| **EMHUN Algorithm** | High-Utility Pattern Mining | **Execution Time** | **31% faster** search space pruning |
+
+---
+
+## 5. Key Learnings & Engineering Takeaways
+1. **Domain-Specific Tokenization Matters**: Monolingual tokenizers trained on syllable-level Vietnamese tokenization (such as PhoBERT's Byte-Pair Encoding) outperform general multilingual models on nuanced sentiment and toxicity.
+2. **Pruning Strategy**: Utility upper-bounding in data mining provides substantial pruning power without sacrificing completeness.

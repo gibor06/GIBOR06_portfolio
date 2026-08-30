@@ -23,6 +23,7 @@ vendor/
 dist/
 build/
 out/
+.astro/
 coverage/
 .tmp/
 temp/

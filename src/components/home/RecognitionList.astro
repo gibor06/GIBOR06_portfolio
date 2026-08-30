@@ -1,0 +1,137 @@
+---
+import { achievements } from '@data/achievements';
+import EvidenceLink from '@components/common/EvidenceLink.astro';
+
+export interface Props {
+  lang?: "en" | "vi";
+}
+
+const { lang = "en" } = Astro.props;
+
+const competitionItems = achievements.filter((a) => a.category !== "research");
+const items2026 = competitionItems.filter((a) => a.date.includes("2026"));
+const items2025 = competitionItems.filter((a) => a.date.includes("2025") || a.date.includes("2024"));
+---
+
+<section id="recognition" class="py-24 md:py-36 border-t border-white/[0.08] relative">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-20">
+    <!-- Section Title with Large Number Rhythm -->
+    <div class="flex items-baseline justify-between border-b border-white/[0.08] pb-6">
+      <div class="space-y-1">
+        <span class="font-mono text-xs text-blue-400 uppercase tracking-widest block">03 // INDEX</span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+          {lang === "vi" ? "THÀNH TÍCH & GIẢI THƯỞNG HỌC THUẬT" : "HONORS & COMPETITIONS"}
+        </h2>
+      </div>
+      <span class="display-section-num hidden sm:block">03</span>
+    </div>
+
+    <!-- 2026 Timeline Group -->
+    {items2026.length > 0 && (
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div class="lg:col-span-4 sticky top-28">
+          <span class="text-5xl sm:text-7xl font-extrabold text-white font-mono tracking-tighter leading-none block">
+            2026
+          </span>
+          <span class="font-mono text-xs text-zinc-500 uppercase tracking-wider block mt-2">
+            {lang === "vi" ? "NĂM HỌC 2025–2026" : "ACADEMIC YEAR 2025–2026"}
+          </span>
+        </div>
+
+        <div class="lg:col-span-8 space-y-8">
+          {items2026.map((item) => (
+            <article class="pb-8 border-b border-white/[0.08] space-y-3">
+              <div class="flex items-center gap-3 font-mono text-xs text-zinc-400">
+                <span class="text-amber-400 font-bold">{item.organization}</span>
+                <span class="text-zinc-700">/</span>
+                <span class="uppercase">{lang === "vi" ? item.scopeVi : item.scopeEn}</span>
+              </div>
+
+              <h3 class="text-xl font-bold text-white leading-snug">
+                {lang === "vi" ? item.titleVi : item.titleEn}
+              </h3>
+
+              <p class="text-sm text-zinc-300 font-light leading-relaxed">
+                {lang === "vi" ? item.descriptionVi : item.descriptionEn}
+              </p>
+
+              <div class="flex flex-wrap items-center gap-6 pt-2 font-mono text-xs">
+                {item.evidenceUrl && (
+                  <EvidenceLink
+                    href={item.evidenceUrl}
+                    label={lang === "vi" ? "Chi tiết thông báo" : "Official Details"}
+                  />
+                )}
+                {item.imagePath && (
+                  <button
+                    type="button"
+                    data-lightbox
+                    data-src={item.imagePath}
+                    data-caption={lang === "vi" ? item.titleVi : item.titleEn}
+                    class="text-zinc-400 hover:text-white transition-colors"
+                  >
+                    {lang === "vi" ? "Minh chứng ảnh ↗" : "Evidence Image ↗"}
+                  </button>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- 2025 Timeline Group -->
+    {items2025.length > 0 && (
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-12 border-t border-white/[0.08]">
+        <div class="lg:col-span-4 sticky top-28">
+          <span class="text-5xl sm:text-7xl font-extrabold text-white font-mono tracking-tighter leading-none block">
+            2025
+          </span>
+          <span class="font-mono text-xs text-zinc-500 uppercase tracking-wider block mt-2">
+            {lang === "vi" ? "NĂM HỌC 2024–2025" : "ACADEMIC YEAR 2024–2025"}
+          </span>
+        </div>
+
+        <div class="lg:col-span-8 space-y-8">
+          {items2025.map((item) => (
+            <article class="pb-8 border-b border-white/[0.08] space-y-3">
+              <div class="flex items-center gap-3 font-mono text-xs text-zinc-400">
+                <span class="text-amber-400 font-bold">{item.organization}</span>
+                <span class="text-zinc-700">/</span>
+                <span class="uppercase">{lang === "vi" ? item.scopeVi : item.scopeEn}</span>
+              </div>
+
+              <h3 class="text-xl font-bold text-white leading-snug">
+                {lang === "vi" ? item.titleVi : item.titleEn}
+              </h3>
+
+              <p class="text-sm text-zinc-300 font-light leading-relaxed">
+                {lang === "vi" ? item.descriptionVi : item.descriptionEn}
+              </p>
+
+              <div class="flex flex-wrap items-center gap-6 pt-2 font-mono text-xs">
+                {item.evidenceUrl && (
+                  <EvidenceLink
+                    href={item.evidenceUrl}
+                    label={lang === "vi" ? "Chi tiết thông báo" : "Official Details"}
+                  />
+                )}
+                {item.imagePath && (
+                  <button
+                    type="button"
+                    data-lightbox
+                    data-src={item.imagePath}
+                    data-caption={lang === "vi" ? item.titleVi : item.titleEn}
+                    class="text-zinc-400 hover:text-white transition-colors"
+                  >
+                    {lang === "vi" ? "Minh chứng ảnh ↗" : "Evidence Image ↗"}
+                  </button>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    )}
+  </div>
+</section>

@@ -1,0 +1,209 @@
+---
+import { profile } from '@data/profile';
+
+export interface Props {
+  lang?: "en" | "vi";
+}
+
+const { lang = "en" } = Astro.props;
+---
+
+<section id="contact" class="py-24 md:py-36 border-t border-white/[0.08] relative">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-20">
+    <!-- Section Title with Large Number Rhythm -->
+    <div class="flex items-baseline justify-between border-b border-white/[0.08] pb-6">
+      <div class="space-y-1">
+        <span class="font-mono text-xs text-blue-400 uppercase tracking-widest block">07 // TRANSMISSION</span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+          {lang === "vi" ? "LIÊN HỆ & HỢP TÁC" : "LET'S TALK"}
+        </h2>
+      </div>
+      <span class="display-section-num hidden sm:block">07</span>
+    </div>
+
+    <!-- Dramatic Large Closing Headline -->
+    <div class="space-y-4 max-w-4xl">
+      <h3 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.05]">
+        {lang === "vi"
+          ? "CÙNG XÂY DỰNG NHỮNG HỆ THỐNG GIÁ TRỊ VÀ ĐỘT PHÁ."
+          : "HAVE A PROJECT, RESEARCH IDEA, OR OPPORTUNITY?"}
+      </h3>
+      <p class="text-base sm:text-xl text-zinc-400 font-light leading-relaxed">
+        {lang === "vi"
+          ? "Sẵn sàng đón nhận các vị trí Software Engineer Internship, Fresher, AI/ML, Data Engineering và hợp tác nghiên cứu học thuật."
+          : "Open for Software Engineer internships, fresher roles, applied AI research, and high-impact systems engineering."}
+      </p>
+    </div>
+
+    <!-- Direct Transmission Ledger & Formspree Form -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start pt-8 border-t border-white/[0.08]">
+      <!-- Left 5 Columns: Direct Channels -->
+      <div class="lg:col-span-5 space-y-8 font-mono text-xs">
+        <div class="space-y-2 pb-6 border-b border-white/[0.06]">
+          <span class="meta-rail-label block">DIRECT INBOX</span>
+          <a
+            href={`mailto:${profile.email}`}
+            class="text-lg font-bold text-white hover:text-blue-400 transition-colors block"
+          >
+            {profile.email}
+          </a>
+          <span class="text-zinc-500 block">Response guaranteed within 24 hours</span>
+        </div>
+
+        <div class="space-y-2 pb-6 border-b border-white/[0.06]">
+          <span class="meta-rail-label block">CALENDLY SCHEDULING</span>
+          <a
+            href={profile.calendly}
+            target="_blank"
+            rel="noreferrer"
+            class="text-base font-bold text-white hover:text-emerald-400 transition-colors block"
+          >
+            {lang === "vi" ? "Đặt lịch trao đổi 30 phút ↗" : "Schedule 30-min Technical Sync ↗"}
+          </a>
+          <span class="text-zinc-500 block">Direct calendar locking</span>
+        </div>
+
+        <div class="space-y-2">
+          <span class="meta-rail-label block">GOOGLE MEET INVITE</span>
+          <a
+            href={profile.googleCalendar}
+            target="_blank"
+            rel="noreferrer"
+            class="text-base font-bold text-white hover:text-amber-400 transition-colors block"
+          >
+            {lang === "vi" ? "Tạo sự kiện Google Meet ↗" : "Create Instant Meet Template ↗"}
+          </a>
+          <span class="text-zinc-500 block">Pre-filled event template</span>
+        </div>
+      </div>
+
+      <!-- Right 7 Columns: Minimalist Direct Dispatch Form -->
+      <div class="lg:col-span-7">
+        <form id="contactForm" action={profile.formspreeEndpoint} method="POST" class="space-y-6 font-mono text-xs">
+          <!-- Honeypot -->
+          <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div class="space-y-2">
+              <label for="contactName" class="meta-rail-label block">
+                {lang === "vi" ? "HỌ VÀ TÊN *" : "FULL NAME *"}
+              </label>
+              <input
+                id="contactName"
+                type="text"
+                name="name"
+                required
+                class="w-full border-b border-white/20 bg-transparent py-2 text-sm text-white placeholder-zinc-600 focus:border-white focus:outline-none transition-colors"
+                placeholder={lang === "vi" ? "Nguyễn Văn A" : "Jane Doe"}
+              />
+            </div>
+
+            <div class="space-y-2">
+              <label for="contactEmail" class="meta-rail-label block">
+                {lang === "vi" ? "EMAIL LIÊN HỆ *" : "WORK EMAIL *"}
+              </label>
+              <input
+                id="contactEmail"
+                type="email"
+                name="email"
+                required
+                class="w-full border-b border-white/20 bg-transparent py-2 text-sm text-white placeholder-zinc-600 focus:border-white focus:outline-none transition-colors"
+                placeholder="recruiter@company.com"
+              />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div class="space-y-2">
+              <label for="contactCompany" class="meta-rail-label block">
+                {lang === "vi" ? "CÔNG TY / TỔ CHỨC" : "ORGANIZATION"}
+              </label>
+              <input
+                id="contactCompany"
+                type="text"
+                name="company"
+                class="w-full border-b border-white/20 bg-transparent py-2 text-sm text-white placeholder-zinc-600 focus:border-white focus:outline-none transition-colors"
+                placeholder="Company or Research Lab"
+              />
+            </div>
+
+            <div class="space-y-2">
+              <label for="contactRole" class="meta-rail-label block">
+                {lang === "vi" ? "VỊ TRÍ TUYỂN DỤNG" : "OPPORTUNITY / ROLE"}
+              </label>
+              <input
+                id="contactRole"
+                type="text"
+                name="role"
+                class="w-full border-b border-white/20 bg-transparent py-2 text-sm text-white placeholder-zinc-600 focus:border-white focus:outline-none transition-colors"
+                placeholder="Software Engineer Intern / Fresher"
+              />
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <label for="contactMessage" class="meta-rail-label block">
+              {lang === "vi" ? "NỘI DUNG *" : "MESSAGE CONTENT *"}
+            </label>
+            <textarea
+              id="contactMessage"
+              name="message"
+              rows="3"
+              required
+              class="w-full border-b border-white/20 bg-transparent py-2 text-sm text-white placeholder-zinc-600 focus:border-white focus:outline-none transition-colors resize-none"
+              placeholder={lang === "vi" ? "Mô tả ngắn về yêu cầu hoặc thời gian trao đổi..." : "Role description, project requirements, or timeline..."}
+            ></textarea>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4">
+            <button
+              type="submit"
+              id="contactSubmitBtn"
+              class="inline-flex items-center gap-2 pb-1 border-b border-white text-xs font-bold text-white hover:text-blue-400 hover:border-blue-400 transition-colors"
+            >
+              <span>{lang === "vi" ? "Gửi tin nhắn trực tiếp" : "Dispatch Transmission"}</span>
+              <span>→</span>
+            </button>
+            <p id="formStatusMsg" class="text-xs font-mono text-zinc-400" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById("contactForm") as HTMLFormElement;
+  const submitBtn = document.getElementById("contactSubmitBtn") as HTMLButtonElement;
+  const statusMsg = document.getElementById("formStatusMsg");
+
+  if (form && submitBtn && statusMsg) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      statusMsg.innerText = "Transmitting...";
+
+      try {
+        const formData = new FormData(form);
+        const response = await fetch(form.action, {
+          method: "POST",
+          body: formData,
+          headers: { Accept: "application/json" },
+        });
+
+        if (response.ok) {
+          form.reset();
+          statusMsg.className = "text-xs font-mono text-emerald-400";
+          statusMsg.innerText = "✓ Dispatched. Response within 24h.";
+        } else {
+          throw new Error();
+        }
+      } catch (err) {
+        statusMsg.className = "text-xs font-mono text-red-400";
+        statusMsg.innerText = "Failed to send. Please email directly to gibor06.dev@gmail.com";
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+  }
+</script>

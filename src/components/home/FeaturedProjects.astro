@@ -1,0 +1,244 @@
+---
+import { getCollection } from 'astro:content';
+import { getRelativeLocaleUrl } from '@i18n/utils';
+
+export interface Props {
+  lang?: "en" | "vi";
+}
+
+const { lang = "en" } = Astro.props;
+
+const allProjects = await getCollection('projects');
+const sortedProjects = allProjects.sort((a, b) => a.data.order - b.data.order);
+const p1 = sortedProjects[0]; // Multi Aura
+const p2 = sortedProjects[1]; // GIBOR Coffee
+const p3 = sortedProjects[2]; // QuanLyBaiXe
+const p4 = sortedProjects[3]; // Web Tong Ket
+---
+
+<section id="selected-work" class="py-24 md:py-36 border-t border-white/[0.08] relative">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-24">
+    <!-- Section Title with Large Number Rhythm -->
+    <div class="flex items-baseline justify-between border-b border-white/[0.08] pb-6">
+      <div class="space-y-1">
+        <span class="font-mono text-xs text-blue-400 uppercase tracking-widest block">01 // INDEX</span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+          {lang === "vi" ? "DỰ ÁN & HỆ THỐNG TIÊU BIỂU" : "SELECTED WORK & SYSTEMS"}
+        </h2>
+      </div>
+      <span class="display-section-num hidden sm:block">01</span>
+    </div>
+
+    <!-- P/01 — CINEMATIC FULL-WIDTH MAGAZINE FEATURE (MULTI AURA & EMHUN) -->
+    {p1 && (
+      <article class="space-y-8">
+        <div class="flex flex-wrap items-center justify-between gap-4 font-mono text-xs text-zinc-400 pb-2 border-b border-white/[0.06]">
+          <div class="flex items-center gap-3">
+            <span class="text-blue-400 font-bold">PROJECT 01</span>
+            <span class="text-zinc-700">/</span>
+            <span class="text-white uppercase">{lang === "vi" ? p1.data.domainVi : p1.data.domain}</span>
+            <span class="text-zinc-700">/</span>
+            <span>{p1.data.year}</span>
+          </div>
+          <span class="text-amber-400 font-semibold">{p1.data.paperAward}</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          <!-- Left 7 Cols: Oversized Project Visual -->
+          <div class="lg:col-span-7">
+            <a
+              href={getRelativeLocaleUrl(lang, `/work/${p1.slug}`)}
+              class="block img-editorial-reveal border border-white/10 bg-[#0d0f11] group"
+            >
+              <img
+                src={p1.data.coverImage}
+                alt={p1.data.title}
+                class="w-full h-auto object-cover"
+                loading="lazy"
+              />
+            </a>
+          </div>
+
+          <!-- Right 5 Cols: Editorial Project Dossier -->
+          <div class="lg:col-span-5 space-y-6">
+            <h3 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
+              <a href={getRelativeLocaleUrl(lang, `/work/${p1.slug}`)} class="hover:text-blue-400 transition-colors">
+                {lang === "vi" ? p1.data.titleVi : p1.data.title}
+              </a>
+            </h3>
+
+            <p class="text-sm sm:text-base text-zinc-300 font-light leading-relaxed">
+              {lang === "vi" ? p1.data.summaryVi : p1.data.summary}
+            </p>
+
+            <!-- Metadata Rails -->
+            <div class="grid grid-cols-2 gap-4 py-4 border-y border-white/[0.08] font-mono text-xs">
+              <div>
+                <span class="meta-rail-label block">{lang === "vi" ? "VAI TRÒ" : "ROLE"}</span>
+                <span class="text-white font-medium block pt-1">{lang === "vi" ? p1.data.roleVi : p1.data.role}</span>
+              </div>
+              <div>
+                <span class="meta-rail-label block">{lang === "vi" ? "NGHIÊN CỨU" : "RESEARCH"}</span>
+                <span class="text-white font-medium block pt-1">EMHUN & PhoBERT</span>
+              </div>
+            </div>
+
+            <!-- Verified Metric Badges (Minimal Line Block) -->
+            <div class="grid grid-cols-2 gap-4 font-mono">
+              {p1.data.metrics.slice(0, 2).map((m) => (
+                <div class="p-3 border-l-2 border-emerald-400 bg-white/[0.02]">
+                  <span class="text-[11px] text-zinc-500 block">{lang === "vi" ? m.labelVi : m.label}</span>
+                  <strong class="text-emerald-400 text-base font-bold">{m.value}</strong>
+                </div>
+              ))}
+            </div>
+
+            <!-- Tech Stack List -->
+            <div class="flex flex-wrap gap-x-3 gap-y-1 font-mono text-xs text-zinc-400 pt-2">
+              {p1.data.stack.map((st) => (
+                <span class="text-zinc-300">#{st}</span>
+              ))}
+            </div>
+
+            <!-- Action -->
+            <div class="pt-2">
+              <a
+                href={getRelativeLocaleUrl(lang, `/work/${p1.slug}`)}
+                class="inline-flex items-center gap-2 pb-1 border-b border-white text-xs font-mono font-bold text-white hover:text-blue-400 hover:border-blue-400 transition-colors"
+              >
+                <span>{lang === "vi" ? "Đọc toàn bộ nghiên cứu & thiết kế" : "Read Full Case Study"}</span>
+                <span>↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
+    )}
+
+    <!-- P/02 — ASYMMETRICAL 65/35 COMPOSITION (GIBOR COFFEE) -->
+    {p2 && (
+      <article class="pt-16 border-t border-white/[0.08] space-y-6">
+        <div class="flex items-center justify-between font-mono text-xs text-zinc-400 pb-2 border-b border-white/[0.06]">
+          <div class="flex items-center gap-3">
+            <span class="text-blue-400 font-bold">PROJECT 02</span>
+            <span class="text-zinc-700">/</span>
+            <span class="text-white uppercase">{lang === "vi" ? p2.data.domainVi : p2.data.domain}</span>
+            <span class="text-zinc-700">/</span>
+            <span>{p2.data.year}</span>
+          </div>
+          <span class="text-emerald-400 font-mono font-semibold">-38% Load Time</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          <div class="lg:col-span-8">
+            <a
+              href={getRelativeLocaleUrl(lang, `/work/${p2.slug}`)}
+              class="block img-editorial-reveal border border-white/10 bg-[#0d0f11]"
+            >
+              <img
+                src={p2.data.coverImage}
+                alt={p2.data.title}
+                class="w-full h-80 sm:h-96 object-cover"
+                loading="lazy"
+              />
+            </a>
+          </div>
+
+          <div class="lg:col-span-4 space-y-4">
+            <h3 class="text-2xl font-extrabold text-white tracking-tight">
+              <a href={getRelativeLocaleUrl(lang, `/work/${p2.slug}`)} class="hover:text-blue-400 transition-colors">
+                {lang === "vi" ? p2.data.titleVi : p2.data.title}
+              </a>
+            </h3>
+            <p class="text-sm text-zinc-300 font-light leading-relaxed">
+              {lang === "vi" ? p2.data.summaryVi : p2.data.summary}
+            </p>
+            <div class="pt-2">
+              <a
+                href={getRelativeLocaleUrl(lang, `/work/${p2.slug}`)}
+                class="inline-flex items-center gap-1.5 text-xs font-mono text-white hover:text-blue-400 transition-colors"
+              >
+                <span>{lang === "vi" ? "Xem chi tiết hệ thống" : "View System Architecture"}</span> →
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
+    )}
+
+    <!-- P/03 & P/04 — IMAGE LEFT / TEXT RIGHT & MINIMAL TECHNICAL ENTRY -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 pt-16 border-t border-white/[0.08]">
+      <!-- P/03: QuanLyBaiXe C/C++ -->
+      {p3 && (
+        <article class="space-y-4">
+          <div class="flex items-center justify-between font-mono text-xs text-zinc-400 pb-2 border-b border-white/[0.06]">
+            <span class="text-blue-400 font-bold">PROJECT 03</span>
+            <span class="text-emerald-400 font-semibold">100% Billing Accuracy</span>
+          </div>
+
+          <div class="img-editorial-reveal border border-white/10 bg-[#0d0f11] h-52">
+            <img
+              src={p3.data.coverImage}
+              alt={p3.data.title}
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+
+          <h4 class="text-xl font-bold text-white tracking-tight">
+            <a href={getRelativeLocaleUrl(lang, `/work/${p3.slug}`)} class="hover:text-blue-400 transition-colors">
+              {lang === "vi" ? p3.data.titleVi : p3.data.title}
+            </a>
+          </h4>
+
+          <p class="text-xs sm:text-sm text-zinc-300 font-light leading-relaxed">
+            {lang === "vi" ? p3.data.summaryVi : p3.data.summary}
+          </p>
+
+          <a
+            href={getRelativeLocaleUrl(lang, `/work/${p3.slug}`)}
+            class="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-400 hover:text-white transition-colors pt-2"
+          >
+            <span>{lang === "vi" ? "Xem phân tích giải thuật" : "View Algorithmic Breakdown"}</span> →
+          </a>
+        </article>
+      )}
+
+      <!-- P/04: Web Tong Ket -->
+      {p4 && (
+        <article class="space-y-4">
+          <div class="flex items-center justify-between font-mono text-xs text-zinc-400 pb-2 border-b border-white/[0.06]">
+            <span class="text-blue-400 font-bold">PROJECT 04</span>
+            <span class="text-emerald-400 font-semibold">-42% Discovery Time</span>
+          </div>
+
+          <div class="img-editorial-reveal border border-white/10 bg-[#0d0f11] h-52">
+            <img
+              src={p4.data.coverImage}
+              alt={p4.data.title}
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+
+          <h4 class="text-xl font-bold text-white tracking-tight">
+            <a href={getRelativeLocaleUrl(lang, `/work/${p4.slug}`)} class="hover:text-blue-400 transition-colors">
+              {lang === "vi" ? p4.data.titleVi : p4.data.title}
+            </a>
+          </h4>
+
+          <p class="text-xs sm:text-sm text-zinc-300 font-light leading-relaxed">
+            {lang === "vi" ? p4.data.summaryVi : p4.data.summary}
+          </p>
+
+          <a
+            href={getRelativeLocaleUrl(lang, `/work/${p4.slug}`)}
+            class="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-400 hover:text-white transition-colors pt-2"
+          >
+            <span>{lang === "vi" ? "Xem cấu trúc dữ liệu" : "View Data Retrospective"}</span> →
+          </a>
+        </article>
+      )}
+    </div>
+  </div>
+</section>

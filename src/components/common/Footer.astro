@@ -1,0 +1,48 @@
+---
+import { profile } from '@data/profile';
+
+export interface Props {
+  lang?: "en" | "vi";
+}
+
+const { lang = "en" } = Astro.props;
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="border-t border-white/[0.08] bg-[#08090a] text-zinc-400 font-mono text-xs">
+  <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 space-y-12">
+    <div class="flex flex-col md:flex-row items-start md:items-end justify-between gap-8 pb-12 border-b border-white/[0.08]">
+      <div class="space-y-3">
+        <span class="text-xs text-blue-400 font-bold uppercase tracking-widest block">GIBOR06 // PORTFOLIO V5</span>
+        <h4 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+          {profile.vietnameseName.toUpperCase()}
+        </h4>
+        <p class="text-zinc-500 font-sans text-sm max-w-md font-light">
+          {profile.institutionEn} • Faculty of Information Technology • Ho Chi Minh City, Vietnam.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-8 text-xs">
+        <a href={profile.github} target="_blank" rel="noreferrer" class="text-zinc-300 hover:text-white transition-colors">
+          GitHub ↗
+        </a>
+        <a href={profile.linkedin} target="_blank" rel="noreferrer" class="text-zinc-300 hover:text-white transition-colors">
+          LinkedIn ↗
+        </a>
+        <a href={`mailto:${profile.email}`} class="text-zinc-300 hover:text-white transition-colors">
+          Email ↗
+        </a>
+        <a href={profile.academic.transcriptUrl} target="_blank" rel="noreferrer" class="text-blue-400 hover:underline">
+          {lang === "vi" ? "Bảng điểm HUIT ↗" : "Official HUIT Transcript ↗"}
+        </a>
+      </div>
+    </div>
+
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-zinc-500">
+      <p>© {currentYear} {profile.vietnameseName} (gibor06). Art-directed & engineered with precision.</p>
+      <a href="#top" class="hover:text-white transition-colors">
+        ↑ {lang === "vi" ? "Về đầu trang" : "Back to top"}
+      </a>
+    </div>
+  </div>
+</footer>

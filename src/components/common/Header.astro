@@ -1,0 +1,147 @@
+---
+import { getRelativeLocaleUrl } from '@i18n/utils';
+
+export interface Props {
+  lang?: string;
+  activePath?: string;
+}
+
+const { lang = "en", activePath = "/" } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+let alternateLangUrl = "";
+if (lang === "en") {
+  alternateLangUrl = `${base}/vi${activePath === "/" ? "" : activePath}`;
+} else {
+  const stripped = activePath.replace(/^\/vi/, "") || "/";
+  alternateLangUrl = `${base}${stripped === "/" ? "" : stripped}`;
+}
+
+const navLinks = [
+  { labelEn: "Index", labelVi: "Trang chủ", href: "/" },
+  { labelEn: "Work", labelVi: "Dự án", href: "/work" },
+  { labelEn: "Research", labelVi: "Nghiên cứu", href: "/research" },
+  { labelEn: "Credentials", labelVi: "Chứng chỉ", href: "/credentials" },
+  { labelEn: "About", labelVi: "Giới thiệu", href: "/about" },
+];
+---
+
+<header class="sticky top-0 z-50 w-full border-b border-white/[0.08] bg-[#08090a]/85 backdrop-blur-md transition-all duration-200">
+  <div class="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+    <!-- Brand Signature -->
+    <a 
+      href={getRelativeLocaleUrl(lang, "/")} 
+      class="flex items-center gap-2 text-xs font-mono font-bold tracking-widest text-white hover:text-blue-400 transition-colors uppercase"
+      aria-label="Tran Gia Bao Portfolio Home"
+    >
+      <span class="text-blue-400">[G]</span>
+      <span>GIBOR06</span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex items-center gap-8 font-mono text-xs" aria-label="Main Navigation">
+      {navLinks.map((item, idx) => {
+        const itemHref = getRelativeLocaleUrl(lang, item.href);
+        const isActive = activePath === item.href || (item.href !== "/" && activePath.startsWith(item.href));
+        return (
+          <a
+            href={itemHref}
+            class={`transition-colors flex items-center gap-1.5 ${
+              isActive
+                ? "text-white font-bold"
+                : "text-zinc-400 hover:text-white"
+            }`}
+          >
+            <span class="text-zinc-600 text-[10px]">0{idx + 1}</span>
+            <span>{lang === "vi" ? item.labelVi : item.labelEn}</span>
+          </a>
+        );
+      })}
+    </nav>
+
+    <!-- Language & Actions -->
+    <div class="flex items-center gap-6 font-mono text-xs">
+      <!-- Resume CTA -->
+      <a
+        href={getRelativeLocaleUrl(lang, "/resume")}
+        class="hidden sm:inline-flex items-center gap-1 text-zinc-300 hover:text-white transition-colors"
+      >
+        <span>{lang === "vi" ? "Hồ sơ" : "Resume"}</span>
+        <span class="text-zinc-600">↗</span>
+      </a>
+
+      <!-- Language Switcher -->
+      <a
+        href={alternateLangUrl}
+        class="text-xs text-zinc-400 hover:text-white transition-colors"
+        aria-label="Switch Language"
+      >
+        <span class={lang === "en" ? "text-white font-bold" : "text-zinc-600"}>EN</span>
+        <span class="text-zinc-700">/</span>
+        <span class={lang === "vi" ? "text-white font-bold" : "text-zinc-600"}>VI</span>
+      </a>
+
+      <!-- Mobile Menu Toggle -->
+      <button
+        type="button"
+        id="mobileMenuToggle"
+        class="md:hidden flex h-8 w-8 items-center justify-center text-zinc-400 hover:text-white"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+      >
+        <svg id="hamburgerIcon" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="closeIcon" class="h-5 w-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Full-Screen Editorial Mobile Navigation Drawer -->
+  <div id="mobileDrawer" class="hidden md:hidden fixed inset-0 top-14 bg-[#08090a] z-50 p-6 flex flex-col justify-between border-t border-white/[0.08]">
+    <div class="space-y-6 pt-4">
+      {navLinks.map((item, idx) => (
+        <a
+          href={getRelativeLocaleUrl(lang, item.href)}
+          class="flex items-baseline gap-4 text-2xl font-extrabold text-white hover:text-blue-400 transition-colors"
+        >
+          <span class="font-mono text-xs text-zinc-600">0{idx + 1}</span>
+          <span>{lang === "vi" ? item.labelVi : item.labelEn}</span>
+        </a>
+      ))}
+      <a
+        href={getRelativeLocaleUrl(lang, "/resume")}
+        class="flex items-baseline gap-4 text-2xl font-extrabold text-blue-400 pt-4 border-t border-white/[0.08]"
+      >
+        <span class="font-mono text-xs text-zinc-600">06</span>
+        <span>{lang === "vi" ? "Xem Hồ Sơ (Resume) ↗" : "Resume Dossier ↗"}</span>
+      </a>
+    </div>
+
+    <div class="pt-8 border-t border-white/[0.08] flex items-center justify-between font-mono text-xs text-zinc-400">
+      <a href="https://github.com/gibor06" target="_blank" rel="noreferrer" class="hover:text-white">GitHub ↗</a>
+      <a href="https://linkedin.com" target="_blank" rel="noreferrer" class="hover:text-white">LinkedIn ↗</a>
+      <a href="mailto:gibor06.dev@gmail.com" class="hover:text-white">Email ↗</a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById("mobileMenuToggle");
+  const drawer = document.getElementById("mobileDrawer");
+  const hamburger = document.getElementById("hamburgerIcon");
+  const close = document.getElementById("closeIcon");
+
+  if (toggle && drawer && hamburger && close) {
+    toggle.addEventListener("click", () => {
+      const isHidden = drawer.classList.contains("hidden");
+      drawer.classList.toggle("hidden");
+      hamburger.classList.toggle("hidden");
+      close.classList.toggle("hidden");
+      toggle.setAttribute("aria-expanded", isHidden ? "true" : "false");
+      document.body.style.overflow = isHidden ? "hidden" : "";
+    });
+  }
+</script>

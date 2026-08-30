@@ -1,0 +1,119 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import EvidenceLink from '@components/common/EvidenceLink.astro';
+import { achievements } from '@data/achievements';
+
+const researchItems = achievements.filter((a) => a.category === "research");
+const competitionItems = achievements.filter((a) => a.category !== "research");
+---
+
+<BaseLayout
+  title="Research Dossier & Papers — Trần Gia Bảo (gibor06)"
+  description="Scientific research in High-Utility Itemset Mining algorithms, applied Transformer NLP, and official university awards."
+  lang="en"
+  activePath="/research"
+>
+  <div class="py-16 md:py-28 border-b border-white/[0.08]">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-20">
+      <div class="space-y-3">
+        <span class="font-mono text-xs text-blue-400 uppercase tracking-widest block">RESEARCH DOSSIER</span>
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+          Scientific Research & Publications
+        </h1>
+        <p class="text-sm sm:text-base text-zinc-400 max-w-2xl font-light leading-relaxed">
+          Applied algorithms in High-Utility Itemset Mining, Transformer NLP for Vietnamese moderation, and recognized scientific research awards.
+        </p>
+      </div>
+
+      <!-- University & Faculty Research Papers (Editorial Ledger) -->
+      <div class="space-y-8">
+        <span class="font-mono text-xs text-blue-400 uppercase tracking-wider block pb-2 border-b border-white/[0.08]">
+          01 // SCIENTIFIC RESEARCH & COMPETITIONS
+        </span>
+
+        <div class="space-y-8">
+          {researchItems.map((item, idx) => (
+            <article class="pb-8 border-b border-white/[0.08] space-y-3">
+              <div class="flex items-center gap-3 font-mono text-xs text-zinc-400">
+                <span class="text-blue-400 font-bold">R/0{idx + 1}</span>
+                <span class="text-zinc-700">/</span>
+                <span class="text-white font-medium">{item.date}</span>
+                <span class="text-zinc-700">/</span>
+                <span class="uppercase">{item.scopeEn}</span>
+              </div>
+
+              <h2 class="text-xl sm:text-2xl font-bold text-white leading-snug">
+                {item.titleEn}
+              </h2>
+
+              <p class="text-sm text-zinc-300 font-light leading-relaxed max-w-3xl">
+                {item.descriptionEn}
+              </p>
+
+              <div class="flex flex-wrap items-center gap-6 pt-2 font-mono text-xs">
+                {item.evidenceUrl && (
+                  <EvidenceLink href={item.evidenceUrl} label="Official University Announcement" />
+                )}
+                {item.imagePath && (
+                  <button
+                    type="button"
+                    data-lightbox
+                    data-src={item.imagePath}
+                    data-caption={item.titleEn}
+                    class="text-zinc-400 hover:text-white transition-colors"
+                  >
+                    View Certificate Evidence ↗
+                  </button>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <!-- Competitions & Honors -->
+      <div class="space-y-8 pt-8">
+        <span class="font-mono text-xs text-amber-400 uppercase tracking-wider block pb-2 border-b border-white/[0.08]">
+          02 // SPECIALIZED COMPETITIONS & ACADEMIC HONORS
+        </span>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+          {competitionItems.map((item) => (
+            <article class="pb-6 border-b border-white/[0.08] space-y-3">
+              <div class="flex items-center gap-3 font-mono text-xs text-zinc-400">
+                <span class="text-amber-400 font-bold">{item.date}</span>
+                <span class="text-zinc-700">/</span>
+                <span class="text-zinc-300">{item.scopeEn}</span>
+              </div>
+
+              <h3 class="text-lg font-bold text-white leading-snug">
+                {item.titleEn}
+              </h3>
+
+              <p class="text-xs sm:text-sm text-zinc-400 font-light leading-relaxed">
+                {item.descriptionEn}
+              </p>
+
+              <div class="flex items-center justify-between pt-2 font-mono text-xs">
+                {item.evidenceUrl && (
+                  <EvidenceLink href={item.evidenceUrl} label="Details" />
+                )}
+                {item.imagePath && (
+                  <button
+                    type="button"
+                    data-lightbox
+                    data-src={item.imagePath}
+                    data-caption={item.titleEn}
+                    class="text-zinc-400 hover:text-white"
+                  >
+                    Evidence ↗
+                  </button>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

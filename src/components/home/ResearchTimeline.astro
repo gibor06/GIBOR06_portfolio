@@ -1,0 +1,118 @@
+---
+import { achievements } from '@data/achievements';
+import EvidenceLink from '@components/common/EvidenceLink.astro';
+
+export interface Props {
+  lang?: "en" | "vi";
+}
+
+const { lang = "en" } = Astro.props;
+
+const researchItems = achievements.filter((a) => a.category === "research");
+---
+
+<section id="research" class="py-24 md:py-36 border-t border-white/[0.08] relative">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-16">
+    <!-- Section Title with Large Number Rhythm -->
+    <div class="flex items-baseline justify-between border-b border-white/[0.08] pb-6">
+      <div class="space-y-1">
+        <span class="font-mono text-xs text-blue-400 uppercase tracking-widest block">02 // INDEX</span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+          {lang === "vi" ? "NGHIÊN CỨU KHOA HỌC & CÔNG BỐ" : "SCIENTIFIC RESEARCH & PAPERS"}
+        </h2>
+      </div>
+      <span class="display-section-num hidden sm:block">02</span>
+    </div>
+
+    <!-- Editorial Research Ledger Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      <!-- Left 8 Columns: Research Index Entries -->
+      <div class="lg:col-span-8 space-y-10">
+        {researchItems.map((item, idx) => (
+          <article 
+            class="research-ledger-entry pb-8 border-b border-white/[0.08] space-y-4 group"
+            data-preview-img={item.imagePath || ""}
+            data-preview-title={lang === "vi" ? item.titleVi : item.titleEn}
+          >
+            <div class="flex items-center gap-3 font-mono text-xs text-zinc-400">
+              <span class="text-blue-400 font-bold">R/0{idx + 1}</span>
+              <span class="text-zinc-700">/</span>
+              <span class="text-white font-medium">{item.date}</span>
+              <span class="text-zinc-700">/</span>
+              <span class="uppercase">{lang === "vi" ? item.scopeVi : item.scopeEn}</span>
+            </div>
+
+            <h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-blue-400 transition-colors leading-snug">
+              {lang === "vi" ? item.titleVi : item.titleEn}
+            </h3>
+
+            <p class="text-sm text-zinc-300 font-light leading-relaxed max-w-2xl">
+              {lang === "vi" ? item.descriptionVi : item.descriptionEn}
+            </p>
+
+            <div class="flex flex-wrap items-center gap-6 pt-2 font-mono text-xs">
+              {item.evidenceUrl && (
+                <EvidenceLink
+                  href={item.evidenceUrl}
+                  label={lang === "vi" ? "Thông báo kết quả chính thức" : "Official Result Announcement"}
+                />
+              )}
+              {item.imagePath && (
+                <button
+                  type="button"
+                  data-lightbox
+                  data-src={item.imagePath}
+                  data-caption={lang === "vi" ? item.titleVi : item.titleEn}
+                  class="text-zinc-400 hover:text-white transition-colors"
+                >
+                  {lang === "vi" ? "Xem chứng nhận ↗" : "View Certificate Evidence ↗"}
+                </button>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <!-- Right 4 Columns: Interactive Fixed Preview Zone (Desktop) -->
+      <div class="hidden lg:block lg:col-span-4 sticky top-28 space-y-4">
+        <div class="font-mono text-xs text-zinc-500 uppercase tracking-wider pb-2 border-b border-white/[0.08]">
+          EVIDENCE PREVIEW // R-LEDGER
+        </div>
+        <div id="researchPreviewBox" class="border border-white/10 bg-[#0d0f11] p-2 overflow-hidden transition-all duration-300">
+          <img
+            id="researchPreviewImg"
+            src="/portfolio/assets/img/thanhTich_2026/nckh_CapKhoa_2026.jpg"
+            alt="Research Certificate Preview"
+            class="w-full h-auto object-cover"
+            loading="lazy"
+          />
+          <p id="researchPreviewCaption" class="font-mono text-[10px] text-zinc-400 pt-2 line-clamp-1">
+            University Scientific Research Finalist 2026
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Desktop hover preview interaction
+  const entries = document.querySelectorAll(".research-ledger-entry");
+  const previewImg = document.getElementById("researchPreviewImg") as HTMLImageElement;
+  const previewCap = document.getElementById("researchPreviewCaption");
+
+  if (previewImg && previewCap) {
+    entries.forEach((el) => {
+      el.addEventListener("mouseenter", () => {
+        const src = el.getAttribute("data-preview-img");
+        const title = el.getAttribute("data-preview-title");
+        if (src) {
+          previewImg.src = src;
+        }
+        if (title) {
+          previewCap.innerText = title;
+        }
+      });
+    });
+  }
+</script>

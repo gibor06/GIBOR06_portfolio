@@ -1,0 +1,112 @@
+---
+import { certificates } from '@data/certificates';
+import { getRelativeLocaleUrl } from '@i18n/utils';
+
+export interface Props {
+  lang?: "en" | "vi";
+}
+
+const { lang = "en" } = Astro.props;
+
+const selectedCerts = certificates.filter((c) => c.highlight).slice(0, 5);
+---
+
+<section id="credentials" class="py-24 md:py-36 border-t border-white/[0.08] relative">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-16">
+    <!-- Section Title with Large Number Rhythm -->
+    <div class="flex items-baseline justify-between border-b border-white/[0.08] pb-6">
+      <div class="space-y-1">
+        <span class="font-mono text-xs text-blue-400 uppercase tracking-widest block">05 // INDEX</span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+          {lang === "vi" ? "CHỨNG CHỈ & BẰNG CẤP CHUYÊN MÔN" : "CREDENTIALS ARCHIVE"}
+        </h2>
+      </div>
+      <span class="display-section-num hidden sm:block">05</span>
+    </div>
+
+    <!-- 60% List + 40% Interactive Preview Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      <!-- Left 7 Cols: Curated Credentials List -->
+      <div class="lg:col-span-7 space-y-6">
+        {selectedCerts.map((cert) => (
+          <article 
+            class="credential-item pb-6 border-b border-white/[0.08] flex items-baseline justify-between gap-4 group cursor-pointer"
+            data-cert-img={cert.imagePath}
+            data-cert-title={lang === "vi" ? cert.titleVi : cert.titleEn}
+          >
+            <div class="space-y-1">
+              <div class="flex items-center gap-2 font-mono text-[11px] text-zinc-500">
+                <span class="text-blue-400 font-semibold">{cert.issuer}</span>
+                <span>/</span>
+                <span class="uppercase">{cert.category}</span>
+              </div>
+              <h3 class="text-base sm:text-lg font-bold text-white group-hover:text-blue-400 transition-colors">
+                {lang === "vi" ? cert.titleVi : cert.titleEn}
+              </h3>
+            </div>
+
+            <div class="flex items-center gap-3 font-mono text-xs flex-shrink-0">
+              <button
+                type="button"
+                data-lightbox
+                data-src={cert.imagePath}
+                data-caption={lang === "vi" ? cert.titleVi : cert.titleEn}
+                class="text-zinc-400 hover:text-white"
+              >
+                Preview ↗
+              </button>
+            </div>
+          </article>
+        ))}
+
+        <div class="pt-4 flex items-center justify-between font-mono text-xs">
+          <span class="text-zinc-500">
+            {lang === "vi" ? "12 chứng chỉ chuyên môn đã xác thực." : "12 verified professional credentials."}
+          </span>
+          <a
+            href={getRelativeLocaleUrl(lang, "/credentials")}
+            class="text-blue-400 hover:underline"
+          >
+            {lang === "vi" ? "Xem toàn bộ hồ sơ chứng chỉ" : "View Full Credentials Archive"} →
+          </a>
+        </div>
+      </div>
+
+      <!-- Right 5 Cols: Interactive Sticky Certificate Showcase (Desktop) -->
+      <div class="hidden lg:block lg:col-span-5 sticky top-28 space-y-4">
+        <div class="font-mono text-xs text-zinc-500 uppercase tracking-wider pb-2 border-b border-white/[0.08]">
+          CREDENTIAL PREVIEW // ARCHIVE
+        </div>
+        <div class="border border-white/10 bg-[#0d0f11] p-3">
+          <img
+            id="certPreviewImg"
+            src="/portfolio/assets/img/GOOGLE AI/Google_AI.png"
+            alt="Credential Preview"
+            class="w-full h-auto object-cover"
+            loading="lazy"
+          />
+          <p id="certPreviewCaption" class="font-mono text-xs text-zinc-300 pt-3 line-clamp-1">
+            Google AI Essentials Specialization
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const certItems = document.querySelectorAll(".credential-item");
+  const certImg = document.getElementById("certPreviewImg") as HTMLImageElement;
+  const certCap = document.getElementById("certPreviewCaption");
+
+  if (certImg && certCap) {
+    certItems.forEach((el) => {
+      el.addEventListener("mouseenter", () => {
+        const src = el.getAttribute("data-cert-img");
+        const title = el.getAttribute("data-cert-title");
+        if (src) certImg.src = src;
+        if (title) certCap.innerText = title;
+      });
+    });
+  }
+</script>

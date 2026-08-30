@@ -1,0 +1,78 @@
+---
+import { profile } from '@data/profile';
+
+export interface Props {
+  lang?: "en" | "vi";
+}
+
+const { lang = "en" } = Astro.props;
+---
+
+<section id="academic" class="py-24 md:py-36 border-t border-white/[0.08] relative">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-16">
+    <!-- Section Title with Large Number Rhythm -->
+    <div class="flex items-baseline justify-between border-b border-white/[0.08] pb-6">
+      <div class="space-y-1">
+        <span class="font-mono text-xs text-blue-400 uppercase tracking-widest block">06 // INDEX</span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+          {lang === "vi" ? "HỒ SƠ HỌC THUẬT & BẢNG ĐIỂM" : "ACADEMIC DOSSIER"}
+        </h2>
+      </div>
+      <span class="display-section-num hidden sm:block">06</span>
+    </div>
+
+    <!-- Editorial Data Ledger -->
+    <div class="space-y-8">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-4 border-b border-white/[0.08] font-mono text-xs">
+        <div>
+          <span class="text-white font-bold">{profile.institutionEn}</span>
+          <p class="text-zinc-500 mt-0.5">{lang === "vi" ? "Khoa Công nghệ Thông tin (CNTT)" : "Faculty of Information Technology"}</p>
+        </div>
+        <span class="text-emerald-400">
+          ● {lang === "vi" ? "TRẠNG THÁI: ĐANG HỌC (GOOD STANDING)" : "STATUS: ENROLLED (GOOD STANDING)"}
+        </span>
+      </div>
+
+      <!-- 4 Numeric Columns on Canvas -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 font-mono">
+        <div class="space-y-1 pb-4 border-b border-white/[0.06]">
+          <span class="meta-rail-label block">GPA SCALE 10.0</span>
+          <span class="text-3xl sm:text-5xl font-extrabold text-emerald-400">{profile.academic.gpa10}</span>
+        </div>
+
+        <div class="space-y-1 pb-4 border-b border-white/[0.06]">
+          <span class="meta-rail-label block">GPA SCALE 4.0</span>
+          <span class="text-3xl sm:text-5xl font-extrabold text-emerald-400">{profile.academic.gpa4}</span>
+        </div>
+
+        <div class="space-y-1 pb-4 border-b border-white/[0.06]">
+          <span class="meta-rail-label block">{lang === "vi" ? "TÍN CHỈ TÍCH LŨY" : "CREDITS"}</span>
+          <span class="text-3xl sm:text-5xl font-extrabold text-white">{profile.academic.credits}</span>
+        </div>
+
+        <div class="space-y-1 pb-4 border-b border-white/[0.06]">
+          <span class="meta-rail-label block">{lang === "vi" ? "XẾP LOẠI" : "HONOR RANKING"}</span>
+          <span class="text-2xl sm:text-3xl font-bold text-blue-400 block pt-2">{lang === "vi" ? "Giỏi" : "Distinction"}</span>
+        </div>
+      </div>
+
+      <!-- Transcript verification link -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 font-mono text-xs">
+        <p class="text-zinc-500">
+          {lang === "vi"
+            ? "Bảng điểm tích lũy được đồng bộ và xác thực từ cổng thông tin sinh viên HUIT."
+            : "Academic transcript synchronized and verifiable via the official HUIT student management portal."}
+        </p>
+
+        <a
+          href={profile.academic.transcriptUrl}
+          target="_blank"
+          rel="noreferrer"
+          class="text-blue-400 hover:underline flex-shrink-0"
+        >
+          {lang === "vi" ? "Xác thực bảng điểm chính thức ↗" : "Verify Official Portal Transcript ↗"}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

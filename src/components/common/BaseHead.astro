@@ -1,0 +1,96 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonicalUrl?: string;
+  lang?: string;
+}
+
+const {
+  title = "Tran Gia Bao (gibor06) — Software Engineer & Applied AI",
+  description = "Software Engineer & Applied AI Researcher. Computer Science at HUIT. Building verified NLP, data systems, and high-performance software.",
+  image = "/portfolio/og-image.png",
+  canonicalUrl = Astro.url.href,
+  lang = "en",
+} = Astro.props;
+
+const siteUrl = "https://gibor06.github.io";
+const ogImageUrl = image.startsWith("http") ? image : `${siteUrl}${image.startsWith("/") ? "" : "/"}${image}`;
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Trần Gia Bảo",
+  "alternateName": "gibor06",
+  "url": "https://gibor06.github.io/portfolio/",
+  "image": "https://gibor06.github.io/portfolio/assets/img/avatar-gibor06.jpg",
+  "jobTitle": "Software Engineer & Applied AI Researcher",
+  "alumniOf": {
+    "@type": "EducationalOrganization",
+    "name": "Ho Chi Minh City University of Industry and Trade (HUIT)"
+  },
+  "sameAs": [
+    "https://github.com/gibor06",
+    "https://www.linkedin.com/in/gibor06/",
+    "https://www.facebook.com/gibor06",
+    "https://www.instagram.com/gibor06"
+  ]
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Trần Gia Bảo (gibor06) Portfolio",
+  "url": "https://gibor06.github.io/portfolio/",
+  "description": description,
+  "author": {
+    "@type": "Person",
+    "name": "Trần Gia Bảo"
+  }
+};
+---
+
+<!-- Global Metadata -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" type="image/svg+xml" href={import.meta.env.BASE_URL + "/favicon.svg"} />
+<link rel="apple-touch-icon" href={import.meta.env.BASE_URL + "/assets/img/avatar-gibor06.jpg"} />
+<meta name="generator" content={Astro.generator} />
+<meta name="theme-color" content="#09090b" />
+
+<!-- Canonical URL -->
+<link rel="canonical" href={canonicalUrl} />
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<meta name="author" content="Trần Gia Bảo (gibor06)" />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImageUrl} />
+<meta property="og:locale" content={lang === "vi" ? "vi_VN" : "en_US"} />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={canonicalUrl} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={ogImageUrl} />
+
+<!-- Google Fonts (Geist Sans & Geist Mono) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&family=Geist:wght@300;400;500;600;700;800&display=swap"
+  rel="stylesheet"
+/>
+
+<!-- Structured Data (JSON-LD) -->
+<script is:inline type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+<script is:inline type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />

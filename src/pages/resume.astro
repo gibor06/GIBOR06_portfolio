@@ -1,0 +1,145 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { profile } from '@data/profile';
+import { achievements } from '@data/achievements';
+import { skillGroups } from '@data/skills';
+import { certificates } from '@data/certificates';
+---
+
+<BaseLayout
+  title="Curriculum Vitae — Trần Gia Bảo (gibor06)"
+  description="Official Resume & Curriculum Vitae of Tran Gia Bao. Software Engineer & Applied AI researcher at HUIT."
+  lang="en"
+  activePath="/resume"
+>
+  <div class="py-16 md:py-24 border-b border-white/[0.08]">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 space-y-12">
+      <!-- Action Toolbar -->
+      <div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-white/[0.08] font-mono text-xs no-print">
+        <div>
+          <span class="text-blue-400 font-bold uppercase tracking-wider">CURRICULUM VITAE // 2026</span>
+          <p class="text-zinc-500 mt-0.5">Verified Institutional Credentials</p>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <button
+            type="button"
+            onclick="window.print()"
+            class="inline-flex items-center gap-1.5 border border-white/20 bg-white/5 px-4 py-2 text-white hover:bg-white/10 hover:border-white/40 transition-colors"
+          >
+            <span>Print / Save as PDF</span> ↗
+          </button>
+
+          <a
+            href={`mailto:${profile.email}`}
+            class="text-blue-400 hover:underline"
+          >
+            Contact Candidate →
+          </a>
+        </div>
+      </div>
+
+      <!-- Printable Resume Sheet Container -->
+      <div class="space-y-12">
+        <!-- Resume Header -->
+        <div class="flex flex-col sm:flex-row justify-between items-start gap-6 pb-8 border-b border-white/[0.08]">
+          <div class="space-y-1">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">{profile.vietnameseName}</h1>
+            <p class="text-base font-medium text-blue-400">{profile.role}</p>
+            <p class="text-xs text-zinc-400 font-mono">{profile.institutionEn} • {profile.location}</p>
+          </div>
+
+          <div class="text-xs font-mono text-zinc-400 space-y-1 sm:text-right">
+            <p>Email: <a href={`mailto:${profile.email}`} class="text-zinc-200 hover:underline">{profile.email}</a></p>
+            <p>GitHub: <a href={profile.github} target="_blank" rel="noreferrer" class="text-zinc-200 hover:underline">github.com/gibor06</a></p>
+            <p>LinkedIn: <a href={profile.linkedin} target="_blank" rel="noreferrer" class="text-zinc-200 hover:underline">linkedin.com/in/gibor06</a></p>
+          </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="space-y-3">
+          <span class="meta-rail-label block">EXECUTIVE SUMMARY</span>
+          <p class="text-sm text-zinc-300 font-light leading-relaxed">
+            {profile.bioEn}
+          </p>
+        </div>
+
+        <!-- Education -->
+        <div class="space-y-4">
+          <span class="meta-rail-label block">EDUCATION & ACADEMIC STANDING</span>
+          <div class="space-y-3">
+            <div class="flex flex-wrap justify-between items-start font-mono text-xs">
+              <strong class="text-white text-sm">{profile.institutionEn}</strong>
+              <span class="text-zinc-500">2024 — Present</span>
+            </div>
+            <p class="text-xs text-zinc-400 font-mono">Bachelor of Science in Information Technology (Computer Science)</p>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 py-3 border-y border-white/[0.08] font-mono text-xs">
+              <div>
+                <span class="text-zinc-500 block text-[11px]">GPA (10.0)</span>
+                <strong class="text-emerald-400 text-sm font-bold">{profile.academic.gpa10}</strong>
+              </div>
+              <div>
+                <span class="text-zinc-500 block text-[11px]">GPA (4.0)</span>
+                <strong class="text-emerald-400 text-sm font-bold">{profile.academic.gpa4}</strong>
+              </div>
+              <div>
+                <span class="text-zinc-500 block text-[11px]">Credits Completed</span>
+                <strong class="text-white text-sm font-bold">{profile.academic.credits}</strong>
+              </div>
+              <div>
+                <span class="text-zinc-500 block text-[11px]">Academic Ranking</span>
+                <strong class="text-blue-400 text-sm font-bold">Distinction</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Research & Competitions -->
+        <div class="space-y-4">
+          <span class="meta-rail-label block">SCIENTIFIC RESEARCH & COMPETITIONS</span>
+          <div class="space-y-6 font-mono text-xs">
+            {achievements.map((item) => (
+              <div class="space-y-1 pb-4 border-b border-white/[0.06]">
+                <div class="flex justify-between items-start">
+                  <strong class="text-white text-sm font-sans">{item.titleEn}</strong>
+                  <span class="text-zinc-500 ml-4 flex-shrink-0">{item.date}</span>
+                </div>
+                <p class="text-zinc-400 font-sans text-xs">{item.organization} • {item.descriptionEn}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Technical Skills -->
+        <div class="space-y-4">
+          <span class="meta-rail-label block">TECHNICAL SKILLS TAXONOMY</span>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-xs font-mono">
+            {skillGroups.map((g) => (
+              <div class="space-y-1 pb-4 border-b border-white/[0.06]">
+                <strong class="text-white block font-sans">{g.titleEn}</strong>
+                <p class="text-zinc-300">
+                  <span class="text-zinc-500">Core: </span>{g.primarySkills.join(", ")}
+                </p>
+                <p class="text-zinc-500 text-[11px]">
+                  <span>Working: </span>{g.workingSkills.join(", ")}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Selected Certifications -->
+        <div class="space-y-3">
+          <span class="meta-rail-label block">SELECTED PROFESSIONAL CREDENTIALS</span>
+          <ul class="list-disc list-inside text-xs font-mono text-zinc-300 space-y-1.5">
+            {certificates.slice(0, 6).map((c) => (
+              <li>
+                <strong class="text-white">{c.titleEn}</strong> — <span class="text-zinc-500">{c.issuer}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

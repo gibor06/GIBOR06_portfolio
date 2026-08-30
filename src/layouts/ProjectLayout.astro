@@ -1,0 +1,162 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import EvidenceLink from '@components/common/EvidenceLink.astro';
+import { getRelativeLocaleUrl } from '@i18n/utils';
+
+export interface Props {
+  project: {
+    title: string;
+    titleVi: string;
+    summary: string;
+    summaryVi: string;
+    year: string;
+    role: string;
+    roleVi: string;
+    domain: string;
+    domainVi: string;
+    stack: string[];
+    metrics: { label: string; labelVi: string; value: string }[];
+    coverImage: string;
+    githubUrl?: string;
+    liveUrl?: string;
+    evidenceUrl?: string;
+    paperAward?: string;
+  };
+  lang?: "en" | "vi";
+}
+
+const { project, lang = "en" } = Astro.props;
+const displayTitle = lang === "vi" ? project.titleVi : project.title;
+const displaySummary = lang === "vi" ? project.summaryVi : project.summary;
+const displayRole = lang === "vi" ? project.roleVi : project.role;
+const displayDomain = lang === "vi" ? project.domainVi : project.domain;
+---
+
+<BaseLayout
+  title={`${displayTitle} — Case Study | Trần Gia Bảo (gibor06)`}
+  description={displaySummary}
+  image={project.coverImage}
+  lang={lang}
+  activePath="/work"
+>
+  <article class="py-16 md:py-28 border-b border-white/[0.08]">
+    <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 space-y-16">
+      <!-- Back Navigation -->
+      <div>
+        <a
+          href={getRelativeLocaleUrl(lang, "/work")}
+          class="inline-flex items-center gap-2 text-xs font-mono text-zinc-400 hover:text-white transition-colors"
+        >
+          ← {lang === "vi" ? "Quay lại danh mục dự án" : "Back to selected work"}
+        </a>
+      </div>
+
+      <!-- Editorial Case Study Header -->
+      <div class="space-y-8">
+        <div class="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-white/[0.08] font-mono text-xs text-zinc-400">
+          <div class="flex items-center gap-3">
+            <span class="text-blue-400 font-bold">CASE STUDY // {project.year}</span>
+            <span class="text-zinc-700">/</span>
+            <span class="text-white uppercase">{displayDomain}</span>
+          </div>
+          {project.paperAward && (
+            <span class="text-amber-400 font-semibold">
+              {project.paperAward}
+            </span>
+          )}
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.08]">
+          {displayTitle}
+        </h1>
+
+        <p class="text-lg sm:text-xl text-zinc-300 font-light leading-relaxed max-w-3xl">
+          {displaySummary}
+        </p>
+
+        <!-- Hairline Metadata Rail (Direct on canvas) -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 py-6 border-y border-white/[0.08] font-mono text-xs">
+          <div>
+            <span class="meta-rail-label block">{lang === "vi" ? "VAI TRÒ" : "ROLE"}</span>
+            <span class="text-white font-medium block pt-1">{displayRole}</span>
+          </div>
+          <div>
+            <span class="meta-rail-label block">{lang === "vi" ? "THỜI GIAN" : "TIMELINE"}</span>
+            <span class="text-white font-medium block pt-1">{project.year}</span>
+          </div>
+          <div>
+            <span class="meta-rail-label block">{lang === "vi" ? "LĨNH VỰC" : "DOMAIN"}</span>
+            <span class="text-white font-medium block pt-1">{displayDomain}</span>
+          </div>
+          <div>
+            <span class="meta-rail-label block">{lang === "vi" ? "MÃ NGUỒN" : "REPOSITORY"}</span>
+            <div class="pt-1">
+              {project.githubUrl ? (
+                <a href={project.githubUrl} target="_blank" rel="noreferrer" class="text-blue-400 hover:underline">
+                  GitHub ↗
+                </a>
+              ) : (
+                <span class="text-zinc-500">Private / Academic</span>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <!-- Verified Quantitative Metric Strip -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 font-mono">
+          {project.metrics.map((m) => (
+            <div class="p-3 border-l-2 border-emerald-400 bg-white/[0.02]">
+              <span class="text-[11px] text-zinc-500 block">{lang === "vi" ? m.labelVi : m.label}</span>
+              <strong class="text-emerald-400 text-base font-bold">{m.value}</strong>
+            </div>
+          ))}
+        </div>
+
+        {project.evidenceUrl && (
+          <div class="pt-2 font-mono text-xs">
+            <EvidenceLink href={project.evidenceUrl} label={lang === "vi" ? "Minh chứng kết quả chính thức" : "View Official Result Announcement"} />
+          </div>
+        )}
+      </div>
+
+      <!-- Large Project Hero Visual -->
+      <div class="img-editorial-reveal border border-white/10 bg-[#0d0f11]">
+        <img
+          src={project.coverImage}
+          alt={displayTitle}
+          class="w-full h-auto object-cover max-h-[580px]"
+          loading="eager"
+        />
+      </div>
+
+      <!-- Tech Stack Rail -->
+      <div class="flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-xs text-zinc-400 pb-6 border-b border-white/[0.08]">
+        <span class="meta-rail-label">{lang === "vi" ? "CÔNG NGHỆ:" : "TECHNOLOGIES:"}</span>
+        {project.stack.map((tech) => (
+          <span class="text-zinc-200">#{tech}</span>
+        ))}
+      </div>
+
+      <!-- Main Case Study Prose Content (MDX) -->
+      <div class="prose prose-invert prose-zinc max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-h2:text-2xl sm:prose-h2:text-3xl prose-h2:border-b prose-h2:border-white/10 prose-h2:pb-4 prose-h2:mt-16 prose-h3:text-xl prose-p:text-zinc-300 prose-p:font-light prose-p:leading-relaxed prose-code:text-blue-400 prose-code:font-mono prose-pre:border prose-pre:border-white/10 prose-pre:bg-[#0d0f11]">
+        <slot />
+      </div>
+
+      <!-- Bottom Navigation Footer -->
+      <div class="pt-12 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs">
+        <a
+          href={getRelativeLocaleUrl(lang, "/work")}
+          class="text-zinc-400 hover:text-white transition-colors"
+        >
+          ← {lang === "vi" ? "Tất cả dự án" : "All Selected Work"}
+        </a>
+        <a
+          href="#contact"
+          class="text-blue-400 hover:underline"
+        >
+          {lang === "vi" ? "Trao đổi thêm về dự án này →" : "Discuss this system with me →"}
+        </a>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

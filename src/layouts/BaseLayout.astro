@@ -1,0 +1,57 @@
+---
+import BaseHead from '@components/common/BaseHead.astro';
+import Header from '@components/common/Header.astro';
+import Footer from '@components/common/Footer.astro';
+import Lightbox from '@components/common/Lightbox.astro';
+import SignalField from '@components/common/SignalField.astro';
+import '@styles/global.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  lang?: "en" | "vi";
+  activePath?: string;
+}
+
+const {
+  title,
+  description,
+  image,
+  lang = "en",
+  activePath = "/",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang} class="scroll-smooth bg-[#09090b]">
+  <head>
+    <BaseHead title={title} description={description} image={image} lang={lang} />
+  </head>
+  <body class="min-h-screen flex flex-col bg-[#08090a] text-[#f2f2ef] antialiased selection:bg-blue-600/30 selection:text-white relative">
+    <!-- Dynamic Signal Field Canvas Background -->
+    <SignalField />
+
+    <!-- Skip to main content for accessibility (WCAG 2.2 AA) -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-50 rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-lg"
+    >
+      Skip to main content
+    </a>
+
+    <!-- Header Navigation -->
+    <Header lang={lang} activePath={activePath} />
+
+    <!-- Main Content Container -->
+    <main id="main-content" class="flex-grow relative z-10">
+      <slot />
+    </main>
+
+    <!-- Global Lightbox Modal -->
+    <Lightbox />
+
+    <!-- Footer -->
+    <Footer lang={lang} />
+  </body>
+</html>
