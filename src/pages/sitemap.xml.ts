@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 
-const SITE = 'https://gibor06.github.io/GIBOR06_portfolio';
+const SITE = 'https://gibor06.github.io';
 
 const ROUTES = [
   '/',

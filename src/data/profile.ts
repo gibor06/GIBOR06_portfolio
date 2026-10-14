@@ -27,7 +27,7 @@ export const profile = {
   githubPortfolioRepo: "https://github.com/gibor06/GIBOR06_portfolio",
   linkedin: "https://www.linkedin.com/in/gibor06/",
   facebook: "https://www.facebook.com/gibor2909",
-  websiteUrl: "https://gibor06.github.io/GIBOR06_portfolio/",
+  websiteUrl: "https://gibor06.github.io/",
   cvUrl: "/cv/Tran-Gia-Bao-CV.pdf",
   avatar: "/assets/img/avatar-gibor06.jpg",
   ogImage: "/assets/img/og-gibor06.png",

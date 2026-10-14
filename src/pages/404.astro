@@ -33,4 +33,12 @@ import { getRelativeLocaleUrl } from '@i18n/utils';
       </div>
     </div>
   </section>
+  <script is:inline>
+    (function() {
+      var p = window.location.pathname.toLowerCase().replace(/\/+$/, '');
+      if (p === '/gibor06' || p === '/github') {
+        window.location.replace('https://github.com/gibor06');
+      }
+    })();
+  </script>
 </BaseLayout>
