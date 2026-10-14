@@ -1,0 +1,249 @@
+---
+export interface Props {
+  lang?: "en" | "vi";
+}
+
+const { lang = "en" } = Astro.props;
+const isVi = lang === "vi";
+
+const uxModules = [
+  {
+    id: "adaptive-ui",
+    idx: "01",
+    tabEn: "Adaptive Design Systems",
+    tabVi: "Hệ thống Giao diện Đạt chuẩn",
+    kickerEn: "MULTI-THEME ARCHITECTURE & TYPOGRAPHIC SCALE",
+    kickerVi: "KIẾN TRÚC ĐA CHỦ ĐỀ & THANG ĐO TYPOGRAPHY",
+    titleEn: "Engineered for visual clarity across every environment.",
+    titleVi: "Tối ưu thị giác và độ tương phản trong mọi môi trường sử dụng.",
+    descEn:
+      "Great software interfaces adapt to human context. Rather than locking users into a single monotone dark screen, my interface architecture supports instant semantic theme switching (Alabaster Daylight, Royal Cobalt Blueprint, and Terracotta Studio), pairing Swiss geometric sans-serifs with editorial serif accents and strict WCAG contrast ratios.",
+    descVi:
+      "Giao diện phần mềm xuất sắc phải thích ứng linh hoạt với ngữ cảnh của người dùng. Thay vì bó buộc trong một nền tối đơn điệu, hệ thống UI được thiết kế với các biến Token ngữ nghĩa cho phép chuyển đổi tức thời giữa 3 sắc độ (Alabaster Daylight, Royal Cobalt và Terracotta Studio), kết hợp lưới kiến trúc sắc nét và độ tương phản chuẩn WCAG.",
+    metrics: [
+      { labelEn: "COLOR TOKENS", labelVi: "BIẾN MÀU SẮC", val: "3 Live Palettes" },
+      { labelEn: "CORNER GEOMETRY", labelVi: "HÌNH HỌC KHUNG", val: "0px Swiss Grid" },
+      { labelEn: "CONTRAST STANDARD", labelVi: "ĐỘ TƯƠNG PHẢN", val: "WCAG 2.2 AA+" },
+    ],
+  },
+  {
+    id: "transactional-ux",
+    idx: "02",
+    tabEn: "Frictionless Commerce & POS Flows",
+    tabVi: "Luồng Giao dịch & Thanh toán Tức thời",
+    kickerEn: "REAL-TIME STATE SYNC & ZERO-CONFUSION CHECKOUT",
+    kickerVi: "ĐỒNG BỘ TRẠNG THÁI THỜI GIAN THỰC & THANH TOÁN QR",
+    titleEn: "Distilling complex multi-step checkouts into effortless actions.",
+    titleVi: "Đơn giản hóa các quy trình đặt hàng và thanh toán phức tạp.",
+    descEn:
+      "Whether a cashier is operating a high-volume desktop POS terminal or a customer is customizing an order on mobile web, every click matters. I engineer reactive state synchronization, instant regional store filtering, and automated VietQR/PayOS payment verification so transactions complete with minimal cognitive load.",
+    descVi:
+      "Dù là thu ngân thao tác trên phần mềm POS tại quầy hay khách hàng đặt món trên điện thoại, mỗi thao tác đều được rút gọn tối đa. Hệ thống tự động đồng bộ giỏ hàng, lọc chi nhánh tức thời theo khu vực và sinh mã VietQR/PayOS tự động xác nhận kết quả thanh toán không độ trễ.",
+    metrics: [
+      { labelEn: "CHECKOUT FLOW", labelVi: "LUỒNG THANH TOÁN", val: "Dynamic QR / Webhook" },
+      { labelEn: "STATE LATENCY", labelVi: "ĐỘ TRỄ TƯƠNG TÁC", val: "< 16ms UI Frame" },
+      { labelEn: "DEVICE COVERAGE", labelVi: "ĐA NỀN TẢNG", val: "Mobile Web + Desktop POS" },
+    ],
+  },
+  {
+    id: "enterprise-data",
+    idx: "03",
+    tabEn: "Data-Dense Enterprise Dashboards",
+    tabVi: "Bảng Điều khiển Quản trị Đa Chi nhánh",
+    kickerEn: "INFORMATION HIERARCHY & ROLE-BASED WORKFLOWS",
+    kickerVi: "PHÂN CẤP THÔNG TIN & PHÂN QUYỀN THEO VAI TRÒ",
+    titleEn: "Clarity at scale for multi-branch operations and analytics.",
+    titleVi: "Hiển thị dữ liệu lớn trực quan, rõ ràng cho vận hành doanh nghiệp.",
+    descEn:
+      "Enterprise software often fails when complex database schemas leak directly into cluttered screens. By combining structured KPI strips, scannable tabular layouts, and role-tailored views (Executive, Branch Manager, Cashier, Warehouse), complex operational data becomes immediately actionable.",
+    descVi:
+      "Phần mềm quản trị doanh nghiệp đòi hỏi sự cân bằng giữa mật độ dữ liệu lớn và tính dễ đọc. Thông qua việc phân tách bố cục theo từng vai trò (Quản trị viên, Quản lý chi nhánh, Thu ngân, Thủ kho) và thiết kế bảng biểu có phân cấp thị giác rõ ràng, người dùng nắm bắt ngay các chỉ số vận hành cốt lõi.",
+    metrics: [
+      { labelEn: "ROLE WORKSPACES", labelVi: "KHÔNG GIAN VAI TRÒ", val: "Multi-Role RBAC Views" },
+      { labelEn: "DATA STRUCTURE", labelVi: "TỔ CHỨC DỮ LIỆU", val: "Modular KPI & Ledger Grids" },
+      { labelEn: "EXPORT & AUDIT", labelVi: "XUẤT BÁO CÁO", val: "Print & PDF Ready" },
+    ],
+  },
+  {
+    id: "accessibility-perf",
+    idx: "04",
+    tabEn: "Performance & Accessibility Craft",
+    tabVi: "Hiệu năng & Khả năng Tiếp cận",
+    kickerEn: "COMPOSITOR MOTION & KEYBOARD-FIRST ERGONOMICS",
+    kickerVi: "CHUYỂN ĐỘNG MƯỢT MÀ & ĐIỀU HƯỚNG BÀN PHÍM",
+    titleEn: "Speed, keyboard ergonomics, and zero layout shift by default.",
+    titleVi: "Tốc độ phản hồi tức thì, hỗ trợ bàn phím và không nhảy bố cục.",
+    descEn:
+      "True UX polish is felt in the invisible details: zero-JS static grid architecture, GPU-composited scroll reveals, full Escape/Tab keyboard navigation for modals and drawers, automatic reduced-motion compliance, and dedicated print stylesheets that transform dark or colored web pages into crisp A4 documents.",
+    descVi:
+      "Đẳng cấp của UI/UX nằm ở những chi tiết tinh tế: kiến trúc lưới không tốn tài nguyên CPU, hiệu ứng chuyển động mượt trên GPU, điều hướng bàn phím đầy đủ (Tab, Escape), tự động tôn trọng thiết lập giảm chuyển động của hệ điều hành và chế độ in ấn A4 chuyên nghiệp.",
+    metrics: [
+      { labelEn: "IDLE CPU OVERHEAD", labelVi: "TÀI NGUYÊN NỀN", val: "0% Main-Thread Loop" },
+      { labelEn: "KEYBOARD UX", labelVi: "ĐIỀU HƯỚNG PHÍM", val: "Full Focus & ESC Trap" },
+      { labelEn: "PRINT ENGINE", labelVi: "CHẾ ĐỘ IN ẤN", val: "Dedicated @media print" },
+    ],
+  },
+];
+---
+
+<section id="ux-architecture" class="relative py-20 sm:py-28 border-b border-[var(--line-subtle)] bg-[var(--bg-surface)]">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-12">
+    <!-- Section Header -->
+    <div class="reveal-on-scroll flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-[var(--line-subtle)] pb-8">
+      <div class="space-y-3">
+        <div class="font-mono text-xs font-bold uppercase tracking-[0.2em] text-[#d9532f]">
+          00.5 // {isVi ? "TRIẾT LÝ THIẾT KẾ & TỐI ƯU HÓA TRẢI NGHIỆM UI/UX" : "UI/UX ENGINEERING & INTERACTIVE EXPERIENCE LAB"}
+        </div>
+        <h2 class="display-section-title uppercase">
+          {isVi ? "Đa Dạng Hóa Ứng Dụng & Trải Nghiệm Người Dùng" : "Human-Centered UI/UX & System Craft"}
+        </h2>
+      </div>
+      <p class="max-w-xl text-sm text-[var(--text-secondary)] leading-relaxed">
+        {isVi
+          ? "Một sản phẩm phần mềm đẳng cấp không chỉ chạy đúng ở tầng cơ sở dữ liệu mà còn phải mang lại cảm giác trực quan, sắc nét và giàu cảm hứng ở mọi điểm chạm với người dùng."
+          : "World-class software is defined not only by how reliably its database transactions execute, but by how直观, responsive, and inspiring every human interaction feels."}
+      </p>
+    </div>
+
+    <!-- Interactive 12-Column UI/UX Explorer -->
+    <div class="reveal-on-scroll grid grid-cols-1 lg:grid-cols-12 border border-[var(--line-strong)] bg-[var(--bg-base)] shadow-[10px_10px_0px_#143a8a]">
+      <!-- Left 4 Columns: Interactive Module Selector Tabs -->
+      <div class="lg:col-span-4 border-b lg:border-b-0 lg:border-r border-[var(--line-subtle)] divide-y divide-[var(--line-subtle)]" role="tablist" aria-label="UI/UX Engineering Pillars">
+        {uxModules.map((mod, idx) => (
+          <button
+            type="button"
+            data-ux-tab={mod.id}
+            aria-selected={idx === 0 ? "true" : "false"}
+            class={`ux-tab-btn w-full text-left p-6 transition-colors flex flex-col justify-between gap-2 cursor-pointer ${
+              idx === 0
+                ? "bg-[#143a8a] text-white keep-white"
+                : "bg-[var(--bg-surface)] text-[var(--text-primary)] hover:bg-[var(--bg-elevated)]"
+            }`}
+          >
+            <div class="flex items-center justify-between font-mono text-xs">
+              <span class={`font-bold ${idx === 0 ? "text-[#ffb89e] keep-white" : "text-[#d9532f]"}`}>
+                {mod.idx} // UX PILLAR
+              </span>
+              <span class={idx === 0 ? "text-white keep-white" : "text-[var(--text-muted)]"}>→</span>
+            </div>
+            <div class={`text-base sm:text-lg font-extrabold uppercase tracking-tight ${idx === 0 ? "keep-white" : ""}`}>
+              {isVi ? mod.tabVi : mod.tabEn}
+            </div>
+          </button>
+        ))}
+
+        <!-- Live Interactive Theme Preview Box at Bottom of Left Column -->
+        <div class="p-6 bg-[var(--bg-elevated)] space-y-3">
+          <div class="font-mono text-[10px] font-bold uppercase tracking-widest text-[var(--text-muted)]">
+            {isVi ? "THỬ NGHIỆM CHUYỂN ĐỔI SẮC ĐỘ TRANG WEB:" : "TEST LIVE WEBSITE COLOR ARCHITECTURE:"}
+          </div>
+          <div class="grid grid-cols-3 gap-2 font-mono text-[11px] font-bold">
+            <button
+              type="button"
+              data-set-theme="alabaster"
+              class="py-2.5 px-2 bg-[#f6f3ec] text-[#102347] border border-[#143a8a]/40 hover:border-[#143a8a] cursor-pointer text-center"
+            >
+              ALABASTER
+            </button>
+            <button
+              type="button"
+              data-set-theme="cobalt"
+              class="py-2.5 px-2 bg-[#143a8a] text-white keep-white hover:opacity-90 cursor-pointer text-center"
+            >
+              COBALT
+            </button>
+            <button
+              type="button"
+              data-set-theme="terracotta"
+              class="py-2.5 px-2 bg-[#d9532f] text-white keep-white hover:opacity-90 cursor-pointer text-center"
+            >
+              TERRACOTTA
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right 8 Columns: Active UX Pillar Content & Interactive Visual Preview -->
+      <div class="lg:col-span-8 p-6 sm:p-10 lg:p-12 flex flex-col justify-between bg-[var(--bg-surface)]">
+        {uxModules.map((mod, idx) => (
+          <div
+            data-ux-panel={mod.id}
+            class={`ux-panel space-y-8 ${idx === 0 ? "block" : "hidden"}`}
+          >
+            <div class="space-y-4">
+              <div class="inline-flex items-center gap-2 bg-[#d9532f] text-white keep-white px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-widest">
+                <span class="keep-white">{isVi ? mod.kickerVi : mod.kickerEn}</span>
+              </div>
+              <h3 class="text-2xl sm:text-4xl font-extrabold text-[var(--text-primary)] tracking-tight leading-[1.08]">
+                {isVi ? mod.titleVi : mod.titleEn}
+              </h3>
+              <p class="text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed">
+                {isVi ? mod.descVi : mod.descEn}
+              </p>
+            </div>
+
+            <!-- Interactive Architectural Wireframe / Spec Demonstration -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 border-t border-l border-[var(--line-subtle)] bg-[var(--bg-base)]">
+              {mod.metrics.map((m) => (
+                <div class="border-r border-b border-[var(--line-subtle)] p-5 space-y-1.5">
+                  <div class="font-mono text-[10px] font-bold uppercase tracking-widest text-[#d9532f]">
+                    {isVi ? m.labelVi : m.labelEn}
+                  </div>
+                  <div class="font-mono text-base font-extrabold text-[var(--text-primary)]">
+                    {m.val}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <!-- Visual Design System Specimen Strip -->
+            <div class="border border-[var(--line-subtle)] bg-[var(--bg-elevated)] p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div class="space-y-1">
+                <div class="font-mono text-[10px] font-bold uppercase tracking-widest text-[var(--accent)]">
+                  {isVi ? "TIÊU CHUẨN CHẾ TÁC GIAO DIỆN" : "INTERFACE ENGINEERING SPECIMEN"}
+                </div>
+                <div class="text-xs sm:text-sm font-medium text-[var(--text-primary)]">
+                  {isVi
+                    ? "Khung viền 0px sắc nét • Lưới 12 cột Swiss Editorial • Tương phản đa tầng"
+                    : "0px Sharp Architectural Borders • 12-Column Swiss Grid • Multi-Surface Depth"}
+                </div>
+              </div>
+              <div class="flex items-center gap-2 font-mono text-[11px]">
+                <span class="px-2.5 py-1 bg-[#143a8a] text-white keep-white font-bold">AA+</span>
+                <span class="px-2.5 py-1 bg-[#d9532f] text-white keep-white font-bold">60FPS</span>
+                <span class="px-2.5 py-1 border border-[var(--line-strong)] bg-[var(--bg-surface)] text-[var(--text-primary)] font-bold">0px RADIUS</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const uxTabBtns = document.querySelectorAll(".ux-tab-btn");
+  const uxPanels = document.querySelectorAll(".ux-panel");
+
+  uxTabBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const targetId = btn.getAttribute("data-ux-tab");
+
+      uxTabBtns.forEach((b) => {
+        const active = b === btn;
+        b.setAttribute("aria-selected", active ? "true" : "false");
+        b.className = `ux-tab-btn w-full text-left p-6 transition-colors flex flex-col justify-between gap-2 cursor-pointer ${
+          active
+            ? "bg-[#143a8a] text-white keep-white"
+            : "bg-[var(--bg-surface)] text-[var(--text-primary)] hover:bg-[var(--bg-elevated)]"
+        }`;
+      });
+
+      uxPanels.forEach((panel) => {
+        const isMatch = panel.getAttribute("data-ux-panel") === targetId;
+        panel.classList.toggle("hidden", !isMatch);
+        panel.classList.toggle("block", isMatch);
+      });
+    });
+  });
+</script>

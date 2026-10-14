@@ -1,128 +1,376 @@
 @import "tailwindcss";
 
 @layer base {
+  /* ==========================================================================
+     THEME 1 (DEFAULT): ALABASTER — Warm Ivory Paper, Deep Cobalt & Terracotta
+     ========================================================================== */
+  :root,
+  html[data-theme="alabaster"] {
+    --bg: #f6f3ec;
+    --bg-elevated: #faf8f3;
+    --bg-panel: #ebe5d8;
+    --bg-glass: rgba(246, 243, 236, 0.94);
+
+    --text: #0f1e36;
+    --text-secondary: #2c3e5a;
+    --text-muted: #5c6f8c;
+
+    --accent: #143a8a;
+    --accent-bright: #1d4ed8;
+    --accent-secondary: #d9532f;
+    --accent-tertiary: #b88228;
+    --accent-soft: rgba(20, 58, 138, 0.08);
+    --emerald: #0f766e;
+
+    --line: rgba(15, 30, 54, 0.22);
+    --line-strong: rgba(15, 30, 54, 0.48);
+    --line-faint: rgba(15, 30, 54, 0.09);
+
+    --block-primary: #143a8a;
+    --block-secondary: #d9532f;
+    --block-surface: #ebe5d8;
+    --shadow-color: #143a8a;
+
+    color-scheme: light;
+  }
+
+  /* ==========================================================================
+     THEME 2: COBALT — Architectural Blueprint Cobalt & Terracotta Vermilion
+     ========================================================================== */
+  html[data-theme="cobalt"] {
+    --bg: #102a63;
+    --bg-elevated: #16367d;
+    --bg-panel: #1c4299;
+    --bg-glass: rgba(16, 42, 99, 0.94);
+
+    --text: #f6f3ec;
+    --text-secondary: #dbe7ff;
+    --text-muted: #9eb8f0;
+
+    --accent: #ff6b47;
+    --accent-bright: #ff8566;
+    --accent-secondary: #f59e0b;
+    --accent-tertiary: #38bdf8;
+    --accent-soft: rgba(255, 255, 255, 0.1);
+    --emerald: #34d399;
+
+    --line: rgba(246, 243, 236, 0.24);
+    --line-strong: rgba(246, 243, 236, 0.5);
+    --line-faint: rgba(246, 243, 236, 0.1);
+
+    --block-primary: #0b1f4d;
+    --block-secondary: #d9532f;
+    --block-surface: #16367d;
+    --shadow-color: #d9532f;
+
+    color-scheme: dark;
+  }
+
+  /* ==========================================================================
+     THEME 3: TERRACOTTA — Warm Fired Clay, Vermilion & Prussian Cobalt
+     ========================================================================== */
+  html[data-theme="terracotta"] {
+    --bg: #f2e5dc;
+    --bg-elevated: #faf3ee;
+    --bg-panel: #e5d2c4;
+    --bg-glass: rgba(242, 229, 220, 0.94);
+
+    --text: #23140f;
+    --text-secondary: #4d3128;
+    --text-muted: #7d5a4f;
+
+    --accent: #c84320;
+    --accent-bright: #e04f28;
+    --accent-secondary: #143a8a;
+    --accent-tertiary: #9a6715;
+    --accent-soft: rgba(200, 67, 32, 0.1);
+    --emerald: #0f766e;
+
+    --line: rgba(35, 20, 15, 0.22);
+    --line-strong: rgba(35, 20, 15, 0.48);
+    --line-faint: rgba(35, 20, 15, 0.09);
+
+    --block-primary: #c84320;
+    --block-secondary: #143a8a;
+    --block-surface: #e5d2c4;
+    --shadow-color: #c84320;
+
+    color-scheme: light;
+  }
+
+  /* ==========================================================================
+     THEME 4: TRAVERTINE — Roman Architectural Limestone & Basalt Ink
+     ========================================================================== */
+  html[data-theme="travertine"] {
+    --bg: #e6dfd1;
+    --bg-elevated: #efeae0;
+    --bg-panel: #d8cfc0;
+    --bg-glass: rgba(230, 223, 209, 0.94);
+
+    --text: #181a1b;
+    --text-secondary: #383c3e;
+    --text-muted: #63686b;
+
+    --accent: #143a8a;
+    --accent-bright: #1e40af;
+    --accent-secondary: #c84320;
+    --accent-tertiary: #8c6520;
+    --accent-soft: rgba(20, 58, 138, 0.09);
+    --emerald: #0f766e;
+
+    --line: rgba(24, 26, 27, 0.24);
+    --line-strong: rgba(24, 26, 27, 0.5);
+    --line-faint: rgba(24, 26, 27, 0.1);
+
+    --block-primary: #181a1b;
+    --block-secondary: #c84320;
+    --block-surface: #d8cfc0;
+    --shadow-color: #181a1b;
+
+    color-scheme: light;
+  }
+
   :root {
-    --bg-base: #08090a;
-    --bg-surface: #0e1013;
-    
-    --text-primary: #f4f4f2;
-    --text-secondary: #a1a3a7;
-    --text-muted: #5e6166;
-    
-    --line-faint: rgba(255, 255, 255, 0.05);
-    --line-subtle: rgba(255, 255, 255, 0.09);
-    --line-strong: rgba(255, 255, 255, 0.18);
-    
-    --accent: #78b7ff;
-    --accent-dim: rgba(120, 183, 255, 0.1);
+    --font-sans: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-display: 'Cormorant Garamond', 'Instrument Serif', Georgia, serif;
+    --font-serif: 'Cormorant Garamond', 'Instrument Serif', Georgia, serif;
+    --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   }
 
   html {
-    font-family: 'Geist Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background-color: var(--bg-base);
-    color: var(--text-primary);
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
     scroll-behavior: smooth;
-    text-rendering: optimizeLegibility;
+    scroll-padding-top: 4.5rem;
+    overflow-x: clip;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.35s cubic-bezier(0.16, 1, 0.3, 1), color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+      transition: none;
+    }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 
   body {
-    background-color: var(--bg-base);
-    color: var(--text-primary);
-    min-height: 100vh;
-    overflow-x: hidden;
-    line-height: 1.6;
+    background-color: var(--bg);
+    color: var(--text);
+    overflow-x: clip;
+    selection-background-color: var(--accent);
+    selection-color: #ffffff;
+    transition: background-color 0.35s cubic-bezier(0.16, 1, 0.3, 1), color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  code, pre, .font-mono {
-    font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  ::selection {
+    background: var(--accent);
+    color: #ffffff;
   }
 }
 
-/* Editorial Display Typography */
-.display-hero-title {
-  font-size: clamp(3.75rem, 9.5vw, 8.5rem);
-  line-height: 0.88;
-  letter-spacing: -0.04em;
-  font-weight: 850;
-  text-transform: uppercase;
-  color: var(--text-primary);
+/* ==========================================================================
+   EDITORIAL / BRUTALIST ARCHITECTURAL UTILITIES
+   ========================================================================== */
+
+.font-editorial {
+  font-family: var(--font-display);
 }
 
-.display-section-num {
-  font-family: 'Geist Mono', monospace;
-  font-size: clamp(4rem, 8vw, 7rem);
-  line-height: 0.85;
-  font-weight: 800;
-  letter-spacing: -0.05em;
-  color: rgba(255, 255, 255, 0.06);
-  user-select: none;
+.editorial-grid-bg {
+  background-size: 64px 64px;
+  background-image:
+    linear-gradient(to right, var(--line-faint) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line-faint) 1px, transparent 1px);
 }
 
-/* Editorial Hairline Rule */
-.editorial-rule {
-  height: 1px;
-  width: 100%;
-  background: var(--line-subtle);
+.brutalist-card {
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--line);
+  border-radius: 0px;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.28s ease;
 }
 
-/* Subtle Mask Reveal Animation */
-.img-editorial-reveal {
-  position: relative;
-  overflow: hidden;
+.brutalist-card:hover {
+  border-color: var(--line-strong);
+  box-shadow: 6px 6px 0px var(--shadow-color);
+  transform: translate(-2px, -2px);
 }
 
-.img-editorial-reveal img {
-  transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1), filter 500ms ease;
+.swiss-card {
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--line);
+  border-radius: 0px;
+  transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.img-editorial-reveal:hover img {
-  transform: scale(1.025);
+.swiss-card:hover {
+  border-color: var(--accent);
+  box-shadow: 6px 6px 0px var(--shadow-color);
 }
 
-/* Editorial Metadata Rail Item */
-.meta-rail-label {
-  font-family: 'Geist Mono', monospace;
+.swiss-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.65rem;
+  font-family: var(--font-mono);
   font-size: 0.6875rem;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  font-weight: 600;
+  line-height: 1.3;
+  border: 1px solid var(--line);
+  background: var(--bg-panel);
+  color: var(--text);
+  border-radius: 0px;
 }
 
-.meta-rail-val {
-  font-family: 'Geist Sans', sans-serif;
-  font-size: 0.875rem;
-  color: var(--text-primary);
-  font-weight: 500;
+.swiss-tag-accent {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 700;
 }
 
-/* Accessible focus rings */
-a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
+.swiss-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  padding: 0.85rem 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  background-color: var(--accent);
+  color: #ffffff !important;
+  border: 1px solid var(--accent);
+  border-radius: 0px;
+  box-shadow: 4px 4px 0px var(--accent-secondary);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
 
-/* Reduced motion preference */
-@media (prefers-reduced-motion: reduce) {
-  *, ::before, ::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-  #signalFieldCanvas {
-    display: none !important;
-  }
+.swiss-btn-primary:hover {
+  background-color: var(--accent-secondary);
+  border-color: var(--accent-secondary);
+  box-shadow: 6px 6px 0px var(--accent);
+  transform: translate(-1px, -1px);
 }
 
-/* Print styles for Resume */
+.swiss-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  padding: 0.85rem 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  background-color: var(--bg-elevated);
+  color: var(--text);
+  border: 1px solid var(--line-strong);
+  border-radius: 0px;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.swiss-btn-secondary:hover {
+  background-color: var(--text);
+  border-color: var(--text);
+  color: var(--bg) !important;
+  transform: translate(-1px, -1px);
+}
+
+/* Theme button active indicator */
+[data-set-theme][aria-pressed="true"] {
+  outline: 2px solid var(--accent-secondary);
+  outline-offset: -2px;
+}
+
+/* Harmonize legacy classes across all subpages */
+html:not([data-theme="cobalt"]) .bg-\[\#07090e\],
+html:not([data-theme="cobalt"]) .bg-\[\#07090e\]\/90 {
+  background-color: var(--bg) !important;
+}
+
+html:not([data-theme="cobalt"]) .bg-\[\#0c1018\] {
+  background-color: var(--bg-elevated) !important;
+}
+
+html:not([data-theme="cobalt"]) .bg-\[\#111723\] {
+  background-color: var(--bg-panel) !important;
+}
+
+html:not([data-theme="cobalt"]) .text-white:not(.keep-white) {
+  color: var(--text) !important;
+}
+
+html:not([data-theme="cobalt"]) .text-zinc-200,
+html:not([data-theme="cobalt"]) .text-zinc-300 {
+  color: var(--text-secondary) !important;
+}
+
+html:not([data-theme="cobalt"]) .text-zinc-400,
+html:not([data-theme="cobalt"]) .text-zinc-500 {
+  color: var(--text-muted) !important;
+}
+
+html:not([data-theme="cobalt"]) .border-white\/\[0\.12\],
+html:not([data-theme="cobalt"]) .border-white\/\[0\.14\],
+html:not([data-theme="cobalt"]) .border-white\/\[0\.08\],
+html:not([data-theme="cobalt"]) .border-white\/10,
+html:not([data-theme="cobalt"]) .border-white\/15,
+html:not([data-theme="cobalt"]) .border-white\/20,
+html:not([data-theme="cobalt"]) .border-white\/25 {
+  border-color: var(--line) !important;
+}
+
+html[data-theme="cobalt"] .bg-\[\#07090e\] {
+  background-color: var(--bg) !important;
+}
+html[data-theme="cobalt"] .bg-\[\#0c1018\] {
+  background-color: var(--bg-elevated) !important;
+}
+html[data-theme="cobalt"] .bg-\[\#111723\] {
+  background-color: var(--bg-panel) !important;
+}
+
+/* Scroll reveal animation */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-secondary);
+  outline-offset: 2px;
+}
+
 @media print {
   body {
     background: #ffffff !important;
-    color: #111111 !important;
+    color: #000000 !important;
   }
-  header, footer, nav, #signalFieldCanvas, .no-print {
+  .no-print {
     display: none !important;
   }
 }

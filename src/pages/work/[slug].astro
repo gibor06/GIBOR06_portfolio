@@ -1,19 +1,43 @@
 ---
-import { getCollection } from 'astro:content';
-import ProjectLayout from '@layouts/ProjectLayout.astro';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ProjectDetailView from '@components/work/ProjectDetailView.astro';
+import { engineeringProjects, type EngineeringProject } from '@data/projects';
 
-export async function getStaticPaths() {
-  const projects = await getCollection('projects');
-  return projects.map((entry) => ({
-    params: { slug: entry.slug },
-    props: { entry },
-  }));
+export function getStaticPaths() {
+  const paths: { params: { slug: string }; props: { project: EngineeringProject } }[] = [];
+
+  for (const project of engineeringProjects) {
+    paths.push({
+      params: { slug: project.slug },
+      props: { project },
+    });
+
+    if (project.legacySlugs) {
+      for (const legacySlug of project.legacySlugs) {
+        paths.push({
+          params: { slug: legacySlug },
+          props: { project },
+        });
+      }
+    }
+  }
+
+  return paths;
 }
 
-const { entry } = Astro.props;
-const { Content } = await entry.render();
+interface Props {
+  project: EngineeringProject;
+}
+
+const { project } = Astro.props;
 ---
 
-<ProjectLayout project={entry.data} lang="en">
-  <Content />
-</ProjectLayout>
+<BaseLayout
+  title={`${project.titleEn} — Engineering Case Study | Trần Gia Bảo`}
+  description={project.shortDescEn}
+  image={project.coverImage}
+  lang="en"
+  activePath={`/work/${project.slug}`}
+>
+  <ProjectDetailView project={project} lang="en" />
+</BaseLayout>

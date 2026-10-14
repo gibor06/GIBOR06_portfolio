@@ -1,0 +1,127 @@
+{
+  "routes": [
+    {
+      "path": "/",
+      "status": 200,
+      "title": "Trần Gia Bảo (gibor06) — Software Engineering & UI/UX Systems Studio",
+      "brokenImages": 0,
+      "hasOverflow": false
+    },
+    {
+      "path": "/vi/",
+      "status": 200,
+      "title": "Trần Gia Bảo (gibor06) — Studio Kỹ Thuật Phần Mềm & Kiến Trúc UI/UX",
+      "brokenImages": 0,
+      "hasOverflow": false
+    },
+    {
+      "path": "/work/",
+      "status": 200,
+      "title": "Software Engineering Case Studies — Trần Gia Bảo (gibor06)",
+      "brokenImages": 0,
+      "hasOverflow": false
+    },
+    {
+      "path": "/vi/work/",
+      "status": 200,
+      "title": "Danh Mục Dự Án & Case Studies Kỹ Thuật — Trần Gia Bảo (gibor06)",
+      "brokenImages": 0,
+      "hasOverflow": false
+    },
+    {
+      "path": "/work/coffee-chain-management/",
+      "status": 200,
+      "title": "GIBOR Coffee Chain Management System — Engineering Case Study | Trần Gia Bảo",
+      "brokenImages": 0,
+      "hasOverflow": false
+    },
+    {
+      "path": "/vi/work/coffee-chain-management/",
+      "status": 200,
+      "title": "Hệ thống Quản lý Chuỗi Cà phê GIBOR (ASP.NET Core 8 MVC) — Case Study Kỹ Thuật | Trần Gia Bảo",
+      "brokenImages": 0,
+      "hasOverflow": false
+    },
+    {
+      "path": "/research/",
+      "status": 200,
+      "title": "Scientific Research & Algorithms (FAIR XIX 2026 & HUIM) — Trần Gia Bảo",
+      "brokenImages": 0,
+      "hasOverflow": false
+    },
+    {
+      "path": "/vi/research/",
+      "status": 200,
+      "title": "Nghiên Cứu Khoa Học & Giải Thuật (FAIR XIX 2026 & HUIM) — Trần Gia Bảo",
+      "brokenImages": 0,
+      "hasOverflow": false
+    },
+    {
+      "path": "/about/",
+      "status": 200,
+      "title": "About Trần Gia Bảo (gibor06) — Third-Year IT Student @ HUIT & Full-Stack Intern Candidate",
+      "brokenImages": 0,
+      "hasOverflow": false
+    },
+    {
+      "path": "/vi/about/",
+      "status": 200,
+      "title": "Giới Thiệu Trần Gia Bảo (gibor06) — Sinh Viên Năm 3 CNTT HUIT & Thực Tập Sinh Full-Stack",
+      "brokenImages": 0,
+      "hasOverflow": false
+    },
+    {
+      "path": "/resume/",
+      "status": 200,
+      "title": "Resume / Curriculum Vitae — Trần Gia Bảo (gibor06) | Full-Stack Developer Intern",
+      "brokenImages": 0,
+      "hasOverflow": false
+    },
+    {
+      "path": "/vi/resume/",
+      "status": 200,
+      "title": "Hồ Sơ CV Trực Tuyến — Trần Gia Bảo (gibor06) | Thực Tập Sinh Full-Stack",
+      "brokenImages": 0,
+      "hasOverflow": false
+    },
+    {
+      "path": "/credentials/",
+      "status": 200,
+      "title": "Honours, Awards & Professional Certifications — Trần Gia Bảo (gibor06)",
+      "brokenImages": 0,
+      "hasOverflow": false
+    },
+    {
+      "path": "/vi/credentials/",
+      "status": 200,
+      "title": "Giải Thưởng & Chứng Chỉ Chuyên Môn — Trần Gia Bảo (gibor06)",
+      "brokenImages": 0,
+      "hasOverflow": false
+    }
+  ],
+  "staticFiles": {
+    "/robots.txt": {
+      "status": 200,
+      "bytes": 160
+    },
+    "/sitemap.xml": {
+      "status": 200,
+      "bytes": 2485
+    },
+    "/sitemap-index.xml": {
+      "status": 200,
+      "bytes": 206
+    }
+  },
+  "consoleErrors": [],
+  "brokenImages": [],
+  "overflowIssues": [],
+  "interactions": {
+    "theme_alabaster": true,
+    "theme_cobalt": true,
+    "theme_terracotta": true,
+    "theme_travertine": true,
+    "lightboxCertificateZoom": true,
+    "autoDetectedViUrl": "http://localhost:4322/GIBOR06_portfolio/vi/"
+  }
+}

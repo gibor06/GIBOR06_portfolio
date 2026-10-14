@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080B12"/>
+      <stop offset="100%" stop-color="#0E1420"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#162133"/>
+      <stop offset="100%" stop-color="#101826"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <g stroke="rgba(255,255,255,0.035)" stroke-width="1">
+    <line x1="0" y1="110" x2="1200" y2="110"/>
+    <line x1="0" y1="250" x2="1200" y2="250"/>
+    <line x1="0" y1="390" x2="1200" y2="390"/>
+    <line x1="0" y1="530" x2="1200" y2="530"/>
+    <line x1="300" y1="0" x2="300" y2="675"/>
+    <line x1="600" y1="0" x2="600" y2="675"/>
+    <line x1="900" y1="0" x2="900" y2="675"/>
+  </g>
+  <rect x="48" y="32" width="440" height="28" rx="14" fill="rgba(77,141,255,0.14)" stroke="rgba(77,141,255,0.4)"/>
+  <text x="66" y="51" fill="#73C4FF" font-family="monospace" font-size="12" font-weight="bold">SYSTEM ARCHITECTURE DIAGRAM (VERIFIED SOURCE)</text>
+  <text x="48" y="92" fill="#F5F7FB" font-family="sans-serif" font-size="25" font-weight="bold">GIBOR Coffee Chain Management — ASP.NET Core 8.0 MVC</text>
+  <text x="48" y="118" fill="#A7B4C8" font-family="monospace" font-size="13">QuanLyChuoiCaPhe.Web.csproj (net8.0) • 17 Controllers • 9 Services • EF Core 8.0 • SQL Server (31 Models/Views)</text>
+
+  <!-- Layer 1 -->
+  <rect x="48" y="150" width="245" height="465" rx="14" fill="url(#card)" stroke="rgba(77,141,255,0.35)" stroke-width="1.5"/>
+  <text x="68" y="184" fill="#73C4FF" font-family="monospace" font-size="12" font-weight="bold">01 / PRESENTATION &amp; AUTH</text>
+  <text x="68" y="210" fill="#F5F7FB" font-family="sans-serif" font-size="18" font-weight="bold">Razor Views + Auth Filter</text>
+  <rect x="68" y="230" width="205" height="64" rx="8" fill="#0B101B" stroke="rgba(255,255,255,0.1)"/>
+  <text x="82" y="254" fill="#F5F7FB" font-family="monospace" font-size="12" font-weight="bold">RoleAuthorizeAttribute.cs</text>
+  <text x="82" y="274" fill="#A7B4C8" font-family="sans-serif" font-size="11">IAuthorizationFilter + Session</text>
+  <rect x="68" y="308" width="205" height="95" rx="8" fill="#0B101B" stroke="rgba(255,255,255,0.1)"/>
+  <text x="82" y="332" fill="#34D399" font-family="monospace" font-size="12" font-weight="bold">5 Operational RBAC Roles</text>
+  <text x="82" y="352" fill="#A7B4C8" font-family="monospace" font-size="11">• Admin       • Quản lý</text>
+  <text x="82" y="370" fill="#A7B4C8" font-family="monospace" font-size="11">• Nhân viên   • Kho</text>
+  <text x="82" y="388" fill="#A7B4C8" font-family="monospace" font-size="11">• Kế toán (Cookie + Session)</text>
+  <rect x="68" y="418" width="205" height="175" rx="8" fill="#0B101B" stroke="rgba(255,255,255,0.1)"/>
+  <text x="82" y="442" fill="#F5F7FB" font-family="monospace" font-size="12" font-weight="bold">7 Strongly-Typed ViewModels</text>
+  <text x="82" y="464" fill="#A7B4C8" font-family="monospace" font-size="11">• DashboardViewModel</text>
+  <text x="82" y="482" fill="#A7B4C8" font-family="monospace" font-size="11">• DonHangCreateViewModel</text>
+  <text x="82" y="500" fill="#A7B4C8" font-family="monospace" font-size="11">• KhoGiaoDichViewModel</text>
+  <text x="82" y="518" fill="#A7B4C8" font-family="monospace" font-size="11">• BangLuongCreateViewModel</text>
+  <text x="82" y="536" fill="#A7B4C8" font-family="monospace" font-size="11">• SanPhamCreateViewModel</text>
+  <text x="82" y="554" fill="#A7B4C8" font-family="monospace" font-size="11">• LoginViewModel + KhoKhoiTao</text>
+
+  <!-- Layer 2 -->
+  <rect x="325" y="150" width="260" height="465" rx="14" fill="url(#card)" stroke="rgba(255,255,255,0.14)" stroke-width="1.5"/>
+  <text x="345" y="184" fill="#73C4FF" font-family="monospace" font-size="12" font-weight="bold">02 / CONTROLLER LAYER</text>
+  <text x="345" y="210" fill="#F5F7FB" font-family="sans-serif" font-size="18" font-weight="bold">17 MVC Controllers</text>
+  <rect x="345" y="230" width="220" height="363" rx="8" fill="#0B101B" stroke="rgba(255,255,255,0.1)"/>
+  <text x="360" y="256" fill="#FBBF24" font-family="monospace" font-size="12" font-weight="bold">BaseController.cs (Shared Context)</text>
+  <text x="360" y="282" fill="#F5F7FB" font-family="monospace" font-size="11.5">• DashboardController</text>
+  <text x="360" y="302" fill="#F5F7FB" font-family="monospace" font-size="11.5">• DonHangController (POS/Orders)</text>
+  <text x="360" y="322" fill="#F5F7FB" font-family="monospace" font-size="11.5">• KhoController (Inventory)</text>
+  <text x="360" y="342" fill="#F5F7FB" font-family="monospace" font-size="11.5">• BangLuongController (Payroll)</text>
+  <text x="360" y="362" fill="#F5F7FB" font-family="monospace" font-size="11.5">• ChiNhanhController (Branches)</text>
+  <text x="360" y="382" fill="#F5F7FB" font-family="monospace" font-size="11.5">• SanPhamController (Catalog)</text>
+  <text x="360" y="402" fill="#F5F7FB" font-family="monospace" font-size="11.5">• NhanVien &amp; TaiKhoanController</text>
+  <text x="360" y="422" fill="#F5F7FB" font-family="monospace" font-size="11.5">• ChamCong &amp; CaLamViecController</text>
+  <text x="360" y="442" fill="#F5F7FB" font-family="monospace" font-size="11.5">• LichPhanCongController</text>
+  <text x="360" y="462" fill="#F5F7FB" font-family="monospace" font-size="11.5">• PhatDiMuon &amp; NgayDacBiet</text>
+  <text x="360" y="482" fill="#F5F7FB" font-family="monospace" font-size="11.5">• KhachHangController (CRM)</text>
+  <text x="360" y="502" fill="#F5F7FB" font-family="monospace" font-size="11.5">• BaoCaoController (Analytics)</text>
+  <text x="360" y="522" fill="#F5F7FB" font-family="monospace" font-size="11.5">• AccountController (Auth)</text>
+
+  <!-- Layer 3 -->
+  <rect x="617" y="150" width="260" height="465" rx="14" fill="url(#card)" stroke="rgba(77,141,255,0.4)" stroke-width="1.5"/>
+  <text x="637" y="184" fill="#73C4FF" font-family="monospace" font-size="12" font-weight="bold">03 / BUSINESS SERVICE LAYER</text>
+  <text x="637" y="210" fill="#F5F7FB" font-family="sans-serif" font-size="18" font-weight="bold">9 Domain Services (DI)</text>
+  <rect x="637" y="230" width="220" height="110" rx="8" fill="#0B101B" stroke="rgba(77,141,255,0.3)"/>
+  <text x="651" y="254" fill="#73C4FF" font-family="monospace" font-size="12" font-weight="bold">DonHangService.cs</text>
+  <text x="651" y="274" fill="#A7B4C8" font-family="sans-serif" font-size="11">Transactional order creation,</text>
+  <text x="651" y="290" fill="#A7B4C8" font-family="sans-serif" font-size="11">CongThucPhaChe recipe lookup,</text>
+  <text x="651" y="306" fill="#A7B4C8" font-family="sans-serif" font-size="11">auto stock deduction &amp; loyalty pts</text>
+  <rect x="637" y="352" width="220" height="90" rx="8" fill="#0B101B" stroke="rgba(255,255,255,0.1)"/>
+  <text x="651" y="376" fill="#34D399" font-family="monospace" font-size="12" font-weight="bold">BangLuongService.cs</text>
+  <text x="651" y="396" fill="#A7B4C8" font-family="sans-serif" font-size="11">Shift hours × holiday multipliers</text>
+  <text x="651" y="412" fill="#A7B4C8" font-family="sans-serif" font-size="11">minus PhatDiMuon late penalties</text>
+  <rect x="637" y="454" width="220" height="139" rx="8" fill="#0B101B" stroke="rgba(255,255,255,0.1)"/>
+  <text x="651" y="478" fill="#F5F7FB" font-family="monospace" font-size="12" font-weight="bold">Core Supporting Services</text>
+  <text x="651" y="498" fill="#A7B4C8" font-family="monospace" font-size="11">• KhoService.cs (Stock Ledger)</text>
+  <text x="651" y="516" fill="#A7B4C8" font-family="monospace" font-size="11">• DashboardService.cs</text>
+  <text x="651" y="534" fill="#A7B4C8" font-family="monospace" font-size="11">• BaoCaoService.cs</text>
+  <text x="651" y="552" fill="#A7B4C8" font-family="monospace" font-size="11">• AuthService &amp; PasswordService</text>
+  <text x="651" y="570" fill="#A7B4C8" font-family="monospace" font-size="11">• CodeGenerator &amp; FormatHelper</text>
+
+  <!-- Layer 4 -->
+  <rect x="909" y="150" width="243" height="465" rx="14" fill="url(#card)" stroke="rgba(52,211,153,0.35)" stroke-width="1.5"/>
+  <text x="929" y="184" fill="#34D399" font-family="monospace" font-size="12" font-weight="bold">04 / DATA PERSISTENCE</text>
+  <text x="929" y="210" fill="#F5F7FB" font-family="sans-serif" font-size="18" font-weight="bold">EF Core 8 + SQL Server</text>
+  <rect x="929" y="230" width="203" height="75" rx="8" fill="#0B101B" stroke="rgba(52,211,153,0.25)"/>
+  <text x="943" y="254" fill="#34D399" font-family="monospace" font-size="11.5" font-weight="bold">QuanLyChuoiCaPheContext</text>
+  <text x="943" y="274" fill="#A7B4C8" font-family="sans-serif" font-size="11">EF Core 8.0.0 DbContext</text>
+  <text x="943" y="290" fill="#A7B4C8" font-family="sans-serif" font-size="11">BeginTransactionAsync() ACID</text>
+  <rect x="929" y="318" width="203" height="165" rx="8" fill="#0B101B" stroke="rgba(255,255,255,0.1)"/>
+  <text x="943" y="342" fill="#F5F7FB" font-family="monospace" font-size="12" font-weight="bold">28 Relational Entities</text>
+  <text x="943" y="362" fill="#A7B4C8" font-family="monospace" font-size="11">ChiNhanh, KhuVuc, SanPham,</text>
+  <text x="943" y="380" fill="#A7B4C8" font-family="monospace" font-size="11">BienTheSanPham, CongThucPhaChe,</text>
+  <text x="943" y="398" fill="#A7B4C8" font-family="monospace" font-size="11">TonKhoNguyenLieu, LichSuKho,</text>
+  <text x="943" y="416" fill="#A7B4C8" font-family="monospace" font-size="11">DonHang, ChiTietDonHang,</text>
+  <text x="943" y="434" fill="#A7B4C8" font-family="monospace" font-size="11">BangLuong, ChamCong, CaLamViec</text>
+  <rect x="929" y="496" width="203" height="97" rx="8" fill="#0B101B" stroke="rgba(255,255,255,0.1)"/>
+  <text x="943" y="520" fill="#FBBF24" font-family="monospace" font-size="12" font-weight="bold">3 SQL Server Views</text>
+  <text x="943" y="540" fill="#A7B4C8" font-family="monospace" font-size="11">• VwBangLuongTongHop</text>
+  <text x="943" y="558" fill="#A7B4C8" font-family="monospace" font-size="11">• VwCanhBaoTonKho</text>
+  <text x="943" y="576" fill="#A7B4C8" font-family="monospace" font-size="11">• VwMenuChiNhanh</text>
+</svg>

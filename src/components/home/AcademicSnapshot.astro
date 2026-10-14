@@ -1,77 +1,117 @@
 ---
 import { profile } from '@data/profile';
+import { getRelativeLocaleUrl } from '@i18n/utils';
 
 export interface Props {
   lang?: "en" | "vi";
 }
 
 const { lang = "en" } = Astro.props;
+const isVi = lang === "vi";
 ---
 
-<section id="academic" class="py-24 md:py-36 border-t border-white/[0.08] relative">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-16">
-    <!-- Section Title with Large Number Rhythm -->
-    <div class="flex items-baseline justify-between border-b border-white/[0.08] pb-6">
-      <div class="space-y-1">
-        <span class="font-mono text-xs text-blue-400 uppercase tracking-widest block">06 // INDEX</span>
-        <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-          {lang === "vi" ? "HỒ SƠ HỌC THUẬT & BẢNG ĐIỂM" : "ACADEMIC DOSSIER"}
+<section id="about-preview" class="relative py-20 sm:py-28 border-b border-white/[0.14] bg-[#07090e]">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-12">
+    <!-- Section Header -->
+    <div class="reveal-on-scroll flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-white/[0.14] pb-8">
+      <div class="space-y-3">
+        <div class="font-mono text-xs font-bold uppercase tracking-[0.2em] text-[#4d8dff]">
+          06 // {isVi ? "NỀN TẢNG ĐÀO TẠO & ĐỊNH HƯỚNG KỸ SƯ" : "ACADEMIC FOUNDATION & CAREER DIRECTION"}
+        </div>
+        <h2 class="display-section-title uppercase">
+          {isVi ? "Sinh Viên Năm 3 CNTT — HUIT" : "Third-Year IT Engineering @ HUIT"}
         </h2>
       </div>
-      <span class="display-section-num hidden sm:block">06</span>
+      <div class="flex flex-wrap gap-3">
+        <a href={getRelativeLocaleUrl(lang, "/about")} class="swiss-btn-secondary">
+          <span>{isVi ? "Đọc Hồ Sơ Giới Thiệu Đầy Đủ →" : "Full About & Philosophy →"}</span>
+        </a>
+        <a href={getRelativeLocaleUrl(lang, "/resume")} class="swiss-btn-primary">
+          <span>{isVi ? "Xem CV Trực Tuyến →" : "View Full Resume / CV →"}</span>
+        </a>
+      </div>
     </div>
 
-    <!-- Editorial Data Ledger -->
-    <div class="space-y-8">
-      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-4 border-b border-white/[0.08] font-mono text-xs">
-        <div>
-          <span class="text-white font-bold">{profile.institutionEn}</span>
-          <p class="text-zinc-500 mt-0.5">{lang === "vi" ? "Khoa Công nghệ Thông tin (CNTT)" : "Faculty of Information Technology"}</p>
+    <!-- 12-Column Split: Left Bio & Career Direction / Right Relevant Coursework Table -->
+    <div class="reveal-on-scroll grid grid-cols-1 lg:grid-cols-12 border border-white/[0.14] bg-[#0a0e16]">
+      <!-- Left 5 Columns -->
+      <div class="lg:col-span-5 p-6 sm:p-8 lg:p-10 lg:border-r border-white/[0.14] flex flex-col justify-between space-y-8">
+        <div class="space-y-5">
+          <div class="font-mono text-xs uppercase tracking-widest text-[#4d8dff] font-bold">
+            {isVi ? profile.universityVi : profile.university}
+          </div>
+          <h3 class="text-2xl font-extrabold text-white uppercase tracking-tight">
+            {isVi ? profile.degreeVi : profile.degree}
+          </h3>
+          <p class="text-sm text-zinc-300 leading-relaxed">
+            {isVi ? profile.shortBioVi : profile.shortBio}
+          </p>
+
+          <div class="border border-white/[0.12] bg-[#07090e] p-5 space-y-3 font-mono text-xs">
+            <div class="flex justify-between py-1 border-b border-white/[0.08]">
+              <span class="text-zinc-500">{isVi ? "TRẠNG THÁI" : "STATUS"}</span>
+              <span class="text-white font-bold">{isVi ? profile.academicYearVi : profile.academicYear}</span>
+            </div>
+            <div class="flex justify-between py-1 border-b border-white/[0.08]">
+              <span class="text-zinc-500">{isVi ? "KHOA" : "FACULTY"}</span>
+              <span class="text-white font-bold">{isVi ? profile.facultyVi : profile.faculty}</span>
+            </div>
+            <div class="flex justify-between py-1 border-b border-white/[0.08]">
+              <span class="text-zinc-500">{isVi ? "LỚP NIÊN CHẾ" : "CLASS CODE"}</span>
+              <span class="text-emerald-400 font-bold">{profile.classCode}</span>
+            </div>
+            <div class="flex justify-between py-1">
+              <span class="text-zinc-500">{isVi ? "DANH HIỆU" : "DISTINCTION"}</span>
+              <span class="text-white font-bold">{isVi ? "Sinh viên Giỏi (QĐ 5360/QĐ-DCT)" : "Honor Student (5360/QĐ-DCT)"}</span>
+            </div>
+          </div>
         </div>
-        <span class="text-emerald-400">
-          ● {lang === "vi" ? "TRẠNG THÁI: ĐANG HỌC (GOOD STANDING)" : "STATUS: ENROLLED (GOOD STANDING)"}
-        </span>
+
+        <div class="pt-4 border-t border-white/[0.12] space-y-2">
+          <div class="font-mono text-[11px] uppercase tracking-wider text-zinc-400">
+            {isVi ? "MỤC TIÊU THỰC TẬP 2026" : "2026 INTERNSHIP OBJECTIVE"}
+          </div>
+          <p class="text-xs text-zinc-300 leading-relaxed">
+            {isVi
+              ? "Mong muốn tham gia đội ngũ phát triển phần mềm ở vị trí Full-Stack Developer Intern (.NET / Web / SQL Server), đóng góp trực tiếp vào các phân hệ nghiệp vụ, API và giao diện người dùng trong môi trường Agile."
+              : "Seeking a Full-Stack Developer Intern role (.NET / Web / SQL Server) to contribute directly to production business modules, RESTful APIs, and responsive client interfaces within an Agile engineering team."}
+          </p>
+        </div>
       </div>
 
-      <!-- 4 Numeric Columns on Canvas -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 font-mono">
-        <div class="space-y-1 pb-4 border-b border-white/[0.06]">
-          <span class="meta-rail-label block">GPA SCALE 10.0</span>
-          <span class="text-3xl sm:text-5xl font-extrabold text-emerald-400">{profile.academic.gpa10}</span>
+      <!-- Right 7 Columns: Verified Coursework Table -->
+      <div class="lg:col-span-7 p-6 sm:p-8 lg:p-10 border-t lg:border-t-0 border-white/[0.14] space-y-6">
+        <div class="flex items-center justify-between border-b border-white/[0.12] pb-4">
+          <div>
+            <div class="font-mono text-xs font-bold text-[#4d8dff] uppercase tracking-wider">
+              {isVi ? "HỌC PHẦN CỐT LÕI TIÊU BIỂU" : "SELECTED CORE ENGINEERING COURSEWORK"}
+            </div>
+            <p class="text-xs text-zinc-400 mt-1">
+              {isVi
+                ? "Các học phần nền tảng về lập trình hướng đối tượng, cơ sở dữ liệu và phát triển ứng dụng .NET / Web."
+                : "Foundational software engineering, relational database, and .NET/Web development coursework."}
+            </p>
+          </div>
+          <span class="font-mono text-xs text-emerald-400 font-bold uppercase">HUIT FIT</span>
         </div>
 
-        <div class="space-y-1 pb-4 border-b border-white/[0.06]">
-          <span class="meta-rail-label block">GPA SCALE 4.0</span>
-          <span class="text-3xl sm:text-5xl font-extrabold text-emerald-400">{profile.academic.gpa4}</span>
+        <div class="divide-y divide-white/[0.10] border border-white/[0.12] bg-[#07090e]">
+          {profile.relevantCourses.map((c) => (
+            <div class="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 hover:bg-white/[0.02] transition-colors">
+              <div>
+                <div class="text-sm font-bold text-white">
+                  {isVi ? c.nameVi : c.name}
+                </div>
+                <div class="text-xs text-zinc-400 mt-0.5">
+                  {isVi ? c.focusVi : c.focus}
+                </div>
+              </div>
+              <div class="font-mono text-xs font-bold text-emerald-400 shrink-0 border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1">
+                {c.code}
+              </div>
+            </div>
+          ))}
         </div>
-
-        <div class="space-y-1 pb-4 border-b border-white/[0.06]">
-          <span class="meta-rail-label block">{lang === "vi" ? "TÍN CHỈ TÍCH LŨY" : "CREDITS"}</span>
-          <span class="text-3xl sm:text-5xl font-extrabold text-white">{profile.academic.credits}</span>
-        </div>
-
-        <div class="space-y-1 pb-4 border-b border-white/[0.06]">
-          <span class="meta-rail-label block">{lang === "vi" ? "XẾP LOẠI" : "HONOR RANKING"}</span>
-          <span class="text-2xl sm:text-3xl font-bold text-blue-400 block pt-2">{lang === "vi" ? "Giỏi" : "Distinction"}</span>
-        </div>
-      </div>
-
-      <!-- Transcript verification link -->
-      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 font-mono text-xs">
-        <p class="text-zinc-500">
-          {lang === "vi"
-            ? "Bảng điểm tích lũy được đồng bộ và xác thực từ cổng thông tin sinh viên HUIT."
-            : "Academic transcript synchronized and verifiable via the official HUIT student management portal."}
-        </p>
-
-        <a
-          href={profile.academic.transcriptUrl}
-          target="_blank"
-          rel="noreferrer"
-          class="text-blue-400 hover:underline flex-shrink-0"
-        >
-          {lang === "vi" ? "Xác thực bảng điểm chính thức ↗" : "Verify Official Portal Transcript ↗"}
-        </a>
       </div>
     </div>
   </div>

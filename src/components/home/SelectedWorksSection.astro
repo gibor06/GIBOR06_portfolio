@@ -1,0 +1,130 @@
+---
+export interface Props {
+  lang?: "en" | "vi";
+}
+
+const { lang = "en" } = Astro.props;
+
+const selectedWorks = [
+  {
+    index: "01",
+    title: lang === "vi" ? "Kiến Trúc Điều Phối Vận Hành Đa Chi Nhánh" : "Multi-Branch Enterprise Operations Platform",
+    oneLine:
+      lang === "vi"
+        ? "Hệ thống quản trị tập trung điều phối tồn kho, phân quyền đa tầng và phân tích vận hành thời gian thực trên nền kiến trúc MVC chuẩn hóa."
+        : "Centralized web architecture orchestrating multi-store inventory, role-based access governance, and real-time operational telemetry.",
+    tags: ["SYSTEMS ARCHITECTURE", "FULL-STACK WEB", "RELATIONAL DATA"],
+    accent: "bg-[#143a8a]",
+    href: "https://github.com/gibor06/GIBOR-COFFEE-CHAIN-MANAGEMENT",
+  },
+  {
+    index: "02",
+    title: lang === "vi" ? "Hệ Sinh Thái POS & Đồng Bộ Thanh Toán Thời Gian Thực" : "Omnichannel POS & Payment Orchestration",
+    oneLine:
+      lang === "vi"
+        ? "Nền tảng thiết bị đầu cuối kết hợp dịch vụ Web API tự động xác thực giao dịch thanh toán qua cổng webhook tức thời."
+        : "High-throughput desktop point-of-sale terminal integrated with automated webhook payment verification and real-time service APIs.",
+    tags: ["DESKTOP ARCHITECTURE", "REALTIME API", "PAYMENT FLOWS"],
+    accent: "bg-[#d9532f]",
+    href: "https://github.com/gibor06/GIBOR06-COFFEE-SHOP-MANAGENMENT-SOFTWARE",
+  },
+  {
+    index: "03",
+    title: lang === "vi" ? "Không Gian Thương Mại Số & Tương Tác Trực Tuyến" : "Digital Commerce & Interactive Brand Experience",
+    oneLine:
+      lang === "vi"
+        ? "Trải nghiệm thương mại điện tử tối ưu hóa luồng đặt hàng không ma sát, nhịp điệu thị giác linh hoạt và đồng bộ dữ liệu đám mây."
+        : "Responsive digital storefront engineered around tactile typographic hierarchy, frictionless checkout ergonomics, and cloud state sync.",
+    tags: ["UI/UX CRAFT", "INTERACTIVE WEB", "CLOUD SYNC"],
+    accent: "bg-[#0f1e36]",
+    href: "https://github.com/gibor06/GIBOR06_Coffee_Shop_Management_Web",
+  },
+  {
+    index: "04",
+    title: lang === "vi" ? "Khung Thuật Toán Khai Phá Tập Hữu Ích Cao" : "High-Utility Algorithmic Mining Engine",
+    oneLine:
+      lang === "vi"
+        ? "Mô hình tối ưu hóa tổ hợp lai ghép giúp thu hẹp không gian tìm kiếm và phát hiện tri thức có giá trị cao trên tập dữ liệu phức tạp."
+        : "Hybrid metaheuristic optimization framework designed to prune vast combinatorial search spaces and extract high-utility patterns.",
+    tags: ["APPLIED AI", "OPTIMIZATION", "ALGORITHMS"],
+    accent: "bg-[#b88228]",
+    href: "https://github.com/gibor06",
+  },
+];
+---
+
+<section id="works" class="py-20 sm:py-28 border-b-2 border-[var(--line-strong)] relative">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <!-- Editorial Section Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between pb-10 border-b-2 border-[var(--line-strong)] gap-6 reveal-on-scroll">
+      <div class="space-y-3">
+        <div class="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.24em] text-[var(--accent-secondary)]">
+          <span class="h-2 w-2 bg-[var(--accent)]"></span>
+          <span>03 // SELECTED WORKS — CURATED ARCHIVE</span>
+        </div>
+        <h2 class="font-editorial text-4xl sm:text-6xl font-bold text-[var(--text)] tracking-tight leading-none">
+          {lang === "vi" ? "Tác Phẩm Tuyển Chọn" : "Selected Works"}
+        </h2>
+      </div>
+      <p class="font-mono text-xs uppercase tracking-[0.18em] text-[var(--text-muted)] max-w-md">
+        {lang === "vi"
+          ? "BỐN CÔNG TRÌNH TIÊU BIỂU ĐƯỢC CHỌN LỌC — TỐI GIẢN VỀ HÌNH THỨC, SÂU SẮC VỀ CẤU TRÚC KỸ THUẬT."
+          : "FOUR CURATED WORKS — MINIMAL IN PRESENTATION, ARCHITECTURAL IN DEPTH."}
+      </p>
+    </div>
+
+    <!-- 2x2 Minimalist Brutalist Grid (4 Selected Works) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 border-x border-b border-[var(--line-strong)] bg-[var(--bg-elevated)]">
+      {selectedWorks.map((work, idx) => (
+        <article
+          class:list={[
+            "p-8 sm:p-10 lg:p-12 flex flex-col justify-between space-y-8 group hover:bg-[var(--bg-panel)] transition-colors reveal-on-scroll",
+            idx % 2 === 0 ? "md:border-r border-[var(--line-strong)]" : "",
+            idx < 2 ? "border-b border-[var(--line-strong)]" : "",
+            idx === 2 ? "border-b md:border-b-0 border-[var(--line-strong)]" : "",
+          ]}
+        >
+          <!-- Top Bar: Geometric Plate + Index -->
+          <div class="space-y-6">
+            <div class="flex items-center justify-between border-b border-[var(--line)] pb-4">
+              <div class="flex items-center gap-3">
+                <span class={`inline-block h-4 w-4 ${work.accent}`}></span>
+                <span class="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[var(--accent-secondary)]">
+                  WORK // {work.index}
+                </span>
+              </div>
+              <a
+                href={work.href}
+                target="_blank"
+                rel="noreferrer"
+                class="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-[var(--text-muted)] group-hover:text-[var(--accent)] transition-colors"
+                aria-label={work.title}
+              >
+                {lang === "vi" ? "MÃ NGUỒN ↗" : "ARCHIVE ↗"}
+              </a>
+            </div>
+
+            <!-- Title & Single-Line Description -->
+            <div class="space-y-3">
+              <h3 class="font-editorial text-3xl sm:text-4xl font-bold text-[var(--text)] leading-[1.12] group-hover:text-[var(--accent)] transition-colors">
+                <a href={work.href} target="_blank" rel="noreferrer">
+                  {work.title}
+                </a>
+              </h3>
+              <p class="text-[var(--text-secondary)] text-base leading-relaxed">
+                {work.oneLine}
+              </p>
+            </div>
+          </div>
+
+          <!-- Short Technology / Domain Tags -->
+          <div class="pt-4 border-t border-[var(--line-faint)] flex flex-wrap gap-2">
+            {work.tags.map((tag) => (
+              <span class="swiss-tag">{tag}</span>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

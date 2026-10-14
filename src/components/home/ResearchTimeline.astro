@@ -1,118 +1,135 @@
 ---
-import { achievements } from '@data/achievements';
-import EvidenceLink from '@components/common/EvidenceLink.astro';
+import { researchDomains, researchEntries } from '@data/research';
+import { getRelativeLocaleUrl, withBase } from '@i18n/utils';
 
 export interface Props {
   lang?: "en" | "vi";
 }
 
 const { lang = "en" } = Astro.props;
-
-const researchItems = achievements.filter((a) => a.category === "research");
+const isVi = lang === "vi";
 ---
 
-<section id="research" class="py-24 md:py-36 border-t border-white/[0.08] relative">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-16">
-    <!-- Section Title with Large Number Rhythm -->
-    <div class="flex items-baseline justify-between border-b border-white/[0.08] pb-6">
-      <div class="space-y-1">
-        <span class="font-mono text-xs text-blue-400 uppercase tracking-widest block">02 // INDEX</span>
-        <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-          {lang === "vi" ? "NGHIÊN CỨU KHOA HỌC & CÔNG BỐ" : "SCIENTIFIC RESEARCH & PAPERS"}
+<section id="research" class="relative py-20 sm:py-28 border-b border-white/[0.14] overflow-hidden">
+  <!-- Large Full-Bleed Research Conference Photograph Background -->
+  <div class="absolute inset-0 z-0 pointer-events-none select-none">
+    <img
+      src={withBase("/assets/img/thanhTich_2025/nckh_CapKhoa_2025_3.jpg")}
+      alt=""
+      aria-hidden="true"
+      class="h-full w-full object-cover object-center opacity-20 filter contrast-115 saturate-75"
+      loading="lazy"
+    />
+    <div class="absolute inset-0 bg-gradient-to-r from-[#07090e] via-[#07090e]/92 to-[#07090e]/80"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-[#07090e] via-transparent to-[#07090e]/90"></div>
+  </div>
+
+  <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-14">
+    <!-- Section Header -->
+    <div class="reveal-on-scroll flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-white/[0.14] pb-8">
+      <div class="space-y-3">
+        <div class="font-mono text-xs font-bold uppercase tracking-[0.2em] text-[#4d8dff]">
+          03 // {isVi ? "NGHIÊN CỨU KHOA HỌC & CÔNG BỐ QUỐC GIA" : "APPLIED AI, OPTIMIZATION & DATA MINING RESEARCH"}
+        </div>
+        <h2 class="display-section-title uppercase">
+          {isVi ? "Năng Lực Giải Thuật & Công Bố Khoa Học" : "Algorithmic Depth & Peer-Reviewed Research"}
         </h2>
       </div>
-      <span class="display-section-num hidden sm:block">02</span>
+      <div class="max-w-xl space-y-3">
+        <p class="text-sm text-zinc-300 leading-relaxed">
+          {isVi
+            ? "Bên cạnh kỹ năng phát triển phần mềm Full-Stack, các công trình nghiên cứu tại Hội nghị Quốc gia FAIR XIX (2026) và Giải thưởng NCKH tại HUIT (2025 & 2026) minh chứng tư duy giải thuật, tối ưu hóa tổ hợp và xử lý dữ liệu lớn."
+            : "Complementing hands-on Full-Stack software engineering, these peer-reviewed papers at FAIR XIX (2026) and HUIT Research Awards (2025 & 2026) demonstrate strong algorithmic problem-solving, combinatorial optimization, and data mining foundations."}
+        </p>
+        <a
+          href={getRelativeLocaleUrl(lang, "/research")}
+          class="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-[#4d8dff] hover:text-white transition-colors"
+        >
+          <span>{isVi ? "Xem chi tiết toàn bộ đề tài nghiên cứu & giấy chứng nhận" : "Explore All Research Projects & Certificates"}</span>
+          <span>→</span>
+        </a>
+      </div>
     </div>
 
-    <!-- Editorial Research Ledger Grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-      <!-- Left 8 Columns: Research Index Entries -->
-      <div class="lg:col-span-8 space-y-10">
-        {researchItems.map((item, idx) => (
-          <article 
-            class="research-ledger-entry pb-8 border-b border-white/[0.08] space-y-4 group"
-            data-preview-img={item.imagePath || ""}
-            data-preview-title={lang === "vi" ? item.titleVi : item.titleEn}
-          >
-            <div class="flex items-center gap-3 font-mono text-xs text-zinc-400">
-              <span class="text-blue-400 font-bold">R/0{idx + 1}</span>
-              <span class="text-zinc-700">/</span>
-              <span class="text-white font-medium">{item.date}</span>
-              <span class="text-zinc-700">/</span>
-              <span class="uppercase">{lang === "vi" ? item.scopeVi : item.scopeEn}</span>
-            </div>
-
-            <h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-blue-400 transition-colors leading-snug">
-              {lang === "vi" ? item.titleVi : item.titleEn}
-            </h3>
-
-            <p class="text-sm text-zinc-300 font-light leading-relaxed max-w-2xl">
-              {lang === "vi" ? item.descriptionVi : item.descriptionEn}
-            </p>
-
-            <div class="flex flex-wrap items-center gap-6 pt-2 font-mono text-xs">
-              {item.evidenceUrl && (
-                <EvidenceLink
-                  href={item.evidenceUrl}
-                  label={lang === "vi" ? "Thông báo kết quả chính thức" : "Official Result Announcement"}
-                />
-              )}
-              {item.imagePath && (
-                <button
-                  type="button"
-                  data-lightbox
-                  data-src={item.imagePath}
-                  data-caption={lang === "vi" ? item.titleVi : item.titleEn}
-                  class="text-zinc-400 hover:text-white transition-colors"
-                >
-                  {lang === "vi" ? "Xem chứng nhận ↗" : "View Certificate Evidence ↗"}
-                </button>
-              )}
-            </div>
-          </article>
-        ))}
-      </div>
-
-      <!-- Right 4 Columns: Interactive Fixed Preview Zone (Desktop) -->
-      <div class="hidden lg:block lg:col-span-4 sticky top-28 space-y-4">
-        <div class="font-mono text-xs text-zinc-500 uppercase tracking-wider pb-2 border-b border-white/[0.08]">
-          EVIDENCE PREVIEW // R-LEDGER
-        </div>
-        <div id="researchPreviewBox" class="border border-white/10 bg-[#0d0f11] p-2 overflow-hidden transition-all duration-300">
-          <img
-            id="researchPreviewImg"
-            src="/portfolio/assets/img/thanhTich_2026/nckh_CapKhoa_2026.jpg"
-            alt="Research Certificate Preview"
-            class="w-full h-auto object-cover"
-            loading="lazy"
-          />
-          <p id="researchPreviewCaption" class="font-mono text-[10px] text-zinc-400 pt-2 line-clamp-1">
-            University Scientific Research Finalist 2026
+    <!-- 4 Research Domain Pillars -->
+    <div class="reveal-on-scroll grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-white/[0.14] bg-[#0a0e16]/90">
+      {researchDomains.map((d) => (
+        <div class="border-r border-b border-white/[0.14] p-6 space-y-3">
+          <div class="font-mono text-xs font-bold text-[#4d8dff] uppercase tracking-wider">
+            {d.index} // DOMAIN
+          </div>
+          <h3 class="text-base font-extrabold text-white uppercase tracking-tight">
+            {isVi ? d.titleVi : d.titleEn}
+          </h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">
+            {isVi ? d.summaryVi : d.summaryEn}
           </p>
         </div>
-      </div>
+      ))}
+    </div>
+
+    <!-- Research Entries Table / Cards -->
+    <div class="reveal-on-scroll border border-white/[0.14] bg-[#0a0e16]/90 divide-y divide-white/[0.14]">
+      {researchEntries.filter((r) => r.featuredOnHome).map((item, idx) => (
+        <article class="p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start hover:bg-white/[0.02] transition-colors">
+          <!-- Left Metadata -->
+          <div class="lg:col-span-3 space-y-2 font-mono text-xs">
+            <div class="flex items-center gap-2">
+              <span class="text-[#4d8dff] font-bold">R-0{idx + 1}</span>
+              <span class="text-zinc-600">//</span>
+              <span class="text-white font-semibold">{item.date}</span>
+            </div>
+            <div class="inline-block border border-emerald-500/35 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-bold text-emerald-300 uppercase">
+              {isVi ? item.statusBadgeVi : item.statusBadgeEn}
+            </div>
+            <p class="text-[11px] text-zinc-400 pt-1 leading-relaxed font-sans">
+              {isVi ? item.venueVi : item.venueEn}
+            </p>
+          </div>
+
+          <!-- Center Narrative -->
+          <div class="lg:col-span-6 space-y-3">
+            <h3 class="text-lg sm:text-xl font-extrabold text-white tracking-tight leading-snug">
+              {isVi ? item.titleVi : item.titleEn}
+            </h3>
+            <p class="font-mono text-xs text-zinc-400">
+              {isVi ? item.roleVi : item.roleEn} • {item.authors.join(", ")}
+            </p>
+            <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+              {isVi ? item.methodologyVi : item.methodologyEn}
+            </p>
+            <div class="flex flex-wrap gap-1.5 pt-1">
+              {item.algorithms.map((tag) => (
+                <span class="swiss-tag">{tag}</span>
+              ))}
+            </div>
+          </div>
+
+          <!-- Right Certificate Evidence Preview -->
+          <div class="lg:col-span-3 flex flex-col justify-between gap-3">
+            {item.certificateImg && (
+              <button
+                type="button"
+                data-lightbox
+                data-src={withBase(item.certificateImg)}
+                data-caption={`${isVi ? item.titleVi : item.titleEn} (${isVi ? item.venueVi : item.venueEn})`}
+                class="group/cert relative border border-white/20 bg-[#07090e] overflow-hidden text-left cursor-pointer"
+              >
+                <img
+                  src={withBase(item.certificateImg)}
+                  alt={isVi ? item.titleVi : item.titleEn}
+                  class="h-32 w-full object-cover object-center opacity-85 group-hover/cert:opacity-100 group-hover/cert:scale-105 transition-all"
+                  loading="lazy"
+                />
+                <div class="border-t border-white/15 bg-[#07090e]/95 px-3 py-1.5 flex items-center justify-between font-mono text-[10px] text-zinc-300 uppercase">
+                  <span>{isVi ? "Xem Minh Chứng" : "Inspect Certificate"}</span>
+                  <span class="text-[#4d8dff]">↗</span>
+                </div>
+              </button>
+            )}
+          </div>
+        </article>
+      ))}
     </div>
   </div>
 </section>
-
-<script>
-  // Desktop hover preview interaction
-  const entries = document.querySelectorAll(".research-ledger-entry");
-  const previewImg = document.getElementById("researchPreviewImg") as HTMLImageElement;
-  const previewCap = document.getElementById("researchPreviewCaption");
-
-  if (previewImg && previewCap) {
-    entries.forEach((el) => {
-      el.addEventListener("mouseenter", () => {
-        const src = el.getAttribute("data-preview-img");
-        const title = el.getAttribute("data-preview-title");
-        if (src) {
-          previewImg.src = src;
-        }
-        if (title) {
-          previewCap.innerText = title;
-        }
-      });
-    });
-  }
-</script>

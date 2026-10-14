@@ -1,0 +1,151 @@
+---
+export interface Props {
+  lang?: "en" | "vi";
+}
+
+const { lang = "en" } = Astro.props;
+
+const domains = [
+  {
+    number: "01 //",
+    title: "UI/UX & Systems Architecture",
+    titleVi: "UI/UX & Systems Architecture",
+    subtitle: lang === "vi" ? "KIẾN TRÚC TRẢI NGHIỆM & HỆ THỐNG THỊ GIÁC" : "SPATIAL GRIDS • DESIGN TOKENS • INTERACTION CRAFT",
+    description:
+      lang === "vi"
+        ? "Kiến tạo hệ thống ngôn ngữ thiết kế đa chủ đề, phân cấp chữ nghệ thuật và luồng tương tác lấy con người làm trung tâm — biến độ phức tạp của hệ thống thành sự giản dị trực quan."
+        : "Choreographing editorial typographic systems, adaptive multi-theme token architectures, and tactile interaction flows that distill operational complexity into effortless human clarity.",
+    accentBg: "bg-[#143a8a]",
+    geometry: "grid",
+  },
+  {
+    number: "02 //",
+    title: "Full-Stack Engineering",
+    titleVi: "Full-Stack Engineering",
+    subtitle: lang === "vi" ? "KỸ THUẬT PHẦN MỀM ĐA TẦNG BỀN BỈ" : "MULTI-TIER ARCHITECTURE • SERVICE LAYERS • CLIENT ECOSYSTEMS",
+    description:
+      lang === "vi"
+        ? "Thiết kế và hiện thực hóa các nền tảng ứng dụng toàn diện từ tầng lõi nghiệp vụ, giao thức dịch vụ đến giao diện người dùng phản hồi tức thời với tính mô-đun và khả năng mở rộng cao."
+        : "Engineering end-to-end software platforms where decoupled domain logic, resilient service boundaries, and responsive client interfaces operate in seamless structural lockstep.",
+    accentBg: "bg-[#d9532f]",
+    geometry: "layers",
+  },
+  {
+    number: "03 //",
+    title: "Data & Infrastructure",
+    titleVi: "Data & Infrastructure",
+    subtitle: lang === "vi" ? "CẤU TRÚC DỮ LIỆU & ĐỒNG BỘ HẠ TẦNG" : "RELATIONAL INTEGRITY • REAL-TIME SYNC • STATE ARCHITECTURE",
+    description:
+      lang === "vi"
+        ? "Xây dựng nền tảng lưu trữ chuẩn hóa, bảo toàn tính toàn vẹn dữ liệu xuyên suốt các giao dịch phức tạp và đồng bộ hóa trạng thái thời gian thực giữa các phân hệ."
+        : "Structuring normalized relational schemas, deterministic transaction pipelines, and real-time state synchronization engineered for high-trust operational continuity.",
+    accentBg: "bg-[#0f1e36]",
+    geometry: "nodes",
+  },
+  {
+    number: "04 //",
+    title: "Applied AI & Algorithms",
+    titleVi: "Applied AI & Algorithms",
+    subtitle: lang === "vi" ? "THUẬT TOÁN TỐI ƯU HÓA & TRÍ TUỆ NHÂN TẠO" : "COMBINATORIAL OPTIMIZATION • DATA MINING • INTELLIGENT MODELS",
+    description:
+      lang === "vi"
+        ? "Nghiên cứu và phát triển các mô hình tối ưu hóa tổ hợp, thuật toán tìm kiếm tiến hóa và trí tuệ nhân tạo nhằm khai phá tri thức có giá trị cao từ không gian dữ liệu lớn."
+        : "Formulating hybrid metaheuristic search algorithms, high-utility pattern discovery engines, and deep representation models to solve computationally demanding problems.",
+    accentBg: "bg-[#b88228]",
+    geometry: "orbit",
+  },
+];
+---
+
+<section id="expertise" class="py-20 sm:py-28 border-b-2 border-[var(--line-strong)] relative">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <!-- Section Masthead -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between pb-10 border-b-2 border-[var(--line-strong)] gap-6 reveal-on-scroll">
+      <div class="space-y-3">
+        <div class="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.24em] text-[var(--accent-secondary)]">
+          <span class="h-2 w-2 bg-[var(--accent-secondary)]"></span>
+          <span>02 // EXPERTISE — CORE CAPABILITIES</span>
+        </div>
+        <h2 class="font-editorial text-4xl sm:text-6xl font-bold text-[var(--text)] tracking-tight leading-none">
+          {lang === "vi" ? "Bốn Trụ Cột Năng Lực" : "Four Pillars of Craft"}
+        </h2>
+      </div>
+      <p class="font-mono text-xs uppercase tracking-[0.18em] text-[var(--text-muted)] max-w-md">
+        {lang === "vi"
+          ? "SỰ HỘI TỤ GIỮA NGHỆ THUẬT THIẾT KẾ GIAO DIỆN, KIẾN TRÚC PHẦN MỀM ĐA TẦNG VÀ TƯ DUY THUẬT TOÁN TỐI ƯU."
+          : "THE CONVERGENCE OF HUMAN-CENTERED DESIGN, MULTI-TIER SYSTEMS ARCHITECTURE, AND ALGORITHMIC RIGOR."}
+      </p>
+    </div>
+
+    <!-- 4 Numbered Expertise Rows (01 // — 04 //) -->
+    <div class="divide-y divide-[var(--line-strong)] border-x border-b border-[var(--line-strong)] bg-[var(--bg-elevated)]">
+      {domains.map((item) => (
+        <article class="grid grid-cols-1 lg:grid-cols-12 group hover:bg-[var(--bg-panel)] transition-colors reveal-on-scroll">
+          <!-- Col 1: Monumental Index Number -->
+          <div class="lg:col-span-2 p-6 sm:p-8 border-b lg:border-b-0 lg:border-r border-[var(--line)] flex lg:flex-col justify-between items-baseline">
+            <span class="font-editorial italic text-4xl sm:text-5xl font-bold text-[var(--accent-secondary)]">
+              {item.number}
+            </span>
+            <span class={`h-3 w-8 ${item.accentBg}`}></span>
+          </div>
+
+          <!-- Col 2: Large Editorial Title + Subtitle -->
+          <div class="lg:col-span-4 p-6 sm:p-8 border-b lg:border-b-0 lg:border-r border-[var(--line)] flex flex-col justify-center space-y-2">
+            <div class="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--text-muted)] font-bold">
+              {item.subtitle}
+            </div>
+            <h3 class="font-editorial text-3xl sm:text-4xl font-bold text-[var(--text)] leading-tight group-hover:text-[var(--accent)] transition-colors">
+              {lang === "vi" ? item.titleVi : item.title}
+            </h3>
+          </div>
+
+          <!-- Col 3: Concise Inspiring Description -->
+          <div class="lg:col-span-4 p-6 sm:p-8 border-b lg:border-b-0 lg:border-r border-[var(--line)] flex items-center">
+            <p class="text-[var(--text-secondary)] text-base leading-[1.75]">
+              {item.description}
+            </p>
+          </div>
+
+          <!-- Col 4: Abstract Geometric Emblem -->
+          <div class="lg:col-span-2 p-6 flex items-center justify-center bg-[var(--bg)]/60">
+            {item.geometry === "grid" && (
+              <svg class="w-16 h-16 text-[var(--text)]" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+                <rect x="6" y="6" width="52" height="52" stroke="currentColor" stroke-width="1.5" />
+                <line x1="24" y1="6" x2="24" y2="58" stroke="currentColor" stroke-width="1.2" />
+                <line x1="6" y1="24" x2="58" y2="24" stroke="currentColor" stroke-width="1.2" />
+                <rect x="24" y="24" width="34" height="34" fill="#143a8a" fill-opacity="0.18" />
+                <rect x="6" y="6" width="18" height="18" fill="#d9532f" />
+              </svg>
+            )}
+            {item.geometry === "layers" && (
+              <svg class="w-16 h-16 text-[var(--text)]" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+                <rect x="8" y="10" width="36" height="24" stroke="currentColor" stroke-width="1.5" />
+                <rect x="14" y="20" width="36" height="24" fill="#143a8a" fill-opacity="0.18" stroke="currentColor" stroke-width="1.5" />
+                <rect x="20" y="30" width="36" height="24" fill="#d9532f" stroke="currentColor" stroke-width="1.5" />
+              </svg>
+            )}
+            {item.geometry === "nodes" && (
+              <svg class="w-16 h-16 text-[var(--text)]" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+                <line x1="16" y1="16" x2="48" y2="16" stroke="currentColor" stroke-width="1.5" />
+                <line x1="16" y1="16" x2="32" y2="48" stroke="currentColor" stroke-width="1.5" />
+                <line x1="48" y1="16" x2="32" y2="48" stroke="currentColor" stroke-width="1.5" />
+                <circle cx="16" cy="16" r="6" fill="#143a8a" />
+                <circle cx="48" cy="16" r="6" fill="currentColor" />
+                <circle cx="32" cy="48" r="7" fill="#d9532f" />
+              </svg>
+            )}
+            {item.geometry === "orbit" && (
+              <svg class="w-16 h-16 text-[var(--text)]" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+                <circle cx="32" cy="32" r="24" stroke="currentColor" stroke-width="1.5" />
+                <circle cx="32" cy="32" r="12" stroke="#143a8a" stroke-width="1.5" />
+                <line x1="8" y1="32" x2="56" y2="32" stroke="currentColor" stroke-opacity="0.4" />
+                <circle cx="32" cy="32" r="4.5" fill="#d9532f" />
+                <circle cx="49" cy="15" r="4" fill="#143a8a" />
+              </svg>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

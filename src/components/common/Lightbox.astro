@@ -1,79 +1,351 @@
 ---
+export interface Props {
+  lang?: "en" | "vi";
+}
+
+const { lang = "en" } = Astro.props;
 ---
 
 <div
   id="globalLightbox"
-  class="fixed inset-0 z-50 hidden items-center justify-center bg-black/85 backdrop-blur-sm p-4 sm:p-6"
+  class="fixed inset-0 z-[150] hidden items-center justify-center bg-[#0f1e36]/90 backdrop-blur-md p-3 sm:p-6 md:p-10 no-print"
   role="dialog"
   aria-modal="true"
   aria-hidden="true"
+  aria-label={lang === "vi" ? "Trình xem phóng to hình ảnh & chứng nhận" : "Full-resolution image & certificate viewer"}
 >
-  <div class="relative max-w-4xl w-full flex flex-col items-center">
-    <button
-      type="button"
-      id="lightboxCloseBtn"
-      class="absolute -top-12 right-0 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
-      aria-label="Close image preview"
+  <div
+    id="lightboxDialog"
+    class="relative max-w-6xl w-full border-2 border-[var(--line-strong)] bg-[var(--bg-elevated)] shadow-[12px_12px_0px_#d9532f] flex flex-col max-h-[92vh]"
+  >
+    <!-- Top Editorial Control Bar -->
+    <div class="flex flex-wrap items-center justify-between gap-2 border-b-2 border-[var(--line-strong)] px-4 py-3 bg-[#143a8a] text-white keep-white font-mono text-xs shrink-0">
+      <div class="flex items-center gap-2.5 min-w-0 flex-1 pr-2">
+        <span class="inline-block h-2.5 w-2.5 bg-[#d9532f] shrink-0"></span>
+        <span id="lightboxCounter" class="font-bold uppercase tracking-[0.18em] text-[#ffd4c8] keep-white shrink-0">
+          01 / 01
+        </span>
+        <span class="opacity-40 shrink-0">//</span>
+        <span id="lightboxCaption" class="text-white keep-white font-semibold truncate"></span>
+      </div>
+
+      <!-- Zoom & Close Controls -->
+      <div class="flex items-center gap-1.5 shrink-0">
+        <button
+          type="button"
+          id="lightboxZoomOutBtn"
+          class="px-2.5 py-1 border border-white/30 bg-white/10 text-white keep-white font-bold hover:bg-white/25 transition-colors cursor-pointer"
+          title={lang === "vi" ? "Thu nhỏ (-)" : "Zoom Out (-)"}
+          aria-label="Zoom out"
+        >
+          −
+        </button>
+        <button
+          type="button"
+          id="lightboxZoomResetBtn"
+          class="px-2.5 py-1 border border-white/30 bg-white/10 text-white keep-white text-[10px] font-bold hover:bg-white/25 transition-colors cursor-pointer min-w-[52px]"
+          title={lang === "vi" ? "Đặt lại kích thước (100%)" : "Reset Zoom (100%)"}
+        >
+          100%
+        </button>
+        <button
+          type="button"
+          id="lightboxZoomInBtn"
+          class="px-2.5 py-1 border border-white/30 bg-white/10 text-white keep-white font-bold hover:bg-white/25 transition-colors cursor-pointer"
+          title={lang === "vi" ? "Phóng to (+)" : "Zoom In (+)"}
+          aria-label="Zoom in"
+        >
+          +
+        </button>
+        <a
+          id="lightboxOpenOriginal"
+          href="#"
+          target="_blank"
+          rel="noreferrer"
+          class="hidden sm:inline-flex items-center gap-1 px-2.5 py-1 border border-white/30 bg-white/10 text-white keep-white text-[10px] font-bold uppercase tracking-wider hover:bg-white/25 transition-colors"
+        >
+          <span>{lang === "vi" ? "MỞ ẢNH GỐC" : "ORIGINAL"}</span>
+          <span>↗</span>
+        </a>
+        <button
+          type="button"
+          id="lightboxCloseBtn"
+          class="inline-flex items-center gap-1.5 bg-[#d9532f] px-3 py-1 text-[11px] font-mono font-bold uppercase tracking-widest text-white keep-white hover:bg-[#b83f1d] transition-colors cursor-pointer ml-1"
+          aria-label={lang === "vi" ? "Đóng cửa sổ phóng to" : "Close image preview"}
+        >
+          <span>{lang === "vi" ? "ĐÓNG [ESC]" : "CLOSE [ESC]"}</span>
+          <span>✕</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Image Viewport with Prev/Next Navigation & Click-to-Zoom -->
+    <div
+      id="lightboxViewport"
+      class="relative flex-1 overflow-auto p-4 sm:p-8 flex items-center justify-center bg-[var(--bg)] min-h-[320px] select-none"
     >
-      <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-      </svg>
-    </button>
-    <div class="overflow-hidden rounded-xl border border-white/10 bg-[#111113] p-2 shadow-2xl">
+      <!-- Prev Button -->
+      <button
+        type="button"
+        id="lightboxPrevBtn"
+        class="fixed sm:absolute left-4 sm:left-5 z-20 border-2 border-[var(--line-strong)] bg-[var(--bg-elevated)] hover:bg-[#143a8a] hover:text-white text-[var(--text)] w-10 h-10 flex items-center justify-center font-mono text-base font-bold shadow-[4px_4px_0px_var(--shadow-color)] transition-colors cursor-pointer"
+        aria-label={lang === "vi" ? "Ảnh trước" : "Previous image"}
+      >
+        ←
+      </button>
+
+      <!-- Enlarged Image -->
       <img
         id="lightboxImage"
         src=""
-        alt="Preview"
-        class="max-h-[80vh] w-auto max-w-full rounded-lg object-contain"
+        alt="Evidence preview"
+        class="max-h-[74vh] w-auto max-w-full object-contain border-2 border-[var(--line-strong)] bg-white shadow-[8px_8px_0px_rgba(15,30,54,0.2)] transition-transform duration-200 cursor-zoom-in"
       />
+
+      <!-- Next Button -->
+      <button
+        type="button"
+        id="lightboxNextBtn"
+        class="fixed sm:absolute right-4 sm:right-5 z-20 border-2 border-[var(--line-strong)] bg-[var(--bg-elevated)] hover:bg-[#143a8a] hover:text-white text-[var(--text)] w-10 h-10 flex items-center justify-center font-mono text-base font-bold shadow-[4px_4px_0px_var(--shadow-color)] transition-colors cursor-pointer"
+        aria-label={lang === "vi" ? "Ảnh tiếp theo" : "Next image"}
+      >
+        →
+      </button>
     </div>
-    <p id="lightboxCaption" class="mt-3 text-center text-sm font-medium text-zinc-300 font-mono"></p>
+
+    <!-- Bottom Hint Bar -->
+    <div class="border-t border-[var(--line)] px-4 py-2 bg-[var(--bg-panel)] flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--text-muted)] shrink-0">
+      <span>
+        {lang === "vi"
+          ? "MẸO: NHẤP VÀO ẢNH HOẶC LĂN CHUỘT ĐỂ PHÓNG TO (100% ↔ 220%) • DÙNG PHÍM ← / → ĐỂ CHUYỂN ẢNH"
+          : "TIP: CLICK IMAGE OR SCROLL TO ZOOM (100% ↔ 220%) • USE ← / → ARROWS TO NAVIGATE"}
+      </span>
+      <span class="font-bold text-[var(--accent-secondary)]">GIBOR06 // EVIDENCE VIEWER</span>
+    </div>
   </div>
 </div>
 
-<script>
-  const lightbox = document.getElementById("globalLightbox");
-  const lightboxImg = document.getElementById("lightboxImage") as HTMLImageElement;
-  const lightboxCaption = document.getElementById("lightboxCaption");
-  const closeBtn = document.getElementById("lightboxCloseBtn");
+<script is:inline>
+  (function () {
+    var lightbox = document.getElementById('globalLightbox');
+    var lightboxImg = document.getElementById('lightboxImage');
+    var lightboxCaption = document.getElementById('lightboxCaption');
+    var lightboxCounter = document.getElementById('lightboxCounter');
+    var lightboxOpenOriginal = document.getElementById('lightboxOpenOriginal');
+    var closeBtn = document.getElementById('lightboxCloseBtn');
+    var zoomInBtn = document.getElementById('lightboxZoomInBtn');
+    var zoomOutBtn = document.getElementById('lightboxZoomOutBtn');
+    var zoomResetBtn = document.getElementById('lightboxZoomResetBtn');
+    var prevBtn = document.getElementById('lightboxPrevBtn');
+    var nextBtn = document.getElementById('lightboxNextBtn');
+    var viewport = document.getElementById('lightboxViewport');
 
-  function openLightbox(src: string, caption: string) {
     if (!lightbox || !lightboxImg) return;
-    lightboxImg.src = src;
-    if (lightboxCaption) lightboxCaption.textContent = caption;
-    lightbox.classList.remove("hidden");
-    lightbox.classList.add("flex");
-    lightbox.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
-  }
 
-  function closeLightbox() {
-    if (!lightbox) return;
-    lightbox.classList.add("hidden");
-    lightbox.classList.remove("flex");
-    lightbox.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
-  }
+    var currentZoom = 1;
+    var galleryItems = [];
+    var currentIndex = 0;
+    var lastFocusedElement = null;
 
-  if (closeBtn) closeBtn.addEventListener("click", closeLightbox);
-  if (lightbox) {
-    lightbox.addEventListener("click", (e) => {
-      if (e.target === lightbox) closeLightbox();
+    function applyZoom(scale) {
+      currentZoom = Math.min(3, Math.max(0.75, Math.round(scale * 100) / 100));
+      lightboxImg.style.transform = 'scale(' + currentZoom + ')';
+      lightboxImg.style.cursor = currentZoom > 1 ? 'zoom-out' : 'zoom-in';
+      if (zoomResetBtn) {
+        zoomResetBtn.textContent = Math.round(currentZoom * 100) + '%';
+      }
+    }
+
+    function collectGallery() {
+      var list = [];
+      var seen = {};
+      document.querySelectorAll('[data-lightbox], main img').forEach(function (el) {
+        var src = '';
+        var caption = '';
+        if (el.hasAttribute('data-lightbox')) {
+          var attrVal = el.getAttribute('data-lightbox') || '';
+          var innerImg = el.querySelector('img');
+          src =
+            (attrVal && attrVal !== 'true' ? attrVal : '') ||
+            el.getAttribute('data-src') ||
+            el.getAttribute('href') ||
+            (innerImg ? innerImg.getAttribute('src') : '') ||
+            '';
+          caption =
+            el.getAttribute('data-lightbox-caption') ||
+            el.getAttribute('data-caption') ||
+            el.getAttribute('data-lightbox-alt') ||
+            (innerImg ? innerImg.getAttribute('alt') : '') ||
+            '';
+        } else if (el.tagName === 'IMG' && el.id !== 'lightboxImage') {
+          src = el.getAttribute('src') || '';
+          caption = el.getAttribute('alt') || '';
+        }
+        if (src && !seen[src]) {
+          seen[src] = true;
+          list.push({ src: src, caption: caption });
+        }
+      });
+      galleryItems = list;
+    }
+
+    function showItemAtIndex(idx) {
+      if (!galleryItems.length) return;
+      currentIndex = (idx + galleryItems.length) % galleryItems.length;
+      var item = galleryItems[currentIndex];
+      applyZoom(1);
+      lightboxImg.src = item.src;
+      lightboxImg.alt = item.caption || 'Evidence preview';
+      if (lightboxCaption) lightboxCaption.textContent = item.caption || '';
+      if (lightboxOpenOriginal) lightboxOpenOriginal.setAttribute('href', item.src);
+      if (lightboxCounter) {
+        var cIdx = String(currentIndex + 1).padStart(2, '0');
+        var total = String(galleryItems.length).padStart(2, '0');
+        lightboxCounter.textContent = cIdx + ' / ' + total;
+      }
+    }
+
+    function openLightbox(src, caption) {
+      lastFocusedElement = document.activeElement;
+      collectGallery();
+      var foundIndex = -1;
+      for (var i = 0; i < galleryItems.length; i++) {
+        if (galleryItems[i].src === src) {
+          foundIndex = i;
+          break;
+        }
+      }
+      if (foundIndex === -1) {
+        galleryItems.unshift({ src: src, caption: caption });
+        foundIndex = 0;
+      } else if (caption && !galleryItems[foundIndex].caption) {
+        galleryItems[foundIndex].caption = caption;
+      }
+
+      showItemAtIndex(foundIndex);
+      lightbox.classList.remove('hidden');
+      lightbox.classList.add('flex');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      if (closeBtn) closeBtn.focus();
+    }
+
+    function closeLightbox() {
+      if (!lightbox || lightbox.classList.contains('hidden')) return;
+      lightbox.classList.add('hidden');
+      lightbox.classList.remove('flex');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      applyZoom(1);
+      if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+        lastFocusedElement.focus();
+      }
+    }
+
+    if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+    if (zoomInBtn) {
+      zoomInBtn.addEventListener('click', function () {
+        applyZoom(currentZoom + 0.4);
+      });
+    }
+    if (zoomOutBtn) {
+      zoomOutBtn.addEventListener('click', function () {
+        applyZoom(currentZoom - 0.4);
+      });
+    }
+    if (zoomResetBtn) {
+      zoomResetBtn.addEventListener('click', function () {
+        applyZoom(1);
+      });
+    }
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        showItemAtIndex(currentIndex - 1);
+      });
+    }
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        showItemAtIndex(currentIndex + 1);
+      });
+    }
+
+    // Click image to toggle 100% <-> 200% zoom
+    lightboxImg.addEventListener('click', function (e) {
+      e.stopPropagation();
+      applyZoom(currentZoom > 1.1 ? 1 : 2.0);
     });
-  }
 
-  window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeLightbox();
-  });
+    // Mouse wheel zoom inside viewport
+    if (viewport) {
+      viewport.addEventListener(
+        'wheel',
+        function (e) {
+          if (lightbox.classList.contains('hidden')) return;
+          e.preventDefault();
+          var delta = e.deltaY < 0 ? 0.25 : -0.25;
+          applyZoom(currentZoom + delta);
+        },
+        { passive: false }
+      );
+    }
 
-  // Attach to all elements with data-lightbox
-  document.querySelectorAll("[data-lightbox]").forEach((el) => {
-    el.addEventListener("click", (e) => {
-      e.preventDefault();
-      const target = el as HTMLElement;
-      const src = target.getAttribute("data-src") || target.getAttribute("href") || "";
-      const caption = target.getAttribute("data-caption") || "";
-      if (src) openLightbox(src, caption);
+    // Click backdrop to close
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox || e.target === viewport) {
+        closeLightbox();
+      }
     });
-  });
+
+    // Keyboard shortcuts: Escape, ArrowLeft, ArrowRight, +, -
+    window.addEventListener('keydown', function (e) {
+      if (lightbox.classList.contains('hidden')) return;
+      if (e.key === 'Escape') closeLightbox();
+      else if (e.key === 'ArrowLeft') showItemAtIndex(currentIndex - 1);
+      else if (e.key === 'ArrowRight') showItemAtIndex(currentIndex + 1);
+      else if (e.key === '+' || e.key === '=') applyZoom(currentZoom + 0.4);
+      else if (e.key === '-') applyZoom(currentZoom - 0.4);
+      else if (e.key === '0') applyZoom(1);
+    });
+
+    // Global click listener for any [data-lightbox] or any <img> inside <main>
+    document.addEventListener('click', function (e) {
+      var targetEl = e.target;
+      if (!targetEl || !(targetEl instanceof Element)) return;
+      if (targetEl.closest('#globalLightbox')) return;
+
+      var trigger = targetEl.closest('[data-lightbox]');
+      if (trigger) {
+        e.preventDefault();
+        var attrVal = trigger.getAttribute('data-lightbox') || '';
+        var innerImg = trigger.querySelector('img');
+        var src =
+          (attrVal && attrVal !== 'true' ? attrVal : '') ||
+          trigger.getAttribute('data-src') ||
+          trigger.getAttribute('href') ||
+          (innerImg ? innerImg.getAttribute('src') : '') ||
+          '';
+        var caption =
+          trigger.getAttribute('data-lightbox-caption') ||
+          trigger.getAttribute('data-caption') ||
+          trigger.getAttribute('data-lightbox-alt') ||
+          (innerImg ? innerImg.getAttribute('alt') : '') ||
+          '';
+        if (src) openLightbox(src, caption);
+        return;
+      }
+
+      // Also allow clicking directly on any <img> inside <main>
+      var clickedImg = targetEl.closest('main img');
+      if (clickedImg) {
+        var imgSrc = clickedImg.getAttribute('src') || '';
+        var imgAlt = clickedImg.getAttribute('alt') || '';
+        if (imgSrc) {
+          e.preventDefault();
+          openLightbox(imgSrc, imgAlt);
+        }
+      }
+    });
+  })();
 </script>

@@ -1,6 +1,4 @@
 ---
-import { profile } from '@data/profile';
-
 export interface Props {
   lang?: "en" | "vi";
 }
@@ -8,202 +6,104 @@ export interface Props {
 const { lang = "en" } = Astro.props;
 ---
 
-<section id="contact" class="py-24 md:py-36 border-t border-white/[0.08] relative">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-20">
-    <!-- Section Title with Large Number Rhythm -->
-    <div class="flex items-baseline justify-between border-b border-white/[0.08] pb-6">
-      <div class="space-y-1">
-        <span class="font-mono text-xs text-blue-400 uppercase tracking-widest block">07 // TRANSMISSION</span>
-        <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-          {lang === "vi" ? "LIÊN HỆ & HỢP TÁC" : "LET'S TALK"}
-        </h2>
-      </div>
-      <span class="display-section-num hidden sm:block">07</span>
-    </div>
+<section id="contact" class="py-20 sm:py-28 relative overflow-hidden">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="border-2 border-[var(--line-strong)] bg-[var(--bg-elevated)] shadow-[10px_10px_0px_#d9532f] reveal-on-scroll">
+      <!-- Top Architectural Header Strip -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 border-b-2 border-[var(--line-strong)]">
+        <div class="lg:col-span-8 p-8 sm:p-12 lg:p-16 space-y-6 border-b lg:border-b-0 lg:border-r border-[var(--line-strong)]">
+          <div class="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.24em] text-[var(--accent-secondary)]">
+            <span class="h-2.5 w-2.5 bg-[#d9532f]"></span>
+            <span>05 // CONTACT — INITIATE DIALOGUE</span>
+          </div>
 
-    <!-- Dramatic Large Closing Headline -->
-    <div class="space-y-4 max-w-4xl">
-      <h3 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.05]">
-        {lang === "vi"
-          ? "CÙNG XÂY DỰNG NHỮNG HỆ THỐNG GIÁ TRỊ VÀ ĐỘT PHÁ."
-          : "HAVE A PROJECT, RESEARCH IDEA, OR OPPORTUNITY?"}
-      </h3>
-      <p class="text-base sm:text-xl text-zinc-400 font-light leading-relaxed">
-        {lang === "vi"
-          ? "Sẵn sàng đón nhận các vị trí Software Engineer Internship, Fresher, AI/ML, Data Engineering và hợp tác nghiên cứu học thuật."
-          : "Open for Software Engineer internships, fresher roles, applied AI research, and high-impact systems engineering."}
-      </p>
-    </div>
+          <h2 class="font-editorial text-4xl sm:text-6xl lg:text-[4.25rem] font-bold text-[var(--text)] leading-[0.98] tracking-tight">
+            {lang === "vi"
+              ? "Cùng kiến tạo những hệ thống có chiều sâu."
+              : "Let’s architect enduring digital products."}
+          </h2>
 
-    <!-- Direct Transmission Ledger & Formspree Form -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start pt-8 border-t border-white/[0.08]">
-      <!-- Left 5 Columns: Direct Channels -->
-      <div class="lg:col-span-5 space-y-8 font-mono text-xs">
-        <div class="space-y-2 pb-6 border-b border-white/[0.06]">
-          <span class="meta-rail-label block">DIRECT INBOX</span>
-          <a
-            href={`mailto:${profile.email}`}
-            class="text-lg font-bold text-white hover:text-blue-400 transition-colors block"
-          >
-            {profile.email}
-          </a>
-          <span class="text-zinc-500 block">Response guaranteed within 24 hours</span>
+          <p class="text-[var(--text-secondary)] text-base sm:text-lg leading-relaxed max-w-2xl">
+            {lang === "vi"
+              ? "Luôn sẵn sàng cho các cuộc đối thoại về thiết kế hệ thống UI/UX, kỹ thuật phần mềm Full-Stack và hợp tác nghiên cứu thuật toán tối ưu."
+              : "Open for conversations on human-centered UI/UX systems, Full-Stack software engineering, and collaborative algorithmic research."}
+          </p>
         </div>
 
-        <div class="space-y-2 pb-6 border-b border-white/[0.06]">
-          <span class="meta-rail-label block">CALENDLY SCHEDULING</span>
-          <a
-            href={profile.calendly}
-            target="_blank"
-            rel="noreferrer"
-            class="text-base font-bold text-white hover:text-emerald-400 transition-colors block"
-          >
-            {lang === "vi" ? "Đặt lịch trao đổi 30 phút ↗" : "Schedule 30-min Technical Sync ↗"}
-          </a>
-          <span class="text-zinc-500 block">Direct calendar locking</span>
-        </div>
-
-        <div class="space-y-2">
-          <span class="meta-rail-label block">GOOGLE MEET INVITE</span>
-          <a
-            href={profile.googleCalendar}
-            target="_blank"
-            rel="noreferrer"
-            class="text-base font-bold text-white hover:text-amber-400 transition-colors block"
-          >
-            {lang === "vi" ? "Tạo sự kiện Google Meet ↗" : "Create Instant Meet Template ↗"}
-          </a>
-          <span class="text-zinc-500 block">Pre-filled event template</span>
+        <!-- Right 4 Columns: Geometric Studio Stamp -->
+        <div class="lg:col-span-4 bg-[#143a8a] text-white keep-white p-8 sm:p-12 flex flex-col justify-between">
+          <div class="font-mono text-[10px] uppercase tracking-[0.22em] text-[#ffd4c8] keep-white font-bold">
+            GIBOR06 STUDIO // SAIGON, VIETNAM
+          </div>
+          <div class="my-6 space-y-2">
+            <div class="font-editorial italic text-3xl sm:text-4xl font-bold text-white keep-white">
+              Trần Gia Bảo
+            </div>
+            <div class="font-mono text-[11px] uppercase tracking-[0.18em] text-white/80 keep-white">
+              SOFTWARE ENGINEERING • HUIT
+            </div>
+          </div>
+          <div class="h-1.5 w-20 bg-[#d9532f]"></div>
         </div>
       </div>
 
-      <!-- Right 7 Columns: Minimalist Direct Dispatch Form -->
-      <div class="lg:col-span-7">
-        <form id="contactForm" action={profile.formspreeEndpoint} method="POST" class="space-y-6 font-mono text-xs">
-          <!-- Honeypot -->
-          <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div class="space-y-2">
-              <label for="contactName" class="meta-rail-label block">
-                {lang === "vi" ? "HỌ VÀ TÊN *" : "FULL NAME *"}
-              </label>
-              <input
-                id="contactName"
-                type="text"
-                name="name"
-                required
-                class="w-full border-b border-white/20 bg-transparent py-2 text-sm text-white placeholder-zinc-600 focus:border-white focus:outline-none transition-colors"
-                placeholder={lang === "vi" ? "Nguyễn Văn A" : "Jane Doe"}
-              />
-            </div>
-
-            <div class="space-y-2">
-              <label for="contactEmail" class="meta-rail-label block">
-                {lang === "vi" ? "EMAIL LIÊN HỆ *" : "WORK EMAIL *"}
-              </label>
-              <input
-                id="contactEmail"
-                type="email"
-                name="email"
-                required
-                class="w-full border-b border-white/20 bg-transparent py-2 text-sm text-white placeholder-zinc-600 focus:border-white focus:outline-none transition-colors"
-                placeholder="recruiter@company.com"
-              />
-            </div>
+      <!-- Bottom 3 Direct Channels Grid (Email, GitHub, LinkedIn) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[var(--line-strong)]">
+        <!-- Channel 01: Email -->
+        <a
+          href="mailto:gibor06.dev@gmail.com"
+          class="p-8 sm:p-10 flex flex-col justify-between space-y-4 hover:bg-[var(--bg-panel)] transition-colors group"
+        >
+          <div class="flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--accent-secondary)] font-bold">
+            <span>01 // ELECTRONIC MAIL</span>
+            <span>↗</span>
           </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div class="space-y-2">
-              <label for="contactCompany" class="meta-rail-label block">
-                {lang === "vi" ? "CÔNG TY / TỔ CHỨC" : "ORGANIZATION"}
-              </label>
-              <input
-                id="contactCompany"
-                type="text"
-                name="company"
-                class="w-full border-b border-white/20 bg-transparent py-2 text-sm text-white placeholder-zinc-600 focus:border-white focus:outline-none transition-colors"
-                placeholder="Company or Research Lab"
-              />
-            </div>
-
-            <div class="space-y-2">
-              <label for="contactRole" class="meta-rail-label block">
-                {lang === "vi" ? "VỊ TRÍ TUYỂN DỤNG" : "OPPORTUNITY / ROLE"}
-              </label>
-              <input
-                id="contactRole"
-                type="text"
-                name="role"
-                class="w-full border-b border-white/20 bg-transparent py-2 text-sm text-white placeholder-zinc-600 focus:border-white focus:outline-none transition-colors"
-                placeholder="Software Engineer Intern / Fresher"
-              />
-            </div>
+          <div class="font-editorial text-2xl sm:text-3xl font-bold text-[var(--text)] group-hover:text-[var(--accent)] transition-colors break-all">
+            gibor06.dev@gmail.com
           </div>
-
-          <div class="space-y-2">
-            <label for="contactMessage" class="meta-rail-label block">
-              {lang === "vi" ? "NỘI DUNG *" : "MESSAGE CONTENT *"}
-            </label>
-            <textarea
-              id="contactMessage"
-              name="message"
-              rows="3"
-              required
-              class="w-full border-b border-white/20 bg-transparent py-2 text-sm text-white placeholder-zinc-600 focus:border-white focus:outline-none transition-colors resize-none"
-              placeholder={lang === "vi" ? "Mô tả ngắn về yêu cầu hoặc thời gian trao đổi..." : "Role description, project requirements, or timeline..."}
-            ></textarea>
+          <div class="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--text-muted)]">
+            {lang === "vi" ? "LIÊN HỆ TRỰC TIẾP" : "DIRECT CORRESPONDENCE"}
           </div>
+        </a>
 
-          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4">
-            <button
-              type="submit"
-              id="contactSubmitBtn"
-              class="inline-flex items-center gap-2 pb-1 border-b border-white text-xs font-bold text-white hover:text-blue-400 hover:border-blue-400 transition-colors"
-            >
-              <span>{lang === "vi" ? "Gửi tin nhắn trực tiếp" : "Dispatch Transmission"}</span>
-              <span>→</span>
-            </button>
-            <p id="formStatusMsg" class="text-xs font-mono text-zinc-400" aria-live="polite"></p>
+        <!-- Channel 02: GitHub -->
+        <a
+          href="https://github.com/gibor06"
+          target="_blank"
+          rel="noreferrer"
+          class="p-8 sm:p-10 flex flex-col justify-between space-y-4 hover:bg-[var(--bg-panel)] transition-colors group"
+        >
+          <div class="flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--accent-secondary)] font-bold">
+            <span>02 // SOURCE ARCHIVE</span>
+            <span>↗</span>
           </div>
-        </form>
+          <div class="font-editorial text-2xl sm:text-3xl font-bold text-[var(--text)] group-hover:text-[var(--accent)] transition-colors">
+            github.com/gibor06
+          </div>
+          <div class="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--text-muted)]">
+            {lang === "vi" ? "KHO LƯU TRỮ MÃ NGUỒN" : "OPEN-SOURCE & ARCHITECTURES"}
+          </div>
+        </a>
+
+        <!-- Channel 03: LinkedIn -->
+        <a
+          href="https://www.linkedin.com/in/gibor06"
+          target="_blank"
+          rel="noreferrer"
+          class="p-8 sm:p-10 flex flex-col justify-between space-y-4 hover:bg-[var(--bg-panel)] transition-colors group"
+        >
+          <div class="flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--accent-secondary)] font-bold">
+            <span>03 // PROFESSIONAL NETWORK</span>
+            <span>↗</span>
+          </div>
+          <div class="font-editorial text-2xl sm:text-3xl font-bold text-[var(--text)] group-hover:text-[var(--accent)] transition-colors">
+            linkedin.com/in/gibor06
+          </div>
+          <div class="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--text-muted)]">
+            {lang === "vi" ? "KẾT NỐI CHUYÊN MÔN" : "EXECUTIVE PROFILE"}
+          </div>
+        </a>
       </div>
     </div>
   </div>
 </section>
-
-<script>
-  const form = document.getElementById("contactForm") as HTMLFormElement;
-  const submitBtn = document.getElementById("contactSubmitBtn") as HTMLButtonElement;
-  const statusMsg = document.getElementById("formStatusMsg");
-
-  if (form && submitBtn && statusMsg) {
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      submitBtn.disabled = true;
-      statusMsg.innerText = "Transmitting...";
-
-      try {
-        const formData = new FormData(form);
-        const response = await fetch(form.action, {
-          method: "POST",
-          body: formData,
-          headers: { Accept: "application/json" },
-        });
-
-        if (response.ok) {
-          form.reset();
-          statusMsg.className = "text-xs font-mono text-emerald-400";
-          statusMsg.innerText = "✓ Dispatched. Response within 24h.";
-        } else {
-          throw new Error();
-        }
-      } catch (err) {
-        statusMsg.className = "text-xs font-mono text-red-400";
-        statusMsg.innerText = "Failed to send. Please email directly to gibor06.dev@gmail.com";
-      } finally {
-        submitBtn.disabled = false;
-      }
-    });
-  }
-</script>

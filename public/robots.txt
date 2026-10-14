@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://gibor06.github.io/portfolio/sitemap-index.xml
+Sitemap: https://gibor06.github.io/GIBOR06_portfolio/sitemap.xml
+Sitemap: https://gibor06.github.io/GIBOR06_portfolio/sitemap-index.xml

@@ -1,0 +1,184 @@
+---
+import { researchEntries } from '@data/research';
+import { withBase } from '@i18n/utils';
+
+export interface Props {
+  lang?: "en" | "vi";
+}
+
+const { lang = "en" } = Astro.props;
+---
+
+<section id="research" class="py-20 sm:py-28 border-b-2 border-[var(--line-strong)] relative overflow-hidden">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-14">
+    <!-- Main Brutalist Research Manifesto Block -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 border-2 border-[var(--line-strong)] bg-[var(--bg-elevated)] shadow-[10px_10px_0px_var(--shadow-color)] reveal-on-scroll">
+      
+      <!-- Left 5 Columns: Declarative Prestige Statement -->
+      <div class="lg:col-span-5 p-8 sm:p-10 lg:p-12 bg-[#143a8a] text-white keep-white border-b lg:border-b-0 lg:border-r border-[var(--line-strong)] flex flex-col justify-between space-y-8">
+        <div class="space-y-4">
+          <div class="inline-flex items-center gap-2 bg-[#d9532f] text-white keep-white px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.22em]">
+            <span>04 // RESEARCH & PUBLICATIONS</span>
+          </div>
+          <h2 class="font-editorial text-4xl sm:text-5xl font-bold text-white keep-white leading-[1.05]">
+            {lang === "vi"
+              ? "Nghiên Cứu Khoa Học & Công Bố Học Thuật"
+              : "Scientific Inquiry & Published Works"}
+          </h2>
+          <p class="font-editorial italic text-xl sm:text-2xl text-[#ffd4c8] keep-white leading-snug">
+            {lang === "vi"
+              ? "“Tác giả chính và đồng tác giả 02 bài báo tại Hội nghị Khoa học Quốc gia FAIR XIX 2026 cùng 05 đề tài NCKH & Khoa học Dữ liệu đạt giải.”"
+              : "“Lead Author and Co-Author of 02 papers at the FAIR XIX 2026 National Scientific Conference alongside 05 award-winning research studies.”"}
+          </p>
+        </div>
+
+        <!-- Abstract Geometric Vector Diagram -->
+        <div class="py-4 border-y border-white/20">
+          <svg class="w-full h-24 text-white keep-white" viewBox="0 0 320 80" fill="none" aria-hidden="true">
+            <line x1="10" y1="40" x2="310" y2="40" stroke="currentColor" stroke-opacity="0.3" stroke-width="1" />
+            <circle cx="60" cy="40" r="24" stroke="currentColor" stroke-width="1.5" />
+            <circle cx="160" cy="40" r="32" stroke="#d9532f" stroke-width="2" />
+            <circle cx="260" cy="40" r="24" stroke="currentColor" stroke-width="1.5" />
+            <line x1="84" y1="40" x2="128" y2="40" stroke="currentColor" stroke-width="1.5" />
+            <line x1="192" y1="40" x2="236" y2="40" stroke="currentColor" stroke-width="1.5" />
+            <circle cx="60" cy="40" r="4" fill="currentColor" />
+            <circle cx="160" cy="40" r="5" fill="#d9532f" />
+            <circle cx="260" cy="40" r="4" fill="currentColor" />
+          </svg>
+        </div>
+
+        <div class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/80 keep-white">
+          FAIR XIX 2026 • HUIM DATA MINING • PHOBERT NLP • VISION TRANSFORMERS
+        </div>
+      </div>
+
+      <!-- Right 7 Columns: Research Philosophy & Highlights -->
+      <div class="lg:col-span-7 p-8 sm:p-10 lg:p-14 flex flex-col justify-between space-y-8">
+        <div class="space-y-4">
+          <div class="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--accent-secondary)] font-bold">
+            {lang === "vi" ? "TỪ LÝ THUYẾT ĐẾN KIẾN TRÚC THỰC TIỄN" : "WHERE THEORY SHARPENS ENGINEERING"}
+          </div>
+          <p class="text-[var(--text-secondary)] text-base sm:text-lg leading-[1.8]">
+            {lang === "vi"
+              ? "Nghiên cứu học thuật không tách rời khỏi kỹ thuật xây dựng sản phẩm. Việc trực tiếp làm Tác giả chính (First Author) và Đồng tác giả các công trình báo cáo tại Hội nghị Khoa học Quốc gia FAIR XIX 2026 cùng các cuộc thi Nghiên cứu Khoa học tại HUIT rèn luyện cho tôi phương pháp phân rã bài toán NP-khó thành các mô hình tối ưu hóa thực nghiệm."
+              : "Scientific research is not separate from product engineering — it is its sharpest instrument. Serving as First Author and Co-Author on papers presented at the FAIR XIX 2026 National Scientific Conference and HUIT research competitions has forged a disciplined habit of decomposing NP-hard challenges into formal optimization models."}
+          </p>
+        </div>
+
+        <!-- Featured 2 National Conference Papers Highlight Box -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-[var(--line)]">
+          {researchEntries.slice(0, 2).map((paper, idx) => {
+            const title = lang === "vi" ? paper.titleVi : paper.titleEn;
+            const role = lang === "vi" ? paper.roleVi : paper.roleEn;
+            return (
+              <div class="p-5 border border-[var(--line-strong)] bg-[var(--bg)] flex flex-col justify-between space-y-4">
+                <div class="space-y-2">
+                  <div class="flex items-center justify-between font-mono text-[10px] font-bold uppercase tracking-[0.18em]">
+                    <span class="bg-[#d9532f] text-white keep-white px-2 py-0.5">
+                      FAIR XIX 2026 // 0{idx + 1}
+                    </span>
+                    <span class="text-[var(--accent)]">{role}</span>
+                  </div>
+                  <h3 class="font-editorial text-xl font-bold text-[var(--text)] leading-snug">
+                    {title}
+                  </h3>
+                </div>
+                <button
+                  type="button"
+                  data-lightbox={withBase(paper.certificateImg)}
+                  data-lightbox-alt={title}
+                  data-lightbox-caption={`${title} — ${paper.venueEn}`}
+                  class="w-full py-2 px-3 border border-[var(--line-strong)] bg-[var(--bg-elevated)] font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--text)] hover:bg-[#143a8a] hover:text-white transition-colors cursor-pointer flex items-center justify-between"
+                >
+                  <span>{lang === "vi" ? "XEM CHỨNG NHẬN FAIR XIX" : "VIEW FAIR XIX CERTIFICATE"}</span>
+                  <span>⊕</span>
+                </button>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+
+    <!-- Complete 7 Verified Research & Publication Dossiers -->
+    <div class="space-y-6 reveal-on-scroll">
+      <div class="font-mono text-xs font-bold uppercase tracking-[0.22em] text-[var(--accent-secondary)]">
+        {lang === "vi"
+          ? "04.B // DANH MỤC 07 CÔNG TRÌNH NGHIÊN CỨU KHOA HỌC & KHOA HỌC DỮ LIỆU (2025 — 2026):"
+          : "04.B // COMPLETE CATALOGUE OF 07 SCIENTIFIC RESEARCH & DATA SCIENCE WORKS (2025 — 2026):"}
+      </div>
+
+      <div class="divide-y divide-[var(--line-strong)] border-2 border-[var(--line-strong)] bg-[var(--bg-elevated)]">
+        {researchEntries.map((entry, idx) => {
+          const title = lang === "vi" ? entry.titleVi : entry.titleEn;
+          const venue = lang === "vi" ? entry.venueVi : entry.venueEn;
+          const badge = lang === "vi" ? entry.statusBadgeVi : entry.statusBadgeEn;
+          const role = lang === "vi" ? entry.roleVi : entry.roleEn;
+          const methodology = lang === "vi" ? entry.methodologyVi : entry.methodologyEn;
+
+          return (
+            <article class="p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center hover:bg-[var(--bg-panel)] transition-colors">
+              <!-- Col 1: Index & Status -->
+              <div class="lg:col-span-3 space-y-2">
+                <div class="flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.2em] text-[var(--accent-secondary)]">
+                  <span>PAPER // 0{idx + 1}</span>
+                  <span>•</span>
+                  <span>{entry.date}</span>
+                </div>
+                <div class="inline-block bg-[#143a8a] text-white keep-white font-mono text-[10px] font-bold uppercase tracking-[0.15em] px-2.5 py-1">
+                  {badge}
+                </div>
+                <div class="font-mono text-[11px] font-bold text-[var(--text)] pt-1">
+                  {role}
+                </div>
+              </div>
+
+              <!-- Col 2: Title, Venue & Methodology -->
+              <div class="lg:col-span-6 space-y-2">
+                <div class="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--text-muted)]">
+                  {venue}
+                </div>
+                <h3 class="font-editorial text-2xl sm:text-3xl font-bold text-[var(--text)] leading-tight">
+                  {title}
+                </h3>
+                <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
+                  {methodology}
+                </p>
+                <div class="pt-2 flex flex-wrap gap-1.5">
+                  {entry.algorithms.map((alg) => (
+                    <span class="swiss-tag">{alg}</span>
+                  ))}
+                </div>
+              </div>
+
+              <!-- Col 3: Certificate Evidence Preview -->
+              <div class="lg:col-span-3 flex flex-col gap-2">
+                <button
+                  type="button"
+                  data-lightbox={withBase(entry.certificateImg)}
+                  data-lightbox-alt={title}
+                  data-lightbox-caption={`${title} — ${badge}`}
+                  class="border-2 border-[var(--line-strong)] bg-[var(--bg)] p-1.5 shadow-[4px_4px_0px_var(--shadow-color)] hover:shadow-[6px_6px_0px_#d9532f] transition-all cursor-pointer group/cert text-left"
+                >
+                  <div class="aspect-[16/10] overflow-hidden bg-[var(--bg-panel)]">
+                    <img
+                      src={withBase(entry.certificateImg)}
+                      alt={title}
+                      loading="lazy"
+                      class="w-full h-full object-cover group-hover/cert:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                  <div class="pt-1.5 flex items-center justify-between font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-[var(--text)]">
+                    <span>{lang === "vi" ? "PHÓNG TO CHỨNG NHẬN" : "INSPECT CERTIFICATE"}</span>
+                    <span class="text-[var(--accent-secondary)]">⊕</span>
+                  </div>
+                </button>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+
+  </div>
+</section>

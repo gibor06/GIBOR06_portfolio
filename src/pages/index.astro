@@ -1,27 +1,25 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Hero from '@components/home/Hero.astro';
-import FeaturedProjects from '@components/home/FeaturedProjects.astro';
-import ResearchTimeline from '@components/home/ResearchTimeline.astro';
-import RecognitionList from '@components/home/RecognitionList.astro';
-import EngineeringProfile from '@components/home/EngineeringProfile.astro';
-import CertificationsGrid from '@components/home/CertificationsGrid.astro';
-import AcademicSnapshot from '@components/home/AcademicSnapshot.astro';
+import AboutSection from '@components/home/AboutSection.astro';
+import ExpertiseSection from '@components/home/ExpertiseSection.astro';
+import SelectedWorksSection from '@components/home/SelectedWorksSection.astro';
+import ResearchSection from '@components/home/ResearchSection.astro';
+import AchievementsSection from '@components/home/AchievementsSection.astro';
 import ContactSection from '@components/home/ContactSection.astro';
 ---
 
 <BaseLayout
-  title="Trần Gia Bảo (gibor06) — Software Engineer & Applied AI"
-  description="Personal Engineering Dossier of Tran Gia Bao (gibor06). Computer Science at HUIT. High-Utility Itemset Mining, Transformer NLP, C/C++ Systems, and Verified Academic Distinctions."
+  title="Trần Gia Bảo (gibor06) — Software Engineering & UI/UX Systems Studio"
+  description="Where human-centered UI/UX meets resilient Full-Stack engineering. Personal studio of Trần Gia Bảo (gibor06) — Software Engineering at HUIT, FAIR XIX 2026 Researcher & Full-Stack Architect."
   lang="en"
   activePath="/"
 >
   <Hero lang="en" />
-  <FeaturedProjects lang="en" />
-  <ResearchTimeline lang="en" />
-  <RecognitionList lang="en" />
-  <EngineeringProfile lang="en" />
-  <CertificationsGrid lang="en" />
-  <AcademicSnapshot lang="en" />
+  <AboutSection lang="en" />
+  <ExpertiseSection lang="en" />
+  <SelectedWorksSection lang="en" />
+  <ResearchSection lang="en" />
+  <AchievementsSection lang="en" />
   <ContactSection lang="en" />
 </BaseLayout>

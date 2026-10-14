@@ -2,8 +2,8 @@
 import BaseHead from '@components/common/BaseHead.astro';
 import Header from '@components/common/Header.astro';
 import Footer from '@components/common/Footer.astro';
-import Lightbox from '@components/common/Lightbox.astro';
 import SignalField from '@components/common/SignalField.astro';
+import Lightbox from '@components/common/Lightbox.astro';
 import '@styles/global.css';
 
 export interface Props {
@@ -12,6 +12,7 @@ export interface Props {
   image?: string;
   lang?: "en" | "vi";
   activePath?: string;
+  canonicalPath?: string;
 }
 
 const {
@@ -19,39 +20,145 @@ const {
   description,
   image,
   lang = "en",
-  activePath = "/",
+  activePath = Astro.url.pathname,
+  canonicalPath,
 } = Astro.props;
 ---
 
 <!doctype html>
-<html lang={lang} class="scroll-smooth bg-[#09090b]">
+<html lang={lang} data-theme="alabaster" class="scroll-smooth">
   <head>
-    <BaseHead title={title} description={description} image={image} lang={lang} />
-  </head>
-  <body class="min-h-screen flex flex-col bg-[#08090a] text-[#f2f2ef] antialiased selection:bg-blue-600/30 selection:text-white relative">
-    <!-- Dynamic Signal Field Canvas Background -->
-    <SignalField />
+    <BaseHead
+      title={title}
+      description={description}
+      image={image}
+      lang={lang}
+      canonicalPath={canonicalPath}
+    />
+    <!-- Theme & Browser Language Auto-Detection (No Flash) -->
+    <script is:inline>
+      (function () {
+        try {
+          var savedTheme = localStorage.getItem('gibor_theme');
+          var validThemes = ['alabaster', 'cobalt', 'terracotta', 'travertine'];
+          if (savedTheme && validThemes.indexOf(savedTheme) !== -1) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+          } else {
+            document.documentElement.setAttribute('data-theme', 'alabaster');
+          }
 
-    <!-- Skip to main content for accessibility (WCAG 2.2 AA) -->
+          // Browser language auto-detection on first visit
+          var savedLang = localStorage.getItem('gibor_lang');
+          var pathname = window.location.pathname || '/';
+          var isViRoute = pathname.indexOf('/vi/') !== -1 || pathname.endsWith('/vi');
+          if (!savedLang) {
+            var navLang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+            var prefersVi = navLang.indexOf('vi') === 0;
+            if (prefersVi && !isViRoute && (pathname.endsWith('/GIBOR06_portfolio/') || pathname === '/')) {
+              localStorage.setItem('gibor_lang', 'vi');
+              var base = pathname.endsWith('/') ? pathname : pathname + '/';
+              window.location.replace(base + 'vi/');
+            }
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="min-h-screen flex flex-col selection:bg-[#143a8a] selection:text-white antialiased">
+    <!-- Skip to content link for keyboard accessibility -->
     <a
       href="#main-content"
-      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-50 rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-lg"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[200] focus:bg-[#143a8a] focus:text-white focus:px-4 focus:py-2 focus:font-mono focus:text-xs focus:font-bold"
     >
-      Skip to main content
+      {lang === "vi" ? "Chuyển đến nội dung chính" : "Skip to main content"}
     </a>
 
-    <!-- Header Navigation -->
+    <!-- Architectural Grid Background -->
+    <SignalField />
+
+    <!-- Top Print Masthead & Navigation -->
     <Header lang={lang} activePath={activePath} />
 
-    <!-- Main Content Container -->
-    <main id="main-content" class="flex-grow relative z-10">
+    <!-- Main Content -->
+    <main id="main-content" class="flex-1 relative z-10">
       <slot />
     </main>
 
-    <!-- Global Lightbox Modal -->
-    <Lightbox />
-
-    <!-- Footer -->
+    <!-- Editorial Colophon Footer -->
     <Footer lang={lang} />
+
+    <!-- Global Certificate & Evidence Lightbox Modal -->
+    <Lightbox lang={lang} />
+
+    <!-- Subtle Scroll Reveal & 4-Theme Switcher Controller -->
+    <script is:inline>
+      (function () {
+        function updateThemeButtons(activeTheme) {
+          document.querySelectorAll('[data-set-theme]').forEach(function (btn) {
+            var t = btn.getAttribute('data-set-theme');
+            btn.setAttribute('aria-pressed', t === activeTheme ? 'true' : 'false');
+          });
+        }
+
+        function setTheme(theme) {
+          document.documentElement.setAttribute('data-theme', theme);
+          try {
+            localStorage.setItem('gibor_theme', theme);
+          } catch (e) {}
+          updateThemeButtons(theme);
+        }
+
+        function initInteractions() {
+          var currentTheme = document.documentElement.getAttribute('data-theme') || 'alabaster';
+          updateThemeButtons(currentTheme);
+
+          document.addEventListener('click', function (e) {
+            var btn = e.target.closest('[data-set-theme]');
+            if (btn) {
+              var nextTheme = btn.getAttribute('data-set-theme');
+              if (nextTheme) setTheme(nextTheme);
+            }
+            var langBtn = e.target.closest('[data-set-lang]');
+            if (langBtn) {
+              var targetLang = langBtn.getAttribute('data-set-lang');
+              if (targetLang) {
+                try {
+                  localStorage.setItem('gibor_lang', targetLang);
+                } catch (err) {}
+              }
+            }
+          });
+
+          var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          var elements = document.querySelectorAll('.reveal-on-scroll');
+          if (prefersReduced || !('IntersectionObserver' in window)) {
+            elements.forEach(function (el) {
+              el.classList.add('is-visible');
+            });
+            return;
+          }
+          var observer = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add('is-visible');
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.08, rootMargin: '0px 0px -30px 0px' }
+          );
+          elements.forEach(function (el) {
+            observer.observe(el);
+          });
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initInteractions);
+        } else {
+          initInteractions();
+        }
+      })();
+    </script>
   </body>
 </html>

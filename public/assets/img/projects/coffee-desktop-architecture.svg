@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080B12"/>
+      <stop offset="100%" stop-color="#0E1420"/>
+    </linearGradient>
+    <linearGradient id="card2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#162133"/>
+      <stop offset="100%" stop-color="#101826"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg2)"/>
+  <g stroke="rgba(255,255,255,0.035)" stroke-width="1">
+    <line x1="0" y1="110" x2="1200" y2="110"/>
+    <line x1="0" y1="250" x2="1200" y2="250"/>
+    <line x1="0" y1="390" x2="1200" y2="390"/>
+    <line x1="0" y1="530" x2="1200" y2="530"/>
+    <line x1="400" y1="0" x2="400" y2="675"/>
+    <line x1="800" y1="0" x2="800" y2="675"/>
+  </g>
+  <rect x="48" y="32" width="440" height="28" rx="14" fill="rgba(77,141,255,0.14)" stroke="rgba(77,141,255,0.4)"/>
+  <text x="66" y="51" fill="#73C4FF" font-family="monospace" font-size="12" font-weight="bold">SYSTEM ARCHITECTURE DIAGRAM (VERIFIED SOURCE)</text>
+  <text x="48" y="92" fill="#F5F7FB" font-family="sans-serif" font-size="25" font-weight="bold">Coffee Shop Desktop POS + Payment Web API Solution</text>
+  <text x="48" y="118" fill="#A7B4C8" font-family="monospace" font-size="13">CoffeeShop.Wpf.sln • WPF (.NET 8 Windows MVVM) + CoffeeShop.PaymentApi (.NET 8 Web API) + SQL Server (21 Tables)</text>
+
+  <!-- Project 1: CoffeeShop.Wpf -->
+  <rect x="48" y="150" width="350" height="465" rx="14" fill="url(#card2)" stroke="rgba(77,141,255,0.4)" stroke-width="1.5"/>
+  <text x="68" y="184" fill="#73C4FF" font-family="monospace" font-size="12" font-weight="bold">PROJECT 1 / DESKTOP CLIENT (net8.0-windows)</text>
+  <text x="68" y="210" fill="#F5F7FB" font-family="sans-serif" font-size="18" font-weight="bold">CoffeeShop.Wpf (XAML + MVVM)</text>
+  <rect x="68" y="230" width="310" height="110" rx="8" fill="#0B101B" stroke="rgba(255,255,255,0.1)"/>
+  <text x="84" y="254" fill="#F5F7FB" font-family="monospace" font-size="12" font-weight="bold">MVVM Infrastructure &amp; Behaviors</text>
+  <text x="84" y="274" fill="#A7B4C8" font-family="monospace" font-size="11">• RelayCommand &amp; RelayCommandT</text>
+  <text x="84" y="292" fill="#A7B4C8" font-family="monospace" font-size="11">• 9 XAML IValueConverters</text>
+  <text x="84" y="310" fill="#A7B4C8" font-family="monospace" font-size="11">• NumericTextBox &amp; QuantityValidation</text>
+  <text x="84" y="328" fill="#A7B4C8" font-family="monospace" font-size="11">• PasswordBoxHelper &amp; ValidationHelper</text>
+  <rect x="68" y="354" width="310" height="130" rx="8" fill="#0B101B" stroke="rgba(255,255,255,0.1)"/>
+  <text x="84" y="378" fill="#34D399" font-family="monospace" font-size="12" font-weight="bold">Core POS &amp; Back-Office Modules</text>
+  <text x="84" y="398" fill="#A7B4C8" font-family="monospace" font-size="11">• Table &amp; Zone Map (Ban / KhuVuc)</text>
+  <text x="84" y="416" fill="#A7B4C8" font-family="monospace" font-size="11">• Order Billing (HoaDonBan / ChiTiet)</text>
+  <text x="84" y="434" fill="#A7B4C8" font-family="monospace" font-size="11">• Recipe &amp; Stock (CongThucMon / NguyenLieu)</text>
+  <text x="84" y="452" fill="#A7B4C8" font-family="monospace" font-size="11">• Shift Closing (CaLamViec / CaTongKet)</text>
+  <text x="84" y="470" fill="#A7B4C8" font-family="monospace" font-size="11">• Loyalty &amp; AuditLog (KhachHang / KhuyenMai)</text>
+  <rect x="68" y="498" width="310" height="95" rx="8" fill="#0B101B" stroke="rgba(77,141,255,0.25)"/>
+  <text x="84" y="522" fill="#FBBF24" font-family="monospace" font-size="12" font-weight="bold">Integrated Client Libraries</text>
+  <text x="84" y="542" fill="#A7B4C8" font-family="monospace" font-size="11">• QuestPDF 2026.2.4 (Invoice PDF Print)</text>
+  <text x="84" y="560" fill="#A7B4C8" font-family="monospace" font-size="11">• QRCoder 1.6.0 (Dynamic QR Rendering)</text>
+  <text x="84" y="578" fill="#A7B4C8" font-family="monospace" font-size="11">• Microsoft.Data.SqlClient 5.2.2</text>
+
+  <!-- Project 2: CoffeeShop.PaymentApi -->
+  <rect x="428" y="150" width="350" height="465" rx="14" fill="url(#card2)" stroke="rgba(52,211,153,0.4)" stroke-width="1.5"/>
+  <text x="448" y="184" fill="#34D399" font-family="monospace" font-size="12" font-weight="bold">PROJECT 2 / PAYMENT WEB API (net8.0)</text>
+  <text x="448" y="210" fill="#F5F7FB" font-family="sans-serif" font-size="18" font-weight="bold">CoffeeShop.PaymentApi</text>
+  <rect x="448" y="230" width="310" height="115" rx="8" fill="#0B101B" stroke="rgba(52,211,153,0.25)"/>
+  <text x="464" y="254" fill="#34D399" font-family="monospace" font-size="12" font-weight="bold">PaymentsController.cs (REST API)</text>
+  <text x="464" y="274" fill="#A7B4C8" font-family="monospace" font-size="11">• POST /api/payments/qr/create</text>
+  <text x="464" y="292" fill="#A7B4C8" font-family="monospace" font-size="11">• GET  /api/payments/{id}/status</text>
+  <text x="464" y="310" fill="#A7B4C8" font-family="monospace" font-size="11">• POST /api/payments/webhook/payos</text>
+  <text x="464" y="328" fill="#A7B4C8" font-family="monospace" font-size="11">• POST /api/payments/{id}/confirm</text>
+  <rect x="448" y="360" width="310" height="125" rx="8" fill="#0B101B" stroke="rgba(255,255,255,0.1)"/>
+  <text x="464" y="384" fill="#73C4FF" font-family="monospace" font-size="12" font-weight="bold">PayOsPaymentGatewayService.cs</text>
+  <text x="464" y="404" fill="#A7B4C8" font-family="sans-serif" font-size="11">• Dual-mode provider: PayOS Live Gateway</text>
+  <text x="464" y="422" fill="#A7B4C8" font-family="sans-serif" font-size="11">  (HMAC ChecksumKey signature validation)</text>
+  <text x="464" y="440" fill="#A7B4C8" font-family="sans-serif" font-size="11">• VietQR Fallback generator when offline</text>
+  <text x="464" y="458" fill="#A7B4C8" font-family="sans-serif" font-size="11">• PaymentRepository.cs SQL state sync</text>
+  <rect x="448" y="500" width="310" height="93" rx="8" fill="#0B101B" stroke="rgba(255,255,255,0.1)"/>
+  <text x="464" y="524" fill="#F5F7FB" font-family="monospace" font-size="12" font-weight="bold">DTOs &amp; Security Models</text>
+  <text x="464" y="544" fill="#A7B4C8" font-family="monospace" font-size="11">• CreateQrPaymentRequest / Response</text>
+  <text x="464" y="562" fill="#A7B4C8" font-family="monospace" font-size="11">• PayOsWebhookPayload &amp; Options</text>
+  <text x="464" y="580" fill="#A7B4C8" font-family="monospace" font-size="11">• PaymentStatusResponse</text>
+
+  <!-- Project 3: SQL Server & EDMX -->
+  <rect x="808" y="150" width="344" height="465" rx="14" fill="url(#card2)" stroke="rgba(251,191,36,0.35)" stroke-width="1.5"/>
+  <text x="828" y="184" fill="#FBBF24" font-family="monospace" font-size="12" font-weight="bold">PROJECT 3 / DATA MODEL &amp; SQL SERVER</text>
+  <text x="828" y="210" fill="#F5F7FB" font-family="sans-serif" font-size="18" font-weight="bold">CoffeeShop.EFModel + SQL DB</text>
+  <rect x="828" y="230" width="304" height="363" rx="8" fill="#0B101B" stroke="rgba(255,255,255,0.1)"/>
+  <text x="844" y="256" fill="#FBBF24" font-family="monospace" font-size="12" font-weight="bold">21 Relational SQL Server Tables</text>
+  <text x="844" y="280" fill="#F5F7FB" font-family="monospace" font-size="11">• Ban, KhuVuc, DatBan</text>
+  <text x="844" y="300" fill="#F5F7FB" font-family="monospace" font-size="11">• HoaDonBan, ChiTietHoaDonBan</text>
+  <text x="844" y="320" fill="#F5F7FB" font-family="monospace" font-size="11">• ThanhToan (Payment Transactions)</text>
+  <text x="844" y="340" fill="#F5F7FB" font-family="monospace" font-size="11">• Mon, LoaiMon, CongThucMon</text>
+  <text x="844" y="360" fill="#F5F7FB" font-family="monospace" font-size="11">• NguyenLieu, HoaDonNhap, ChiTietNhap</text>
+  <text x="844" y="380" fill="#F5F7FB" font-family="monospace" font-size="11">• LichSuTonKho, NhaCungCap</text>
+  <text x="844" y="400" fill="#F5F7FB" font-family="monospace" font-size="11">• NhanVien, TaiKhoan, VaiTro</text>
+  <text x="844" y="420" fill="#F5F7FB" font-family="monospace" font-size="11">• CaLamViec, KhachHang, KhuyenMai</text>
+  <text x="844" y="440" fill="#F5F7FB" font-family="monospace" font-size="11">• AuditLog (Operational Traceability)</text>
+  <text x="844" y="476" fill="#73C4FF" font-family="monospace" font-size="11.5" font-weight="bold">Team (3 Members — Verified README):</text>
+  <text x="844" y="498" fill="#A7B4C8" font-family="sans-serif" font-size="11">• Trần Gia Bảo</text>
+  <text x="844" y="516" fill="#A7B4C8" font-family="sans-serif" font-size="11">• Trần Dương Gia Bảo</text>
+  <text x="844" y="534" fill="#A7B4C8" font-family="sans-serif" font-size="11">• Nguyễn Thế Anh</text>
+</svg>

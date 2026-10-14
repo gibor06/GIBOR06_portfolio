@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080B12"/>
+      <stop offset="100%" stop-color="#0E1420"/>
+    </linearGradient>
+    <linearGradient id="card3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#162133"/>
+      <stop offset="100%" stop-color="#101826"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg3)"/>
+  <g stroke="rgba(255,255,255,0.035)" stroke-width="1">
+    <line x1="0" y1="110" x2="1200" y2="110"/>
+    <line x1="0" y1="250" x2="1200" y2="250"/>
+    <line x1="0" y1="390" x2="1200" y2="390"/>
+    <line x1="0" y1="530" x2="1200" y2="530"/>
+    <line x1="400" y1="0" x2="400" y2="675"/>
+    <line x1="800" y1="0" x2="800" y2="675"/>
+  </g>
+  <rect x="48" y="32" width="440" height="28" rx="14" fill="rgba(77,141,255,0.14)" stroke="rgba(77,141,255,0.4)"/>
+  <text x="66" y="51" fill="#73C4FF" font-family="monospace" font-size="12" font-weight="bold">SYSTEM ARCHITECTURE DIAGRAM (VERIFIED SOURCE)</text>
+  <text x="48" y="92" fill="#F5F7FB" font-family="sans-serif" font-size="25" font-weight="bold">GIBOR Coffee Shop E-Commerce Web — Frontend &amp; Cloud Integration</text>
+  <text x="48" y="118" fill="#A7B4C8" font-family="monospace" font-size="13">HTML5 • CSS3 • Bootstrap 5.3.3 • Vanilla JS (ES6+) • Firebase Auth • Vercel Serverless PayOS API</text>
+
+  <!-- Column 1: Candidate Role (Frontend Lead) -->
+  <rect x="48" y="150" width="360" height="465" rx="14" fill="url(#card3)" stroke="rgba(77,141,255,0.5)" stroke-width="2"/>
+  <text x="68" y="184" fill="#73C4FF" font-family="monospace" font-size="12" font-weight="bold">TRẦN GIA BẢO — FRONTEND LEAD (OWNED)</text>
+  <text x="68" y="210" fill="#F5F7FB" font-family="sans-serif" font-size="18" font-weight="bold">Core Pages &amp; Shared UI Runtime</text>
+  <rect x="68" y="230" width="320" height="175" rx="8" fill="#0B101B" stroke="rgba(77,141,255,0.3)"/>
+  <text x="84" y="254" fill="#34D399" font-family="monospace" font-size="12" font-weight="bold">Owned Multi-Page Modules</text>
+  <text x="84" y="276" fill="#F5F7FB" font-family="monospace" font-size="11.5">• index.html + home.css (Hero &amp; Landing)</text>
+  <text x="84" y="298" fill="#F5F7FB" font-family="monospace" font-size="11.5">• branches.html + branches.css</text>
+  <text x="84" y="316" fill="#A7B4C8" font-family="sans-serif" font-size="11">  (15 stores across HCMC, Hanoi, Da Nang)</text>
+  <text x="84" y="338" fill="#F5F7FB" font-family="monospace" font-size="11.5">• about.html + about.css (Brand Story)</text>
+  <text x="84" y="360" fill="#F5F7FB" font-family="monospace" font-size="11.5">• contact.html + contact.css (Validation)</text>
+  <text x="84" y="382" fill="#F5F7FB" font-family="monospace" font-size="11.5">• style.css (Design System &amp; Dark Mode)</text>
+  <rect x="68" y="420" width="320" height="173" rx="8" fill="#0B101B" stroke="rgba(255,255,255,0.1)"/>
+  <text x="84" y="444" fill="#73C4FF" font-family="monospace" font-size="12" font-weight="bold">Shared Frontend Logic (main.js)</text>
+  <text x="84" y="466" fill="#A7B4C8" font-family="sans-serif" font-size="11.5">• Sticky navbar &amp; mobile navigation drawer</text>
+  <text x="84" y="486" fill="#A7B4C8" font-family="sans-serif" font-size="11.5">• Persistent Dark/Light theme controller</text>
+  <text x="84" y="506" fill="#A7B4C8" font-family="sans-serif" font-size="11.5">• Cross-page cart badge synchronization</text>
+  <text x="84" y="526" fill="#A7B4C8" font-family="sans-serif" font-size="11.5">• Interactive branch filtering &amp; detail view</text>
+  <text x="84" y="546" fill="#A7B4C8" font-family="sans-serif" font-size="11.5">• Responsive Bootstrap 5.3.3 grid integration</text>
+
+  <!-- Column 2: Team Modules -->
+  <rect x="434" y="150" width="350" height="465" rx="14" fill="url(#card3)" stroke="rgba(255,255,255,0.14)" stroke-width="1.5"/>
+  <text x="454" y="184" fill="#FBBF24" font-family="monospace" font-size="12" font-weight="bold">COLLABORATIVE TEAM MODULES (4 MEMBERS)</text>
+  <text x="454" y="210" fill="#F5F7FB" font-family="sans-serif" font-size="18" font-weight="bold">Client State &amp; Product Catalog</text>
+  <rect x="454" y="230" width="310" height="125" rx="8" fill="#0B101B" stroke="rgba(255,255,255,0.1)"/>
+  <text x="470" y="254" fill="#F5F7FB" font-family="monospace" font-size="12" font-weight="bold">Core Data &amp; Cart (Trần Dương Gia Bảo)</text>
+  <text x="470" y="276" fill="#A7B4C8" font-family="monospace" font-size="11">• data.js (65+ items &amp; 12 combos)</text>
+  <text x="470" y="296" fill="#A7B4C8" font-family="monospace" font-size="11">• cart.js &amp; payment.js (Checkout Flow)</text>
+  <text x="470" y="316" fill="#A7B4C8" font-family="monospace" font-size="11">• account.js (Loyalty Tier &amp; History)</text>
+  <text x="470" y="336" fill="#A7B4C8" font-family="monospace" font-size="11">• mobile.js (Touch Viewport Adapter)</text>
+  <rect x="454" y="370" width="310" height="105" rx="8" fill="#0B101B" stroke="rgba(255,255,255,0.1)"/>
+  <text x="470" y="394" fill="#F5F7FB" font-family="monospace" font-size="12" font-weight="bold">Menu &amp; Promos (Nguyễn Hoàng Bảo)</text>
+  <text x="470" y="416" fill="#A7B4C8" font-family="monospace" font-size="11">• menu.html &amp; menu.js (Category Filter)</text>
+  <text x="470" y="436" fill="#A7B4C8" font-family="monospace" font-size="11">• Topping customization modal</text>
+  <text x="470" y="456" fill="#A7B4C8" font-family="monospace" font-size="11">• Campaign banners &amp; popup system</text>
+  <rect x="454" y="490" width="310" height="103" rx="8" fill="#0B101B" stroke="rgba(255,255,255,0.1)"/>
+  <text x="470" y="514" fill="#F5F7FB" font-family="monospace" font-size="12" font-weight="bold">Firebase Auth (Nguyễn Thế Anh)</text>
+  <text x="470" y="536" fill="#A7B4C8" font-family="monospace" font-size="11">• loginregister.html &amp; loginregister.js</text>
+  <text x="470" y="556" fill="#A7B4C8" font-family="monospace" font-size="11">• Google OAuth &amp; GitHub OAuth</text>
+  <text x="470" y="576" fill="#A7B4C8" font-family="monospace" font-size="11">• Email/Password session persistence</text>
+
+  <!-- Column 3: Serverless & External Services -->
+  <rect x="810" y="150" width="342" height="465" rx="14" fill="url(#card3)" stroke="rgba(52,211,153,0.35)" stroke-width="1.5"/>
+  <text x="830" y="184" fill="#34D399" font-family="monospace" font-size="12" font-weight="bold">CLOUD &amp; SERVERLESS BACKEND</text>
+  <text x="830" y="210" fill="#F5F7FB" font-family="sans-serif" font-size="18" font-weight="bold">Vercel Functions + Firebase</text>
+  <rect x="830" y="230" width="302" height="165" rx="8" fill="#0B101B" stroke="rgba(52,211,153,0.25)"/>
+  <text x="846" y="254" fill="#34D399" font-family="monospace" font-size="12" font-weight="bold">Vercel Serverless API (/api/*)</text>
+  <text x="846" y="278" fill="#F5F7FB" font-family="monospace" font-size="11">• api/create-payos-payment.js</text>
+  <text x="846" y="298" fill="#A7B4C8" font-family="sans-serif" font-size="11">  Signs payment payload with HMAC</text>
+  <text x="846" y="322" fill="#F5F7FB" font-family="monospace" font-size="11">• api/get-payos-payment.js</text>
+  <text x="846" y="342" fill="#A7B4C8" font-family="sans-serif" font-size="11">  Verifies real-time order payment status</text>
+  <text x="846" y="366" fill="#73C4FF" font-family="monospace" font-size="11">Live URL: giborcoffee.vercel.app</text>
+  <rect x="830" y="410" width="302" height="183" rx="8" fill="#0B101B" stroke="rgba(255,255,255,0.1)"/>
+  <text x="846" y="434" fill="#FBBF24" font-family="monospace" font-size="12" font-weight="bold">Persistence &amp; Deployment</text>
+  <text x="846" y="458" fill="#A7B4C8" font-family="sans-serif" font-size="11.5">• Firebase Identity Provider</text>
+  <text x="846" y="480" fill="#A7B4C8" font-family="sans-serif" font-size="11.5">• LocalStorage Cart &amp; Order State</text>
+  <text x="846" y="502" fill="#A7B4C8" font-family="sans-serif" font-size="11.5">• Vercel CI/CD Static + Edge Functions</text>
+  <text x="846" y="524" fill="#A7B4C8" font-family="sans-serif" font-size="11.5">• Responsive Desktop &amp; Mobile Viewports</text>
+</svg>

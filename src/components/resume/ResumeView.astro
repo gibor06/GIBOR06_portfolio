@@ -1,0 +1,19 @@
+---
+import AboutSection from '@components/home/AboutSection.astro';
+import ExpertiseSection from '@components/home/ExpertiseSection.astro';
+import SelectedWorksSection from '@components/home/SelectedWorksSection.astro';
+import ResearchSection from '@components/home/ResearchSection.astro';
+import ContactSection from '@components/home/ContactSection.astro';
+
+export interface Props {
+  lang?: "en" | "vi";
+}
+
+const { lang = "en" } = Astro.props;
+---
+
+<AboutSection lang={lang} />
+<ExpertiseSection lang={lang} />
+<SelectedWorksSection lang={lang} />
+<ResearchSection lang={lang} />
+<ContactSection lang={lang} />

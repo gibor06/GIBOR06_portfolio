@@ -1,147 +1,217 @@
 ---
-import { getRelativeLocaleUrl } from '@i18n/utils';
+import { getAlternateLocaleUrl, getRelativeLocaleUrl } from '@i18n/utils';
 
 export interface Props {
-  lang?: string;
+  lang?: "en" | "vi";
   activePath?: string;
 }
 
 const { lang = "en", activePath = "/" } = Astro.props;
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const homeUrl = getRelativeLocaleUrl(lang, "/");
+const alternateUrl = getAlternateLocaleUrl(lang, activePath);
+const targetLang = lang === "en" ? "vi" : "en";
 
-let alternateLangUrl = "";
-if (lang === "en") {
-  alternateLangUrl = `${base}/vi${activePath === "/" ? "" : activePath}`;
-} else {
-  const stripped = activePath.replace(/^\/vi/, "") || "/";
-  alternateLangUrl = `${base}${stripped === "/" ? "" : stripped}`;
-}
-
-const navLinks = [
-  { labelEn: "Index", labelVi: "Trang chủ", href: "/" },
-  { labelEn: "Work", labelVi: "Dự án", href: "/work" },
-  { labelEn: "Research", labelVi: "Nghiên cứu", href: "/research" },
-  { labelEn: "Credentials", labelVi: "Chứng chỉ", href: "/credentials" },
-  { labelEn: "About", labelVi: "Giới thiệu", href: "/about" },
+const navItems = [
+  { href: `${homeUrl}#about`, index: "01", label: lang === "vi" ? "Tuyên ngôn" : "About" },
+  { href: `${homeUrl}#expertise`, index: "02", label: lang === "vi" ? "Năng lực" : "Expertise" },
+  { href: `${homeUrl}#works`, index: "03", label: lang === "vi" ? "Tác phẩm" : "Works" },
+  { href: `${homeUrl}#research`, index: "04", label: lang === "vi" ? "Nghiên cứu" : "Research" },
+  { href: `${homeUrl}#honours`, index: "05", label: lang === "vi" ? "Thành tích" : "Honours" },
+  { href: `${homeUrl}#contact`, index: "06", label: lang === "vi" ? "Liên hệ" : "Contact" },
 ];
 ---
 
-<header class="sticky top-0 z-50 w-full border-b border-white/[0.08] bg-[#08090a]/85 backdrop-blur-md transition-all duration-200">
-  <div class="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-    <!-- Brand Signature -->
-    <a 
-      href={getRelativeLocaleUrl(lang, "/")} 
-      class="flex items-center gap-2 text-xs font-mono font-bold tracking-widest text-white hover:text-blue-400 transition-colors uppercase"
-      aria-label="Tran Gia Bao Portfolio Home"
-    >
-      <span class="text-blue-400">[G]</span>
-      <span>GIBOR06</span>
-    </a>
-
-    <!-- Desktop Navigation -->
-    <nav class="hidden md:flex items-center gap-8 font-mono text-xs" aria-label="Main Navigation">
-      {navLinks.map((item, idx) => {
-        const itemHref = getRelativeLocaleUrl(lang, item.href);
-        const isActive = activePath === item.href || (item.href !== "/" && activePath.startsWith(item.href));
-        return (
-          <a
-            href={itemHref}
-            class={`transition-colors flex items-center gap-1.5 ${
-              isActive
-                ? "text-white font-bold"
-                : "text-zinc-400 hover:text-white"
-            }`}
-          >
-            <span class="text-zinc-600 text-[10px]">0{idx + 1}</span>
-            <span>{lang === "vi" ? item.labelVi : item.labelEn}</span>
-          </a>
-        );
-      })}
-    </nav>
-
-    <!-- Language & Actions -->
-    <div class="flex items-center gap-6 font-mono text-xs">
-      <!-- Resume CTA -->
-      <a
-        href={getRelativeLocaleUrl(lang, "/resume")}
-        class="hidden sm:inline-flex items-center gap-1 text-zinc-300 hover:text-white transition-colors"
-      >
-        <span>{lang === "vi" ? "Hồ sơ" : "Resume"}</span>
-        <span class="text-zinc-600">↗</span>
-      </a>
-
-      <!-- Language Switcher -->
-      <a
-        href={alternateLangUrl}
-        class="text-xs text-zinc-400 hover:text-white transition-colors"
-        aria-label="Switch Language"
-      >
-        <span class={lang === "en" ? "text-white font-bold" : "text-zinc-600"}>EN</span>
-        <span class="text-zinc-700">/</span>
-        <span class={lang === "vi" ? "text-white font-bold" : "text-zinc-600"}>VI</span>
-      </a>
-
-      <!-- Mobile Menu Toggle -->
-      <button
-        type="button"
-        id="mobileMenuToggle"
-        class="md:hidden flex h-8 w-8 items-center justify-center text-zinc-400 hover:text-white"
-        aria-label="Toggle navigation menu"
-        aria-expanded="false"
-      >
-        <svg id="hamburgerIcon" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-        <svg id="closeIcon" class="h-5 w-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
+<header class="sticky top-0 z-50 border-b border-[var(--line-strong)] bg-[var(--bg)]/95 backdrop-blur-md transition-colors duration-300 no-print">
+  <!-- Top Print Masthead Bar (Required: "GIBOR06 STUDIO" | "DIGITAL PRODUCT DESIGN • FULL-STACK ARCHITECTURE • AI" | "SAIGON, VIETNAM" | "FOLIO // 2026") -->
+  <div class="border-b border-[var(--line)] bg-[var(--bg-panel)] font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.2em]">
+    <div class="mx-auto max-w-7xl grid grid-cols-2 lg:grid-cols-12">
+      <div class="col-span-1 lg:col-span-3 px-4 sm:px-6 py-2 bg-[#143a8a] text-white keep-white font-bold flex items-center gap-2 border-r border-[var(--line)]">
+        <span class="inline-block h-2 w-2 bg-[#d9532f]"></span>
+        <span>GIBOR06 STUDIO</span>
+      </div>
+      <div class="hidden lg:flex lg:col-span-5 px-6 py-2 items-center text-[var(--text)] font-semibold border-r border-[var(--line)] truncate">
+        DIGITAL PRODUCT DESIGN • FULL-STACK ARCHITECTURE • AI
+      </div>
+      <div class="hidden lg:flex lg:col-span-2 px-4 py-2 items-center justify-center text-[var(--text-muted)] font-semibold border-r border-[var(--line)]">
+        SAIGON, VIETNAM
+      </div>
+      <div class="col-span-1 lg:col-span-2 px-4 sm:px-6 py-2 bg-[#d9532f] text-white keep-white font-bold flex items-center justify-end lg:justify-center">
+        FOLIO // 2026
+      </div>
     </div>
   </div>
 
-  <!-- Full-Screen Editorial Mobile Navigation Drawer -->
-  <div id="mobileDrawer" class="hidden md:hidden fixed inset-0 top-14 bg-[#08090a] z-50 p-6 flex flex-col justify-between border-t border-white/[0.08]">
-    <div class="space-y-6 pt-4">
-      {navLinks.map((item, idx) => (
-        <a
-          href={getRelativeLocaleUrl(lang, item.href)}
-          class="flex items-baseline gap-4 text-2xl font-extrabold text-white hover:text-blue-400 transition-colors"
-        >
-          <span class="font-mono text-xs text-zinc-600">0{idx + 1}</span>
-          <span>{lang === "vi" ? item.labelVi : item.labelEn}</span>
-        </a>
-      ))}
+  <!-- Main Architectural Navigation & 4-Theme Bar -->
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex h-14 items-center justify-between gap-4">
+      <!-- Left Studio Monogram -->
       <a
-        href={getRelativeLocaleUrl(lang, "/resume")}
-        class="flex items-baseline gap-4 text-2xl font-extrabold text-blue-400 pt-4 border-t border-white/[0.08]"
+        href={homeUrl}
+        class="group flex items-center gap-3 pr-4 border-r border-[var(--line)] h-full shrink-0"
+        aria-label="Trần Gia Bảo — GIBOR06 Studio"
       >
-        <span class="font-mono text-xs text-zinc-600">06</span>
-        <span>{lang === "vi" ? "Xem Hồ Sơ (Resume) ↗" : "Resume Dossier ↗"}</span>
+        <span class="font-editorial text-xl sm:text-2xl font-bold tracking-tight text-[var(--text)] group-hover:text-[var(--accent)] transition-colors">
+          Trần Gia Bảo
+        </span>
+        <span class="hidden sm:inline-block font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--text-muted)]">
+          // GIBOR06
+        </span>
       </a>
-    </div>
 
-    <div class="pt-8 border-t border-white/[0.08] flex items-center justify-between font-mono text-xs text-zinc-400">
-      <a href="https://github.com/gibor06" target="_blank" rel="noreferrer" class="hover:text-white">GitHub ↗</a>
-      <a href="https://linkedin.com" target="_blank" rel="noreferrer" class="hover:text-white">LinkedIn ↗</a>
-      <a href="mailto:gibor06.dev@gmail.com" class="hover:text-white">Email ↗</a>
+      <!-- Center Desktop Navigation -->
+      <nav aria-label="Primary Navigation" class="hidden xl:flex items-center h-full flex-1">
+        {navItems.map((item) => (
+          <a
+            href={item.href}
+            class="h-full px-4 flex items-center gap-1.5 border-r border-[var(--line)] font-mono text-[11px] uppercase tracking-[0.15em] text-[var(--text-secondary)] hover:text-[var(--text)] hover:bg-[var(--bg-panel)] transition-colors"
+          >
+            <span class="text-[var(--accent-secondary)] font-bold">{item.index} //</span>
+            <span class="font-semibold">{item.label}</span>
+          </a>
+        ))}
+      </nav>
+
+      <!-- Right Controls: 4-Theme Switcher + Bilingual Switcher -->
+      <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+        <!-- 4-Theme Switcher: Alabaster, Cobalt, Terracotta, Travertine -->
+        <div
+          class="hidden lg:flex items-center border border-[var(--line-strong)] bg-[var(--bg-elevated)] p-0.5 font-mono text-[10px]"
+          role="group"
+          aria-label={lang === "vi" ? "Chọn chủ đề màu sắc" : "Select color theme"}
+        >
+          <button
+            type="button"
+            data-set-theme="alabaster"
+            aria-pressed="true"
+            class="px-2 py-1 font-bold uppercase tracking-wider bg-[#f6f3ec] text-[#0f1e36] cursor-pointer flex items-center gap-1.5"
+            title="Alabaster Theme"
+          >
+            <span class="h-2 w-2 bg-[#f6f3ec] border border-[#0f1e36]"></span>
+            <span>Alabaster</span>
+          </button>
+          <button
+            type="button"
+            data-set-theme="cobalt"
+            aria-pressed="false"
+            class="px-2 py-1 font-bold uppercase tracking-wider bg-[#102a63] text-white keep-white cursor-pointer flex items-center gap-1.5"
+            title="Cobalt Theme"
+          >
+            <span class="h-2 w-2 bg-[#143a8a] border border-white"></span>
+            <span>Cobalt</span>
+          </button>
+          <button
+            type="button"
+            data-set-theme="terracotta"
+            aria-pressed="false"
+            class="px-2 py-1 font-bold uppercase tracking-wider bg-[#d9532f] text-white keep-white cursor-pointer flex items-center gap-1.5"
+            title="Terracotta Theme"
+          >
+            <span class="h-2 w-2 bg-[#f2e5dc] border border-white"></span>
+            <span>Terracotta</span>
+          </button>
+          <button
+            type="button"
+            data-set-theme="travertine"
+            aria-pressed="false"
+            class="px-2 py-1 font-bold uppercase tracking-wider bg-[#e6dfd1] text-[#181a1b] cursor-pointer flex items-center gap-1.5"
+            title="Travertine Theme"
+          >
+            <span class="h-2 w-2 bg-[#c84320] border border-[#181a1b]"></span>
+            <span>Travertine</span>
+          </button>
+        </div>
+
+        <!-- Bilingual Switcher (EN / VI) -->
+        <a
+          href={alternateUrl}
+          data-set-lang={targetLang}
+          class="inline-flex items-center gap-1.5 border border-[var(--line-strong)] bg-[var(--bg-elevated)] px-3 py-1.5 font-mono text-[11px] font-bold text-[var(--text)] hover:bg-[var(--accent)] hover:text-white transition-colors uppercase tracking-wider"
+          aria-label={lang === "en" ? "Chuyển sang tiếng Việt (VI)" : "Switch to English (EN)"}
+        >
+          <span class={lang === "en" ? "text-[var(--accent-secondary)] underline" : "opacity-60"}>EN</span>
+          <span class="opacity-40">/</span>
+          <span class={lang === "vi" ? "text-[var(--accent-secondary)] underline" : "opacity-60"}>VI</span>
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button
+          id="mobileMenuBtn"
+          type="button"
+          class="xl:hidden inline-flex items-center justify-center border border-[var(--line-strong)] bg-[var(--bg-elevated)] p-2 text-[var(--text)] hover:border-[var(--accent)] transition-colors"
+          aria-expanded="false"
+          aria-controls="mobileMenuPanel"
+          aria-label={lang === "vi" ? "Mở menu điều hướng" : "Toggle navigation menu"}
+        >
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path id="mobileMenuIconPath" stroke-linecap="square" stroke-linejoin="miter" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation Drawer -->
+  <div
+    id="mobileMenuPanel"
+    class="hidden xl:hidden border-t border-[var(--line-strong)] bg-[var(--bg-elevated)]"
+    aria-label="Mobile Navigation"
+  >
+    <div class="mx-auto max-w-7xl px-4 py-4 space-y-3 font-mono text-xs">
+      <!-- Mobile Masthead Sub-line -->
+      <div class="pb-2 border-b border-[var(--line)] text-[10px] uppercase tracking-[0.18em] text-[var(--text-muted)]">
+        DIGITAL PRODUCT DESIGN • FULL-STACK ARCHITECTURE • AI — SAIGON, VIETNAM
+      </div>
+
+      <!-- Mobile 4-Theme Switcher -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-1.5 pb-3 border-b border-[var(--line)] text-[10px]">
+        <button type="button" data-set-theme="alabaster" class="py-2 px-2 font-bold uppercase tracking-wider bg-[#f6f3ec] text-[#0f1e36] border border-[#0f1e36]/30">01. Alabaster</button>
+        <button type="button" data-set-theme="cobalt" class="py-2 px-2 font-bold uppercase tracking-wider bg-[#102a63] text-white keep-white">02. Cobalt</button>
+        <button type="button" data-set-theme="terracotta" class="py-2 px-2 font-bold uppercase tracking-wider bg-[#d9532f] text-white keep-white">03. Terracotta</button>
+        <button type="button" data-set-theme="travertine" class="py-2 px-2 font-bold uppercase tracking-wider bg-[#e6dfd1] text-[#181a1b] border border-[#181a1b]/30">04. Travertine</button>
+      </div>
+
+      <div class="grid grid-cols-1 gap-1">
+        {navItems.map((item) => (
+          <a
+            href={item.href}
+            class="mobile-nav-link flex items-center justify-between px-3 py-2.5 border border-[var(--line)] text-[var(--text)] hover:bg-[var(--bg-panel)] uppercase tracking-wider"
+          >
+            <span><strong class="text-[var(--accent-secondary)]">{item.index} //</strong> {item.label}</span>
+            <span>→</span>
+          </a>
+        ))}
+      </div>
     </div>
   </div>
 </header>
 
-<script>
-  const toggle = document.getElementById("mobileMenuToggle");
-  const drawer = document.getElementById("mobileDrawer");
-  const hamburger = document.getElementById("hamburgerIcon");
-  const close = document.getElementById("closeIcon");
+<script is:inline>
+  (function () {
+    var btn = document.getElementById('mobileMenuBtn');
+    var panel = document.getElementById('mobileMenuPanel');
+    var iconPath = document.getElementById('mobileMenuIconPath');
+    if (!btn || !panel) return;
 
-  if (toggle && drawer && hamburger && close) {
-    toggle.addEventListener("click", () => {
-      const isHidden = drawer.classList.contains("hidden");
-      drawer.classList.toggle("hidden");
-      hamburger.classList.toggle("hidden");
-      close.classList.toggle("hidden");
-      toggle.setAttribute("aria-expanded", isHidden ? "true" : "false");
-      document.body.style.overflow = isHidden ? "hidden" : "";
+    btn.addEventListener('click', function () {
+      var expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!expanded));
+      panel.classList.toggle('hidden');
+      if (iconPath) {
+        iconPath.setAttribute(
+          'd',
+          !expanded ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'
+        );
+      }
     });
-  }
+
+    panel.querySelectorAll('.mobile-nav-link').forEach(function (link) {
+      link.addEventListener('click', function () {
+        btn.setAttribute('aria-expanded', 'false');
+        panel.classList.add('hidden');
+        if (iconPath) {
+          iconPath.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+        }
+      });
+    });
+  })();
 </script>

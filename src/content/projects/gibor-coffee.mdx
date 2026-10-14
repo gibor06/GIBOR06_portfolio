@@ -1,51 +1,29 @@
 ---
-title: "GIBOR Coffee Shop: Modern High-Performance E-Commerce Web Experience"
-titleVi: "GIBOR Coffee Shop: Nền Tảng Web Thương Mại Điện Tử Hiện Đại & Tối Ưu Hiệu Năng"
-summary: "A production-grade web storefront engineered for responsive speed, brand cohesion, and seamless customer ordering pathways."
-summaryVi: "Trang web giới thiệu và đặt hàng quán cà phê tối ưu hóa giao diện người dùng, tốc độ tải và luồng trải nghiệm khách hàng đa thiết bị."
-year: "2025"
-role: "Frontend Engineer & UI/UX Designer"
-roleVi: "Kỹ sư Frontend & Thiết kế Trải nghiệm UI/UX"
-domain: "Web Application & E-Commerce"
-domainVi: "Ứng dụng Web & Thương mại điện tử"
-stack: ["HTML5", "Modern CSS", "JavaScript (ES6+)", "Responsive Design", "Performance Optimization"]
-metrics:
-  - label: "Initial Load Time Reduction"
-    labelVi: "Giảm Thời Gian Tải Trang"
-    value: "-38% (Internal Test)"
-  - label: "User Task Completion"
-    labelVi: "Hoàn Thành Tác Vụ <45s"
-    value: "83% (12 test sessions)"
-  - label: "Mobile Usability Score"
-    labelVi: "Điểm Khả Dụng Mobile"
-    value: "96 / 100"
-coverImage: "/portfolio/assets/img/gibor-coffee-live.gif"
+title: "GIBOR Coffee Shop E-Commerce Website"
+titleVi: "Website Thương mại Điện tử & Đặt hàng GIBOR Coffee"
+summary: "Responsive multi-page coffee storefront featuring 15 regional branches, Firebase Auth, cart/loyalty workflows, and Vercel serverless PayOS checkout."
+summaryVi: "Website thương mại điện tử đa trang tích hợp tra cứu 15 chi nhánh, xác thực Firebase Auth, giỏ hàng tích điểm và thanh toán Serverless PayOS trên Vercel."
+category: "Frontend Web & E-Commerce"
+year: "2026"
+role: "Frontend Lead (Home, About, Contact, Branches & main.js)"
+roleVi: "Frontend Lead (Trang chủ, Giới thiệu, Liên hệ, 15 Chi nhánh & main.js)"
+stack: ["HTML5", "CSS3", "Bootstrap 5.3.3", "JavaScript (ES6+)", "Firebase Auth", "Vercel Serverless API"]
 featured: true
-order: 2
-githubUrl: "https://github.com/gibor06"
-liveUrl: "https://github.com/gibor06"
-evidenceUrl: "/portfolio/assets/img/gibor-coffee-og.png"
+order: 3
+outcomeHeadline: "Frontend Lead • 15-Store Branch Finder • Live on Vercel"
+outcomeHeadlineVi: "Frontend Lead • Hệ thống 15 Chi nhánh • Triển khai trên Vercel"
+metrics:
+  - label: "Verified Role"
+    value: "Frontend Lead"
+  - label: "Store Network UI"
+    value: "15 Branches (3 Regions)"
+links:
+  live: "https://giborcoffee.vercel.app/"
+  repo: "https://github.com/gibor06/GIBOR06_Coffee_Shop_Management_Web"
+cover: "/assets/img/projects/gibor-coffee-web-hero.png"
+gifPreview: "/assets/img/projects/gibor-coffee-web-branches.png"
 ---
 
-## Executive Overview
-GIBOR Coffee Shop was created to solve common usability hurdles in beverage ordering web applications: sluggish image-heavy catalogs, confusing menu categorization, and poor mobile interaction flows.
+## Overview
 
----
-
-## 1. Problem & Context
-- Traditional menu sites often ship uncompressed hero assets resulting in LCP (Largest Contentful Paint) exceeding 4 seconds on 3G/4G networks.
-- Users frequently dropped off before selecting custom drink modifiers (sugar/ice levels, toppings).
-
----
-
-## 2. Technical Decisions & Architecture
-- **CSS Grid & Flexbox Modular Layout**: Eliminated bloated CSS frameworks to maintain zero dependency overhead and sub-50KB styling budget.
-- **Dynamic Cart State in Vanilla JS**: Implemented an in-memory pub/sub state manager for real-time cart tallying, price computation, and instant modal updates without external library overhead.
-- **Asset Optimization**: Converted high-res drink photography into modern WebP/GIF formats with explicit width/height properties to avoid Cumulative Layout Shift (CLS).
-
----
-
-## 3. Results & Measured Metrics
-- **Initial Load Time**: Reduced by **~38%** through image compression and deferred script execution.
-- **Task Success Rate**: **83%** of tested users successfully customized and completed their beverage order in under 45 seconds during structured usability testing (12 participants).
-- **Zero Layout Shifts**: Achieved CLS of < 0.02 across all responsive viewports.
+Built collaboratively by a 4-member academic team at HUIT (`GIBOR06_Coffee_Shop_Management_Web`). As **Frontend Lead**, Trần Gia Bảo designed and implemented the Home (`index.html`), About (`about.html`), Contact (`contact.html`), and 15-location Branches (`branches.html`) pages, as well as the shared layout stylesheet (`style.css`) and core frontend runtime (`main.js`).

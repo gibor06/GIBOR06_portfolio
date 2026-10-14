@@ -1,27 +1,25 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Hero from '@components/home/Hero.astro';
-import FeaturedProjects from '@components/home/FeaturedProjects.astro';
-import ResearchTimeline from '@components/home/ResearchTimeline.astro';
-import RecognitionList from '@components/home/RecognitionList.astro';
-import EngineeringProfile from '@components/home/EngineeringProfile.astro';
-import CertificationsGrid from '@components/home/CertificationsGrid.astro';
-import AcademicSnapshot from '@components/home/AcademicSnapshot.astro';
+import AboutSection from '@components/home/AboutSection.astro';
+import ExpertiseSection from '@components/home/ExpertiseSection.astro';
+import SelectedWorksSection from '@components/home/SelectedWorksSection.astro';
+import ResearchSection from '@components/home/ResearchSection.astro';
+import AchievementsSection from '@components/home/AchievementsSection.astro';
 import ContactSection from '@components/home/ContactSection.astro';
 ---
 
 <BaseLayout
-  title="Trần Gia Bảo (gibor06) — Kỹ Sư Phần Mềm & Trí Tuệ Nhân Tạo Ứng Dụng"
-  description="Hồ sơ năng lực kỹ thuật của Trần Gia Bảo (gibor06): nghiên cứu Khai phá dữ liệu EMHUN, mô hình Transformer PhoBERT, hệ thống phần mềm C/C++ và thành tích học thuật chính thức tại HUIT."
+  title="Trần Gia Bảo (gibor06) — Studio Kỹ Thuật Phần Mềm & Kiến Trúc UI/UX"
+  description="Nơi thiết kế UI/UX lấy con người làm trung tâm gặp gỡ kỹ thuật Full-Stack bền bỉ. Không gian sáng tạo, thành tích giải thưởng và nghiên cứu FAIR XIX 2026 của Trần Gia Bảo (gibor06) tại HUIT."
   lang="vi"
   activePath="/vi"
 >
   <Hero lang="vi" />
-  <FeaturedProjects lang="vi" />
-  <ResearchTimeline lang="vi" />
-  <RecognitionList lang="vi" />
-  <EngineeringProfile lang="vi" />
-  <CertificationsGrid lang="vi" />
-  <AcademicSnapshot lang="vi" />
+  <AboutSection lang="vi" />
+  <ExpertiseSection lang="vi" />
+  <SelectedWorksSection lang="vi" />
+  <ResearchSection lang="vi" />
+  <AchievementsSection lang="vi" />
   <ContactSection lang="vi" />
 </BaseLayout>

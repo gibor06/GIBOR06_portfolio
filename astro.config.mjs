@@ -6,7 +6,7 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://gibor06.github.io',
-  base: '/portfolio',
+  base: '/GIBOR06_portfolio',
   integrations: [mdx(), sitemap()],
   vite: {
     plugins: [tailwindcss()],

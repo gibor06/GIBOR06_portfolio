@@ -1,105 +1,13 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
-import { getRelativeLocaleUrl } from '@i18n/utils';
-
-const allProjects = await getCollection('projects');
-const sortedProjects = allProjects.sort((a, b) => a.data.order - b.data.order);
+import ProjectsIndexView from '@components/work/ProjectsIndexView.astro';
 ---
 
 <BaseLayout
-  title="Selected Work & Engineering Systems — Trần Gia Bảo (gibor06)"
-  description="Explore production software systems, AI transformer research, data structures implementations, and web platforms built by Tran Gia Bao."
+  title="Software Engineering Case Studies — Trần Gia Bảo (gibor06)"
+  description="Full-Stack Software Engineering Case Studies by Trần Gia Bảo (gibor06): ASP.NET Core 8.0 MVC & Web API, SQL Server, WPF Desktop POS, PayOS/VietQR, and C/C++ Systems."
   lang="en"
   activePath="/work"
 >
-  <div class="py-16 md:py-28 border-b border-white/[0.08]">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-16">
-      <div class="space-y-3">
-        <span class="font-mono text-xs text-blue-400 uppercase tracking-widest block">WORK DOSSIER</span>
-        <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-          Selected Engineering Work & Systems
-        </h1>
-        <p class="text-sm sm:text-base text-zinc-400 max-w-2xl font-light leading-relaxed">
-          Comprehensive collection of software systems, NLP transformer research, algorithmic data structures, and optimized web applications.
-        </p>
-      </div>
-
-      <div class="space-y-16">
-        {sortedProjects.map((project, idx) => (
-          <article class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pb-16 border-b border-white/[0.08]">
-            <div class="lg:col-span-6">
-              <a
-                href={getRelativeLocaleUrl("en", `/work/${project.slug}`)}
-                class="block img-editorial-reveal border border-white/10 bg-[#0d0f11]"
-              >
-                <img
-                  src={project.data.coverImage}
-                  alt={project.data.title}
-                  class="w-full h-auto object-cover"
-                  loading="lazy"
-                />
-              </a>
-            </div>
-
-            <div class="lg:col-span-6 space-y-5">
-              <div class="flex items-center gap-3 font-mono text-xs text-zinc-400">
-                <span class="text-blue-400 font-bold">PROJECT 0{idx + 1}</span>
-                <span class="text-zinc-700">/</span>
-                <span class="text-white uppercase">{project.data.domain}</span>
-                <span class="text-zinc-700">/</span>
-                <span>{project.data.year}</span>
-              </div>
-
-              <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-tight">
-                <a href={getRelativeLocaleUrl("en", `/work/${project.slug}`)} class="hover:text-blue-400 transition-colors">
-                  {project.data.title}
-                </a>
-              </h2>
-
-              <p class="text-sm text-zinc-300 font-light leading-relaxed">
-                {project.data.summary}
-              </p>
-
-              <!-- Metrics -->
-              <div class="grid grid-cols-2 gap-4 font-mono">
-                {project.data.metrics.map((m) => (
-                  <div class="p-2.5 border-l-2 border-emerald-400 bg-white/[0.02]">
-                    <span class="text-[10px] text-zinc-500 block">{m.label}</span>
-                    <strong class="text-emerald-400 text-sm font-bold">{m.value}</strong>
-                  </div>
-                ))}
-              </div>
-
-              <!-- Tech Stack List -->
-              <div class="flex flex-wrap gap-x-3 gap-y-1 font-mono text-xs text-zinc-400 pt-1">
-                {project.data.stack.map((st) => (
-                  <span class="text-zinc-300">#{st}</span>
-                ))}
-              </div>
-
-              <div class="pt-2 flex items-center gap-6 font-mono text-xs">
-                <a
-                  href={getRelativeLocaleUrl("en", `/work/${project.slug}`)}
-                  class="text-white font-bold hover:text-blue-400 transition-colors"
-                >
-                  Read Case Study →
-                </a>
-                {project.data.githubUrl && (
-                  <a
-                    href={project.data.githubUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    class="text-zinc-500 hover:text-zinc-300 transition-colors"
-                  >
-                    GitHub ↗
-                  </a>
-                )}
-              </div>
-            </div>
-          </article>
-        ))}
-      </div>
-    </div>
-  </div>
+  <ProjectsIndexView lang="en" />
 </BaseLayout>

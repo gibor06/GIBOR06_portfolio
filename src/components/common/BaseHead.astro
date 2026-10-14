@@ -1,96 +1,118 @@
 ---
+import { profile } from '@data/profile';
+import { getAlternateLocaleUrl, withBase } from '@i18n/utils';
+
 export interface Props {
   title?: string;
   description?: string;
   image?: string;
-  canonicalUrl?: string;
-  lang?: string;
+  lang?: "en" | "vi";
+  canonicalPath?: string;
 }
 
 const {
-  title = "Tran Gia Bao (gibor06) — Software Engineer & Applied AI",
-  description = "Software Engineer & Applied AI Researcher. Computer Science at HUIT. Building verified NLP, data systems, and high-performance software.",
-  image = "/portfolio/og-image.png",
-  canonicalUrl = Astro.url.href,
+  title = `${profile.name} (${profile.handle}) — Software Engineering & UI/UX Systems Studio`,
+  description = "Where human-centered UI/UX meets resilient Full-Stack engineering. Personal studio of Trần Gia Bảo (gibor06) — Software Engineering, Systems Architecture & Applied AI.",
+  image = "/assets/img/og-gibor06.png",
   lang = "en",
+  canonicalPath,
 } = Astro.props;
 
-const siteUrl = "https://gibor06.github.io";
-const ogImageUrl = image.startsWith("http") ? image : `${siteUrl}${image.startsWith("/") ? "" : "/"}${image}`;
+const siteOrigin = Astro.site ? Astro.site.origin : "https://gibor06.github.io";
+const currentUrl = canonicalPath
+  ? new URL(withBase(canonicalPath), siteOrigin).toString()
+  : new URL(Astro.url.pathname, siteOrigin).toString();
 
-const personSchema = {
+const enPath = lang === "en" ? Astro.url.pathname : getAlternateLocaleUrl("vi", Astro.url.pathname);
+const viPath = lang === "vi" ? Astro.url.pathname : getAlternateLocaleUrl("en", Astro.url.pathname);
+
+const enUrl = new URL(enPath, siteOrigin).toString();
+const viUrl = new URL(viPath, siteOrigin).toString();
+const ogImageUrl = new URL(withBase(image), siteOrigin).toString();
+
+const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Trần Gia Bảo",
-  "alternateName": "gibor06",
-  "url": "https://gibor06.github.io/portfolio/",
-  "image": "https://gibor06.github.io/portfolio/assets/img/avatar-gibor06.jpg",
-  "jobTitle": "Software Engineer & Applied AI Researcher",
-  "alumniOf": {
-    "@type": "EducationalOrganization",
-    "name": "Ho Chi Minh City University of Industry and Trade (HUIT)"
-  },
-  "sameAs": [
-    "https://github.com/gibor06",
-    "https://www.linkedin.com/in/gibor06/",
-    "https://www.facebook.com/gibor06",
-    "https://www.instagram.com/gibor06"
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${siteOrigin}${withBase("/")}#person`,
+      "name": profile.name,
+      "alternateName": profile.handle,
+      "jobTitle": "Software Engineer — UI/UX & Systems Architecture",
+      "description": description,
+      "url": `${siteOrigin}${withBase("/")}`,
+      "image": ogImageUrl,
+      "email": `mailto:${profile.email}`,
+      "affiliation": {
+        "@type": "CollegeOrUniversity",
+        "name": profile.university,
+        "alternateName": "HUIT"
+      },
+      "sameAs": [
+        profile.github,
+        profile.linkedin
+      ],
+      "knowsAbout": [
+        "UI/UX & Systems Architecture",
+        "Full-Stack Engineering",
+        "Data & Infrastructure",
+        "Applied AI & Algorithms"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteOrigin}${withBase("/")}#website`,
+      "url": `${siteOrigin}${withBase("/")}`,
+      "name": "GIBOR06 STUDIO — Trần Gia Bảo",
+      "description": description,
+      "inLanguage": ["en", "vi"],
+      "publisher": {
+        "@id": `${siteOrigin}${withBase("/")}#person`
+      }
+    }
   ]
-};
-
-const websiteSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Trần Gia Bảo (gibor06) Portfolio",
-  "url": "https://gibor06.github.io/portfolio/",
-  "description": description,
-  "author": {
-    "@type": "Person",
-    "name": "Trần Gia Bảo"
-  }
 };
 ---
 
-<!-- Global Metadata -->
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="icon" type="image/svg+xml" href={import.meta.env.BASE_URL + "/favicon.svg"} />
-<link rel="apple-touch-icon" href={import.meta.env.BASE_URL + "/assets/img/avatar-gibor06.jpg"} />
-<meta name="generator" content={Astro.generator} />
-<meta name="theme-color" content="#09090b" />
-
-<!-- Canonical URL -->
-<link rel="canonical" href={canonicalUrl} />
-
-<!-- Primary Meta Tags -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>{title}</title>
-<meta name="title" content={title} />
 <meta name="description" content={description} />
-<meta name="author" content="Trần Gia Bảo (gibor06)" />
+<meta name="author" content={profile.name} />
+<meta name="theme-color" content="#f6f3ec" />
+<meta name="robots" content="index, follow" />
 
-<!-- Open Graph / Facebook -->
+<link rel="canonical" href={currentUrl} />
+<link rel="alternate" hreflang="en" href={enUrl} />
+<link rel="alternate" hreflang="vi" href={viUrl} />
+<link rel="alternate" hreflang="x-default" href={enUrl} />
+
+<link rel="icon" type="image/svg+xml" href={withBase("/favicon.svg")} />
+<link rel="sitemap" href={withBase("/sitemap-index.xml")} />
+
+<!-- Open Graph / Social -->
 <meta property="og:type" content="website" />
-<meta property="og:url" content={canonicalUrl} />
+<meta property="og:site_name" content="GIBOR06 STUDIO // FOLIO 2026" />
+<meta property="og:url" content={currentUrl} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={ogImageUrl} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
 <meta property="og:locale" content={lang === "vi" ? "vi_VN" : "en_US"} />
 
 <!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={canonicalUrl} />
-<meta property="twitter:title" content={title} />
-<meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={ogImageUrl} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImageUrl} />
 
-<!-- Google Fonts (Geist Sans & Geist Mono) -->
+<!-- Editorial & Technical Typography (Vietnamese + Latin subsets) -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
-  href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&family=Geist:wght@300;400;500;600;700;800&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600;1,700&family=Geist+Mono:wght@400;500;600;700&family=Geist:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap"
   rel="stylesheet"
 />
 
-<!-- Structured Data (JSON-LD) -->
-<script is:inline type="application/ld+json" set:html={JSON.stringify(personSchema)} />
-<script is:inline type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+<script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

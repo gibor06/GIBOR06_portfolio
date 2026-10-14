@@ -1,0 +1,122 @@
+---
+export interface Props {
+  lang?: "en" | "vi";
+}
+
+const { lang = "en" } = Astro.props;
+
+const tenets = [
+  {
+    code: "TENET I",
+    title: lang === "vi" ? "Hình thái sinh ra từ cấu trúc" : "Form Emerges from Structure",
+    body:
+      lang === "vi"
+        ? "Một giao diện xuất sắc không bắt đầu từ sự trang trí bề mặt, mà khởi nguồn từ sự minh bạch của luồng dữ liệu và trật tự của lưới kiến trúc bên dưới."
+        : "Great interfaces do not begin as surface ornament; they emerge naturally from the clarity of underlying data models and the discipline of spatial grids.",
+  },
+  {
+    code: "TENET II",
+    title: lang === "vi" ? "Kỹ thuật bền bỉ cho con người" : "Resilience as Human Empathy",
+    body:
+      lang === "vi"
+        ? "Tốc độ phản hồi tức thời, tính toàn vẹn giao dịch và khả năng vận hành ổn định chính là sự tôn trọng cao nhất dành cho thời gian và nhận thức của người dùng."
+        : "Sub-second responsiveness, transactional integrity, and fault-tolerant architecture are the highest forms of respect for human attention and trust.",
+  },
+  {
+    code: "TENET III",
+    title: lang === "vi" ? "Tư duy thuật toán tối ưu" : "Algorithmic Elegance",
+    body:
+      lang === "vi"
+        ? "Mọi bài toán phần mềm phức tạp đều ẩn chứa một cấu trúc toán học. Tối ưu hóa không gian tìm kiếm giúp hệ thống vận hành thanh thoát trước quy mô lớn."
+        : "Behind every complex operational bottleneck lies a mathematical structure waiting to be simplified through rigorous algorithmic optimization.",
+  },
+];
+---
+
+<section id="about" class="py-20 sm:py-28 border-b-2 border-[var(--line-strong)] relative">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <!-- Editorial Section Header -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 border-t-2 border-x border-b border-[var(--line-strong)] bg-[var(--bg-elevated)] reveal-on-scroll">
+      <div class="lg:col-span-3 p-6 sm:p-8 bg-[#143a8a] text-white keep-white border-b lg:border-b-0 lg:border-r border-[var(--line-strong)] flex flex-col justify-between">
+        <div class="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#ffd4c8] keep-white">
+          01 // ABOUT
+        </div>
+        <div class="my-6">
+          <div class="font-editorial italic text-4xl sm:text-5xl font-bold text-white keep-white leading-none">
+            Manifesto
+          </div>
+          <div class="h-1 w-14 bg-[#d9532f] mt-3"></div>
+        </div>
+        <div class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/80 keep-white">
+          PHILOSOPHY OF CRAFT // HUIT
+        </div>
+      </div>
+
+      <div class="lg:col-span-9 p-6 sm:p-10 lg:p-14 space-y-8">
+        <div class="font-mono text-[11px] uppercase tracking-[0.24em] text-[var(--accent-secondary)] font-bold">
+          {lang === "vi"
+            ? "TUYÊN NGÔN THIẾT KẾ & KỸ THUẬT PHẦN MỀM"
+            : "ARCHITECTURAL STATEMENT & ENGINEERING PHILOSOPHY"}
+        </div>
+
+        <h2 class="font-editorial text-3xl sm:text-5xl lg:text-[3.35rem] font-bold text-[var(--text)] leading-[1.08] tracking-tight">
+          {lang === "vi"
+            ? "Phần mềm không chỉ là những dòng lệnh thực thi — đó là không gian kiến trúc nơi con người tư duy, sáng tạo và ra quyết định."
+            : "Software is more than executable logic — it is an inhabited architecture where human perception and systemic resilience converge."}
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4 border-t border-[var(--line)] text-[var(--text-secondary)] text-base sm:text-lg leading-[1.8]">
+          <p>
+            {lang === "vi" ? (
+              <>
+                Là một người theo đuổi ngành <strong class="text-[var(--text)] font-semibold">Công nghệ phần mềm tại Đại học Công Thương TP.HCM (HUIT)</strong>, tôi từ chối sự phân tách cứng nhắc giữa người thiết kế giao diện và người kiến trúc hệ thống. Khi một kỹ sư thấu hiểu sâu sắc nhịp điệu thị giác lẫn cấu trúc cơ sở dữ liệu và tầng nghiệp vụ, sản phẩm tạo ra sẽ mang một sự liền mạch tự nhiên từ trong ra ngoài.
+              </>
+            ) : (
+              <>
+                Shaped by a foundation in <strong class="text-[var(--text)] font-semibold">Software Engineering at Ho Chi Minh City University of Industry and Trade (HUIT)</strong>, I reject the artificial divide between interface design and systems engineering. When the same mind choreographs typographic hierarchy and architects the underlying service and data layers, the resulting software achieves an unmistakable structural coherence.
+              </>
+            )}
+          </p>
+          <p>
+            {lang === "vi" ? (
+              <>
+                Song hành cùng việc phát triển các hệ thống Full-Stack, hành trình của tôi còn được định hình bởi <strong class="text-[var(--text)] font-semibold">nghiên cứu thuật toán tối ưu và trí tuệ nhân tạo</strong> — với vai trò đồng tác giả các công trình khoa học được công bố tại những hội nghị khoa học uy tín. Tư duy nghiên cứu giúp tôi nhìn nhận mọi thách thức kỹ thuật dưới lăng kính của sự chuẩn xác, tối giản và bền vững.
+              </>
+            ) : (
+              <>
+                Alongside building Full-Stack software ecosystems, my work is anchored in <strong class="text-[var(--text)] font-semibold">algorithmic optimization and applied AI research</strong> — serving as co-author on peer-reviewed scientific works presented at prestigious academic conferences. Research discipline instills a habit of questioning assumptions, stripping away complexity, and engineering for permanence.
+              </>
+            )}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Three Philosophical Tenets + Geometric Colophon -->
+    <div class="grid grid-cols-1 md:grid-cols-3 border-x border-b border-[var(--line-strong)] bg-[var(--bg)] reveal-on-scroll">
+      {tenets.map((tenet, idx) => (
+        <article
+          class:list={[
+            "p-6 sm:p-8 lg:p-10 flex flex-col justify-between space-y-6 hover:bg-[var(--bg-elevated)] transition-colors",
+            idx < 2 ? "border-b md:border-b-0 md:border-r border-[var(--line-strong)]" : "",
+          ]}
+        >
+          <div class="flex items-center justify-between border-b border-[var(--line)] pb-3">
+            <span class="font-mono text-[11px] font-bold uppercase tracking-[0.22em] text-[var(--accent-secondary)]">
+              0{idx + 1} // {tenet.code}
+            </span>
+            <span class="h-2.5 w-2.5 bg-[var(--accent)]"></span>
+          </div>
+          <div class="space-y-3">
+            <h3 class="font-editorial text-2xl sm:text-3xl font-bold text-[var(--text)] leading-tight">
+              {tenet.title}
+            </h3>
+            <p class="text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed">
+              {tenet.body}
+            </p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

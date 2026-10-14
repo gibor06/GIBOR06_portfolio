@@ -1,0 +1,432 @@
+---
+import { achievements } from '@data/achievements';
+import { certificates } from '@data/certificates';
+import { withBase } from '@i18n/utils';
+
+export interface Props {
+  lang?: "en" | "vi";
+}
+
+const { lang = "en" } = Astro.props;
+
+const categoryLabel = {
+  conference: lang === "vi" ? "HỘI NGHỊ QUỐC GIA" : "NATIONAL CONFERENCE",
+  research: lang === "vi" ? "NGHIÊN CỨU KHOA HỌC" : "SCIENTIFIC RESEARCH",
+  competition: lang === "vi" ? "CUỘC THI HỌC THUẬT" : "ACADEMIC COMPETITION",
+  academic: lang === "vi" ? "DANH HIỆU HỌC TẬP" : "RECTOR'S COMMENDATION",
+};
+
+const categoryAccent = {
+  conference: "bg-[#d9532f] text-white keep-white",
+  research: "bg-[#143a8a] text-white keep-white",
+  competition: "bg-[#0f1e36] text-white keep-white",
+  academic: "bg-[#b88228] text-white keep-white",
+};
+---
+
+<section id="honours" class="py-20 sm:py-28 border-b-2 border-[var(--line-strong)] relative overflow-hidden">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-20">
+    
+    <!-- ======================================================================
+         PART I: HALL OF HONOURS & SCIENTIFIC AWARDS (8 VERIFIED RECORDS)
+         ====================================================================== -->
+    <div class="space-y-10">
+      <!-- Editorial Section Header -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 border-2 border-[var(--line-strong)] bg-[var(--bg-elevated)] shadow-[8px_8px_0px_var(--shadow-color)] reveal-on-scroll">
+        <div class="lg:col-span-4 p-8 sm:p-10 bg-[#d9532f] text-white keep-white border-b lg:border-b-0 lg:border-r border-[var(--line-strong)] flex flex-col justify-between">
+          <div class="font-mono text-xs font-bold uppercase tracking-[0.24em] text-white/90 keep-white">
+            05 // HONOURS & RECOGNITION
+          </div>
+          <div class="my-6 space-y-2">
+            <h2 class="font-editorial text-4xl sm:text-5xl font-bold text-white keep-white leading-[0.98]">
+              {lang === "vi" ? "Thành Tích & Giải Thưởng" : "Honours & Distinctions"}
+            </h2>
+            <p class="font-editorial italic text-xl text-white/90 keep-white">
+              {lang === "vi"
+                ? "Bằng chứng thực nghiệm từ hội nghị quốc gia, nghiên cứu khoa học và đấu trường học thuật."
+                : "Verified distinctions across national conferences, scientific inquiry, and academic competitions."}
+            </p>
+          </div>
+          <div class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/85 keep-white">
+            VERIFIED ARCHIVE // 2025 — 2026
+          </div>
+        </div>
+
+        <!-- Summary Metrics Matrix (4 Impact Numbers) -->
+        <div class="lg:col-span-8 grid grid-cols-2 sm:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-[var(--line-strong)]">
+          <div class="p-6 sm:p-8 flex flex-col justify-between">
+            <span class="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--accent-secondary)]">
+              01 // FAIR XIX 2026
+            </span>
+            <div class="font-editorial text-5xl sm:text-6xl font-bold text-[var(--text)] my-3">
+              02
+            </div>
+            <p class="text-xs text-[var(--text-secondary)] font-medium leading-relaxed">
+              {lang === "vi"
+                ? "Bài báo Hội nghị Khoa học Quốc gia FAIR XIX 2026 (1 Tác giả chính, 1 Đồng tác giả)"
+                : "National Scientific Conference Papers at FAIR XIX 2026 (1 Lead Author, 1 Co-Author)"}
+            </p>
+          </div>
+
+          <div class="p-6 sm:p-8 flex flex-col justify-between">
+            <span class="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--accent-secondary)]">
+              02 // RESEARCH AWARDS
+            </span>
+            <div class="font-editorial text-5xl sm:text-6xl font-bold text-[var(--text)] my-3">
+              03
+            </div>
+            <p class="text-xs text-[var(--text-secondary)] font-medium leading-relaxed">
+              {lang === "vi"
+                ? "Giải Nhì, Giải Ba & Giải Khuyến khích Nghiên cứu Khoa học Sinh viên Cấp Trường & Khoa"
+                : "Second Prize, Third Prize & University Finalist in Student Scientific Research"}
+            </p>
+          </div>
+
+          <div class="p-6 sm:p-8 flex flex-col justify-between">
+            <span class="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--accent-secondary)]">
+              03 // COMPETITIONS
+            </span>
+            <div class="font-editorial text-5xl sm:text-6xl font-bold text-[var(--text)] my-3">
+              03
+            </div>
+            <p class="text-xs text-[var(--text-secondary)] font-medium leading-relaxed">
+              {lang === "vi"
+                ? "Giải Thiết kế CSDL, 2 Đề tài Chung kết Khoa học Dữ liệu & Danh hiệu Sinh viên Giỏi"
+                : "Database Design Award, Double Data Science Finalist & Rector's Honor Student"}
+            </p>
+          </div>
+
+          <div class="p-6 sm:p-8 flex flex-col justify-between">
+            <span class="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--accent-secondary)]">
+              04 // CREDENTIALS
+            </span>
+            <div class="font-editorial text-5xl sm:text-6xl font-bold text-[var(--text)] my-3">
+              12
+            </div>
+            <p class="text-xs text-[var(--text-secondary)] font-medium leading-relaxed">
+              {lang === "vi"
+                ? "Chứng chỉ Quốc tế Google AI Essentials, Gemini & Google Data Analytics (Coursera)"
+                : "Verified Google AI Essentials, Gemini & Google Data Analytics Certifications"}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Filter Bar -->
+      <div class="flex flex-wrap items-center justify-between gap-4 border-b border-[var(--line-strong)] pb-4 reveal-on-scroll">
+        <div class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--text-muted)] font-bold">
+          {lang === "vi" ? "DANH MỤC GIẢI THƯỞNG & CÔNG BỐ (NHẤN VÀO ẢNH ĐỂ PHÓNG TO MINH CHỨNG):" : "HONOURS LEDGER (CLICK ANY CERTIFICATE TO INSPECT FULL EVIDENCE):"}
+        </div>
+        <div class="flex flex-wrap gap-1.5 font-mono text-[10px]" role="tablist">
+          <button
+            type="button"
+            data-award-filter="all"
+            class="award-filter-btn px-3 py-1.5 font-bold uppercase tracking-wider bg-[#143a8a] text-white keep-white border border-[var(--line-strong)] cursor-pointer"
+          >
+            {lang === "vi" ? "Tất cả (08)" : "All (08)"}
+          </button>
+          <button
+            type="button"
+            data-award-filter="conference"
+            class="award-filter-btn px-3 py-1.5 font-bold uppercase tracking-wider bg-[var(--bg-elevated)] text-[var(--text)] border border-[var(--line-strong)] cursor-pointer"
+          >
+            {lang === "vi" ? "Hội nghị Quốc gia FAIR (02)" : "National Conference (02)"}
+          </button>
+          <button
+            type="button"
+            data-award-filter="research"
+            class="award-filter-btn px-3 py-1.5 font-bold uppercase tracking-wider bg-[var(--bg-elevated)] text-[var(--text)] border border-[var(--line-strong)] cursor-pointer"
+          >
+            {lang === "vi" ? "Nghiên cứu Khoa học (03)" : "Scientific Research (03)"}
+          </button>
+          <button
+            type="button"
+            data-award-filter="competition"
+            class="award-filter-btn px-3 py-1.5 font-bold uppercase tracking-wider bg-[var(--bg-elevated)] text-[var(--text)] border border-[var(--line-strong)] cursor-pointer"
+          >
+            {lang === "vi" ? "Học thuật & Danh hiệu (03)" : "Competitions & Honours (03)"}
+          </button>
+        </div>
+      </div>
+
+      <!-- 8 Verified Achievements Brutalist Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 border-t border-l border-[var(--line-strong)] bg-[var(--bg-elevated)]">
+        {achievements.map((item, idx) => {
+          const title = lang === "vi" ? item.titleVi : item.titleEn;
+          const desc = lang === "vi" ? item.descriptionVi : item.descriptionEn;
+          const scope = lang === "vi" ? item.scopeVi : item.scopeEn;
+          const filterGroup = item.category === "academic" ? "competition" : item.category;
+          return (
+            <article
+              data-award-item={filterGroup}
+              class="p-6 sm:p-8 border-r border-b border-[var(--line-strong)] flex flex-col justify-between gap-6 hover:bg-[var(--bg-panel)] transition-colors group"
+            >
+              <div class="space-y-4">
+                <!-- Top Metadata Row -->
+                <div class="flex flex-wrap items-center justify-between gap-2 border-b border-[var(--line)] pb-3">
+                  <div class="flex items-center gap-2">
+                    <span class="font-mono text-xs font-bold text-[var(--accent-secondary)]">
+                      0{idx + 1} //
+                    </span>
+                    <span class={`px-2.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-[0.16em] ${categoryAccent[item.category]}`}>
+                      {categoryLabel[item.category]}
+                    </span>
+                  </div>
+                  <span class="font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--text-muted)]">
+                    {item.date} • {scope}
+                  </span>
+                </div>
+
+                <!-- Award Content + Certificate Thumbnail -->
+                <div class="grid grid-cols-1 sm:grid-cols-12 gap-5 items-start">
+                  <div class="sm:col-span-8 space-y-2.5">
+                    <div class="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--text-muted)] font-semibold">
+                      {item.organization}
+                    </div>
+                    <h3 class="font-editorial text-2xl sm:text-3xl font-bold text-[var(--text)] leading-[1.15] group-hover:text-[var(--accent)] transition-colors">
+                      {title}
+                    </h3>
+                    <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
+                      {desc}
+                    </p>
+                  </div>
+
+                  <!-- Certificate Image Button (Opens Global Lightbox) -->
+                  <div class="sm:col-span-4">
+                    <button
+                      type="button"
+                      data-lightbox={withBase(item.imagePath)}
+                      data-lightbox-alt={title}
+                      data-lightbox-caption={`${title} — ${item.organization} (${item.date})`}
+                      class="w-full border-2 border-[var(--line-strong)] bg-[var(--bg)] p-1.5 shadow-[4px_4px_0px_var(--shadow-color)] hover:shadow-[6px_6px_0px_#d9532f] transition-all cursor-pointer group/img text-left"
+                      aria-label={lang === "vi" ? `Xem giấy chứng nhận: ${title}` : `Inspect certificate: ${title}`}
+                    >
+                      <div class="aspect-[4/3] overflow-hidden bg-[var(--bg-panel)] relative">
+                        <img
+                          src={withBase(item.imagePath)}
+                          alt={title}
+                          loading="lazy"
+                          class="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-300"
+                        />
+                      </div>
+                      <div class="pt-1.5 flex items-center justify-between font-mono text-[9px] uppercase tracking-[0.16em] text-[var(--text)] font-bold">
+                        <span>{lang === "vi" ? "XEM CHỨNG NHẬN" : "VIEW EVIDENCE"}</span>
+                        <span class="text-[var(--accent-secondary)]">⊕</span>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Footer Verification Links -->
+              <div class="pt-3 border-t border-[var(--line-faint)] flex flex-wrap items-center justify-between gap-3 font-mono text-[10px] uppercase tracking-[0.18em]">
+                <button
+                  type="button"
+                  data-lightbox={withBase(item.imagePath)}
+                  data-lightbox-alt={title}
+                  data-lightbox-caption={`${title} — ${item.organization} (${item.date})`}
+                  class="font-bold text-[var(--accent)] hover:text-[var(--accent-secondary)] cursor-pointer flex items-center gap-1.5"
+                >
+                  <span>{lang === "vi" ? "PHÓNG TO GIẤY KHEN / CHỨNG NHẬN" : "INSPECT CERTIFICATE SCAN"}</span>
+                  <span>↗</span>
+                </button>
+                {item.evidenceUrl && (
+                  <a
+                    href={item.evidenceUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    class="font-bold text-[var(--accent-secondary)] hover:underline"
+                  >
+                    {lang === "vi" ? "CÔNG BỐ TRÊN CỔNG THÔNG TIN HUIT ↗" : "OFFICIAL HUIT ANNOUNCEMENT ↗"}
+                  </a>
+                )}
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+
+    <!-- ======================================================================
+         PART II: GOOGLE AI & DATA ANALYTICS CERTIFICATIONS (12 CREDENTIALS)
+         ====================================================================== -->
+    <div class="space-y-8 reveal-on-scroll">
+      <div class="flex flex-col md:flex-row md:items-end justify-between pb-6 border-b-2 border-[var(--line-strong)] gap-4">
+        <div class="space-y-2">
+          <div class="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[var(--accent-secondary)]">
+            05.B // INTERNATIONAL CREDENTIALS — GOOGLE & COURSERA
+          </div>
+          <h3 class="font-editorial text-3xl sm:text-5xl font-bold text-[var(--text)] leading-none">
+            {lang === "vi"
+              ? "12 Chứng Chỉ Chuyên Môn Google AI & Data Analytics"
+              : "12 Verified Google AI & Data Analytics Certifications"}
+          </h3>
+        </div>
+        <div class="font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--text-muted)]">
+          COURSERA VERIFIED // 2025 — 2026
+        </div>
+      </div>
+
+      <!-- Highlighted 6 Primary Certificates Grid with Previews -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border-t border-l border-[var(--line-strong)] bg-[var(--bg-elevated)]">
+        {certificates.slice(0, 6).map((cert, index) => {
+          const title = lang === "vi" ? cert.titleVi : cert.titleEn;
+          return (
+            <article class="p-6 border-r border-b border-[var(--line-strong)] flex flex-col justify-between space-y-5 hover:bg-[var(--bg-panel)] transition-colors">
+              <div class="space-y-4">
+                <div class="flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.18em]">
+                  <span class="px-2 py-0.5 bg-[#143a8a] text-white keep-white font-bold">
+                    0{index + 1} // {cert.issuer}
+                  </span>
+                  <span class="text-[var(--text-muted)] font-bold">{cert.date}</span>
+                </div>
+
+                <!-- Certificate Preview Thumbnail -->
+                <button
+                  type="button"
+                  data-lightbox={withBase(cert.imagePath)}
+                  data-lightbox-alt={title}
+                  data-lightbox-caption={`${title} — ${cert.issuer} (${cert.date})`}
+                  class="w-full border border-[var(--line-strong)] bg-[var(--bg)] p-1.5 cursor-pointer group/cert text-left"
+                >
+                  <div class="aspect-[16/10] overflow-hidden bg-[var(--bg-panel)]">
+                    <img
+                      src={withBase(cert.imagePath)}
+                      alt={title}
+                      loading="lazy"
+                      class="w-full h-full object-cover group-hover/cert:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                </button>
+
+                <h4 class="font-editorial text-2xl font-bold text-[var(--text)] leading-snug">
+                  {title}
+                </h4>
+              </div>
+
+              <div class="pt-3 border-t border-[var(--line-faint)] flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.16em]">
+                <button
+                  type="button"
+                  data-lightbox={withBase(cert.imagePath)}
+                  data-lightbox-alt={title}
+                  data-lightbox-caption={`${title} — ${cert.issuer} (${cert.date})`}
+                  class="font-bold text-[var(--accent)] hover:text-[var(--accent-secondary)] cursor-pointer"
+                >
+                  {lang === "vi" ? "XEM ẢNH ⊕" : "PREVIEW ⊕"}
+                </button>
+                {cert.credentialUrl ? (
+                  <a
+                    href={cert.credentialUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    class="font-bold text-[var(--accent-secondary)] hover:underline"
+                  >
+                    {lang === "vi" ? "XÁC THỰC COURSERA ↗" : "VERIFY COURSERA ↗"}
+                  </a>
+                ) : cert.pdfPath ? (
+                  <a
+                    href={withBase(cert.pdfPath)}
+                    target="_blank"
+                    rel="noreferrer"
+                    class="font-bold text-[var(--accent-secondary)] hover:underline"
+                  >
+                    PDF ↗
+                  </a>
+                ) : null}
+              </div>
+            </article>
+          );
+        })}
+      </div>
+
+      <!-- Remaining 6 Component Certificates Ledger -->
+      <div class="border border-[var(--line-strong)] bg-[var(--bg-elevated)] p-6">
+        <div class="font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-[var(--accent-secondary)] mb-4">
+          {lang === "vi"
+            ? "CÁC CHỨNG CHỈ THÀNH PHẦN THUỘC CHUYÊN NGÀNH GOOGLE AI ESSENTIALS (07 — 12):"
+            : "ADDITIONAL COMPONENT CERTIFICATES — GOOGLE AI ESSENTIALS SERIES (07 — 12):"}
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+          {certificates.slice(6).map((cert, idx) => {
+            const title = lang === "vi" ? cert.titleVi : cert.titleEn;
+            return (
+              <div class="p-3.5 border border-[var(--line)] bg-[var(--bg)] flex items-center justify-between gap-3">
+                <div class="space-y-0.5 min-w-0">
+                  <div class="font-mono text-[9px] uppercase tracking-[0.16em] text-[var(--text-muted)]">
+                    0{idx + 7} // {cert.date}
+                  </div>
+                  <div class="font-semibold text-xs text-[var(--text)] truncate" title={title}>
+                    {title}
+                  </div>
+                </div>
+                <div class="flex items-center gap-2 shrink-0 font-mono text-[10px]">
+                  <button
+                    type="button"
+                    data-lightbox={withBase(cert.imagePath)}
+                    data-lightbox-alt={title}
+                    data-lightbox-caption={`${title} — ${cert.issuer} (${cert.date})`}
+                    class="px-2 py-1 border border-[var(--line-strong)] bg-[var(--bg-elevated)] font-bold text-[var(--text)] hover:bg-[var(--accent)] hover:text-white cursor-pointer"
+                  >
+                    {lang === "vi" ? "ẢNH" : "SCAN"}
+                  </button>
+                  {cert.credentialUrl && (
+                    <a
+                      href={cert.credentialUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      class="px-2 py-1 bg-[#d9532f] text-white keep-white font-bold"
+                    >
+                      ↗
+                    </a>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    function initAwardFilters() {
+      var btns = document.querySelectorAll('[data-award-filter]');
+      var items = document.querySelectorAll('[data-award-item]');
+      if (!btns.length || !items.length) return;
+
+      btns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var filter = btn.getAttribute('data-award-filter') || 'all';
+          btns.forEach(function (b) {
+            var active = b.getAttribute('data-award-filter') === filter;
+            if (active) {
+              b.classList.add('bg-[#143a8a]', 'text-white', 'keep-white');
+              b.classList.remove('bg-[var(--bg-elevated)]', 'text-[var(--text)]');
+            } else {
+              b.classList.remove('bg-[#143a8a]', 'text-white', 'keep-white');
+              b.classList.add('bg-[var(--bg-elevated)]', 'text-[var(--text)]');
+            }
+          });
+
+          items.forEach(function (item) {
+            var cat = item.getAttribute('data-award-item');
+            if (filter === 'all' || cat === filter) {
+              item.classList.remove('hidden');
+            } else {
+              item.classList.add('hidden');
+            }
+          });
+        });
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initAwardFilters);
+    } else {
+      initAwardFilters();
+    }
+  })();
+</script>
